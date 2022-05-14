@@ -43,18 +43,6 @@
                                     </div>
                                 </div>
 
-                                {{-- <div class="">
-                                    <div class="">
-                                        <div class="">
-                                            <label class="form-check-label" for="remember">
-                                            <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                                {{ old('remember') ? 'checked' : '' }}>
-                                                {{ __('Remember Me') }}
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div> --}}
-
                                 <div class="">
                                     <div class="d-flex">
                                         <button type="submit" id="enviar" class="btn btn-primary">
@@ -62,7 +50,7 @@
                                         </button>
 
                                         @if (Route::has('password.request'))
-                                            <a class="btn btn-link" id="missPw" href="{{ route('password.request') }}">
+                                            <a class="btn btn-link" id="recuperar" href="{{ route('password.request') }}">
                                                 {{ __('Olvidé mi contraseña') }}
                                             </a>
                                         @endif
