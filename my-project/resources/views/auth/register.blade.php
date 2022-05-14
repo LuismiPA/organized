@@ -8,7 +8,10 @@
     <div class="main">
         <div class="container mx-auto">
             <div class="middle">
-                
+                <div class="logo">
+                    <img src="{{ asset('assets/images/logo_trans.png') }}" alt="logo">
+                    <div class="clearfix"></div>
+                </div>
                 <div id="login">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
@@ -55,16 +58,13 @@
                                 placeholder="Confirmación Password" required autocomplete="new-password">
                             </p>
                         </div>
-
-                        <button type="submit" id="enviar" class="btn btn-primary">
-                            {{ __('Register') }}
-                        </button>
+                        <div id="register">
+                            <button type="submit" id="enviar" class="btn btn-primary">
+                                {{ __('Register') }}
+                            </button>
+                        </div>
                 </div>
                 <div class="clearfix"></div>
-                <div class="logo">
-                    <img src="{{ asset('assets/images/logo_trans.png') }}" alt="logo">
-                    <div class="clearfix"></div>
-                </div>
             </div>
             </form>
         </div>

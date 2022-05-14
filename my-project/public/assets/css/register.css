@@ -1,17 +1,10 @@
-@charset "utf-8";
+/* @charset "utf-8";
 @import url(maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
 div.main {
     background-image: linear-gradient(to left top, #151f41, #192b5a, #1b3775, #1b4491, #1851ae, #1851ae, #1851ae, #1851ae, #1b4491, #1b3775, #192b5a, #151f41);
     height: calc(100vh);
     width: 100%;
 }
-
-[class*="fontawesome-"]:before {
-    font-family: "FontAwesome", sans-serif;
-}
-
-
-/* ---------- GENERAL ---------- */
 
 * {
     box-sizing: border-box;
@@ -57,9 +50,6 @@ input {
     transform: translate(-50%, -50%);
 }
 
-
-/* ---------- LOGIN ---------- */
-
 #login form {
     width: 250px;
 }
@@ -72,14 +62,14 @@ input {
 }
 
 #login {
-    border-right: 1px solid #fff;
+    border-left: 1px solid #fff;
     padding: 40px 22px;
     width: 59%;
 }
 
 .logo {
     margin-top: 60px;
-    margin-left: 40px;
+    margin-right: 40px;
 }
 
 .logo img {
@@ -127,7 +117,6 @@ input[type="text"] {
     background-color: #000000;
     color: rgb(0, 0, 0);
     font-weight: bold;
-    /* margin-bottom: 2em; */
     text-transform: uppercase;
     padding: 5px 10px;
     height: 30px;
@@ -155,9 +144,194 @@ input[type="text"] {
 }
 
 #enviar {
-    /*  display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    text-align: center; */
     background-color: rgb(0, 0, 0);
+} */
+
+@charset "utf-8";
+@import url(maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+div.main {
+    background-image: linear-gradient(to left top, #151f41, #192b5a, #1b3775, #1b4491, #1851ae, #1851ae, #1851ae, #1851ae, #1b4491, #1b3775, #192b5a, #151f41);
+    height: calc(100vh);
+    width: 100%;
+}
+
+.logo {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding-top: 10%;
+    padding-bottom: 1em;
+}
+
+.logo img {
+    width: 50%;
+    margin: 0 auto;
+}
+
+#login {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    border-top: 1px solid #fff;
+    padding: 1em;
+}
+
+#login form span.fa {
+    background-color: #fff;
+    border-radius: 3px 0px 0px 3px;
+    color: #000;
+    display: block;
+    float: left;
+    height: 30px;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    width: 30px;
+}
+
+#login form input[type="email"],
+input[type="password"],
+input[type="text"] {
+    background-color: #fff;
+    border: none;
+    color: #000;
+    height: 30px;
+    width: 85%;
+}
+
+#login form input[type="submit"] {
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: #000000;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    height: 30px;
+}
+
+#login form input[type="submit"]:hover {
+    background-color: #d44179;
+}
+
+#recuperar {
+    color: #fff !important;
+}
+
+#enviar {
+    background-color: #000;
+    border: none;
+}
+
+#name,
+#password {
+    margin-bottom: 1em;
+}
+
+#register {
+    display: flex;
+}
+
+#enviar {
+    margin: 0 auto;
+}
+
+@media (min-width: 600px) {
+    * {
+        box-sizing: border-box;
+        margin: 0 auto;
+    }
+    body {
+        color: #606468;
+        font: 87.5%/1.5em "Open Sans", sans-serif;
+        margin: 0;
+    }
+    a {
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+    }
+    #recuperar {
+        color: white !important;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    p {
+        line-height: 1.5em;
+    }
+    input {
+        border: none;
+        font-family: 'Open Sans', Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.5em;
+        padding: 0;
+        -webkit-appearance: none;
+    }
+    .container {
+        left: 50%;
+        position: fixed;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    #login form {
+        width: 250px;
+    }
+    #login,
+    .logo {
+        display: inline-block;
+        width: 40%;
+    }
+    #login {
+        border-top: none;
+        border-left: 1px solid #fff;
+        padding: 40px 22px;
+        width: 59%;
+    }
+    .logo {
+        margin-right: 10px;
+    }
+    .logo img {
+        width: 90%;
+    }
+    #login form span.fa {
+        background-color: #fff;
+        border-radius: 3px 0px 0px 3px;
+        color: #000;
+        display: block;
+        float: left;
+        height: 50px;
+        font-size: 24px;
+        line-height: 50px;
+        text-align: center;
+        width: 50px;
+    }
+    #login form input {
+        height: 50px;
+    }
+    fieldset {
+        padding: 0;
+        border: 0;
+        margin: 0;
+    }
+    #login form input[type="email"],
+    input[type="password"],
+    input[type="text"] {
+        background-color: #fff;
+        border-radius: 0px 3px 3px 0px;
+        color: #000;
+        padding: 0 16px;
+        height: 50px;
+        width: 200px;
+    }
+    #login>p {
+        text-align: center;
+    }
+    #login>p span {
+        padding-left: 5px;
+    }
+    .middle {
+        display: flex;
+        width: 600px;
+    }
 }

@@ -9,6 +9,10 @@
         <div class="container mx-auto">
             <div class="row justify-content-center">
                 <div class="middle">
+                    <div class="logo">
+                            <img src="{{ asset('assets/images/logo_trans.png') }}" alt="logo">
+                            <div class="clearfix"></div>
+                        </div>
                     <div id="login">
                         <div class="">
                             <form method="POST" action="{{ route('login') }}">
@@ -60,10 +64,7 @@
                             </form>
                         </div>
                     </div>
-                        <div class="logo">
-                            <img src="{{ asset('assets/images/logo_trans.png') }}" alt="logo">
-                            <div class="clearfix"></div>
-                        </div>
+                        
                 </div>
             </div>
         </div>
