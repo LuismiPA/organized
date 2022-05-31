@@ -16,16 +16,16 @@ return new class extends Migration
         Schema::create('apartment', function (Blueprint $table) {
             $table->id();
             $table->text('direccion');
-            $table->integer('codigo postal');
-            $table->enum('habitaciones', ['1', '2','3','4','5','6']);
-            $table->enum('camas_dobles', ['1', '2','3','4','5','6']);
-            $table->enum('camas_indiv', ['1', '2','3','4','5','6','7','8']);
-            $table->enum('baños', ['1', '2','3','4','5','6']);
+            $table->integer('codigo_postal');
+            $table->enum('habitaciones', ['1', '2', '3', '4', '5', '6']);
+            $table->enum('camas_dobles', ['1', '2', '3', '4', '5', '6']);
+            $table->enum('camas_indiv', ['1', '2', '3', '4', '5', '6', '7', '8']);
+            $table->enum('baños', ['1', '2', '3', '4', '5', '6']);
             $table->enum('solarium', ['si', 'no']);
-            $table->foreignId("id_user") ->constrained('users')
-            ->cascadeOnUpdate()
-            ->cascadeOnDelete();
-            
+            $table->foreignId("id_user")->constrained('users')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+
             $table->timestamps();
         });
     }
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('apartment');
+        Schema::dropIfExists('apartments');
     }
 };

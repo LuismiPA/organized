@@ -3,9 +3,10 @@
        <h1>Tabla </h1>
       <table class="table table-hover">
         <tr>
-          <th>nombre</th>
+          <th>id</th>
+          <th>nombre</th> 
+          <th>email</th>
           <th>tipo</th> 
-          <th>email</th> 
         </tr>
         <tr v-for="usuario in usuarios" v-bind:key="usuario.id">
                         <th scope="row">{{ usuario.id }}</th>
@@ -14,7 +15,7 @@
                         <td>{{ usuario.tipo }}</td>
         </tr>
       </table>
-    <a href="/admin/crear">Registra usuario</a>
+    <a href="/admin/crear">Registrar usuario</a>
     </div>
 </template>
 

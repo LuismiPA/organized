@@ -3,3 +3,26 @@ npm run dev
 
 //Crear api
 php artisan make:controller API/PhotoController --api
+
+//crear todo junto
+php artisan make:model Nota -mfr --api
+                                m -> modelo
+                                f -> factory
+                                r -> controlador resource(metodos crud ya creados)
+
+
+ Schema::create('apartment', function (Blueprint $table) {
+            $table->id();
+            $table->text('direccion');
+            $table->integer('codigo postal');
+            $table->enum('habitaciones', ['1', '2','3','4','5','6']);
+            $table->enum('camas_dobles', ['1', '2','3','4','5','6']);
+            $table->enum('camas_indiv', ['1', '2','3','4','5','6','7','8']);
+            $table->enum('baños', ['1', '2','3','4','5','6']);
+            $table->enum('solarium', ['si', 'no']);
+            $table->foreignId("id_user") ->constrained('users')
+            ->cascadeOnUpdate()
+            ->cascadeOnDelete();
+            
+            $table->timestamps();
+        });
