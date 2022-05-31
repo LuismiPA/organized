@@ -17,12 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\PagesController::class, 'index'])->name('index'); */
 
 Route::get('/', [App\Http\Controllers\PagesController::class, 'login'])->name('auth.login');
-/* Route::get('/register', [App\Http\Controllers\PagesController::class, 'register'])->name('auth.register');
- */Route::get('/admin/panel', [App\Http\Controllers\PagesController::class, 'adminPage'])->name('admin.panel');
-
-
-
-Auth::routes();
+Route::get('/admin/panel', [App\Http\Controllers\PagesController::class, 'adminPage'])->name('admin.panel');
+Route::get('/admin/crear', [App\Http\Controllers\PagesController::class, 'crear'])->name('admin.crear');
+    Route::post('/admin/crear', [App\Http\Controllers\PagesController::class, 'crear_usuario'])->name('admin.crear_usuario');
 
 
 /* Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); */
+
+Auth::routes();

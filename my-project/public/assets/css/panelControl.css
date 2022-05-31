@@ -1,107 +1,123 @@
-body {
-    height: 100vh;
-    width: 100%;
-}
-
-#clientesDetalle,
-#datosDetalle {
-    display: none;
-}
-
-.contenido {
-    height: 100%;
-}
-
-nav {
-    padding: 10px;
-    background-image: linear-gradient(to left top, #151f41, #192b5a, #1b3775, #1b4491, #1851ae, #1851ae, #1851ae, #1851ae, #1b4491, #1b3775, #192b5a, #151f41);
-}
-
-nav img {
-    width: 25%;
-}
-
-nav li {
-    list-style: none;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-}
-
-nav a {
-    width: 100%;
-    justify-content: left !important;
-    border-top: 1px solid rgb(230, 231, 232);
-    border-bottom: 1px solid rgb(230, 231, 232);
-    margin-right: 2px;
-    margin-left: 2px;
-    border-radius: 15px;
-}
-
-nav a:hover {
-    color: rgb(249, 230, 67);
-    border-top: 2px solid rgb(249, 230, 67);
-    border-bottom: 2px solid rgb(249, 230, 67);
-    text-decoration: none;
-}
-
-nav div {
-    padding: 10px;
-}
-
-article {
-    padding: 10px;
-    margin-left: 20px;
-}
-
-article h1 {
-    text-align: center;
-}
-
-@media (min-width: 600px) {
-    .contenido {
-        margin: 0 auto;
-        display: flex;
-    }
-    nav {
-        width: 15%;
-        /*  background: rgb(87, 87, 87);
-        background: linear-gradient(132deg, rgba(87, 87, 87, 1) 12%, rgba(204, 204, 204, 1) 28%, rgba(182, 182, 182, 1) 65%, rgba(72, 72, 73, 1) 86%); */
+    body {
         height: 100vh;
+        width: 100%;
     }
+    
+    #clientesDetalle,
+    #datosDetalle {
+        display: none;
+    }
+    
+    .contenido {
+        height: 100%;
+    }
+    
+    nav {
+        padding: 10px;
+        background-image: linear-gradient(to left top, #151f41, #192b5a, #1b3775, #1b4491, #1851ae, #1851ae, #1851ae, #1851ae, #1b4491, #1b3775, #192b5a, #151f41);
+    }
+    
     nav img {
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 100%;
-        width: 50%;
+        width: 25%;
     }
-    nav div {
-        align-items: flex-start;
-        flex-flow: column;
-        border: none;
+    
+    nav li {
+        list-style: none;
     }
+    
     nav a {
         color: white;
         text-decoration: none;
     }
+    
+    nav a {
+        width: 100%;
+        justify-content: left !important;
+        border-top: 1px solid rgb(230, 231, 232);
+        border-bottom: 1px solid rgb(230, 231, 232);
+        margin-right: 2px;
+        margin-left: 2px;
+        border-radius: 15px;
+    }
+    
     nav a:hover {
         color: rgb(249, 230, 67);
         border-top: 2px solid rgb(249, 230, 67);
         border-bottom: 2px solid rgb(249, 230, 67);
         text-decoration: none;
     }
-    nav a {
-        width: 100%;
-        justify-content: left !important;
-        border-top: 1px solid rgb(230, 231, 232);
-        border-bottom: 1px solid rgb(230, 231, 232);
-        margin-bottom: 10px;
-        margin-top: 10px;
-        border-radius: 15px;
+    
+    nav div {
+        padding: 10px;
     }
+    
     article {
-        overflow: scroll;
-        width: 80%;
+        padding: 10px;
+        margin-left: 20px;
     }
-}
+    
+    article h1 {
+        text-align: center;
+    }
+    
+    #inferior {
+        color: #FFF;
+        background: #000;
+        position: absolute;
+        /*El div será ubicado con relación a la pantalla*/
+        left: 0px;
+        /*A la derecha deje un espacio de 0px*/
+        right: 0px;
+        /*A la izquierda deje un espacio de 0px*/
+        bottom: 0px;
+        /*Abajo deje un espacio de 0px*/
+        height: 50px;
+        /*alto del div*/
+        z-index: 0;
+    }
+    
+    @media (min-width: 600px) {
+        .contenido {
+            margin: 0 auto;
+            display: flex;
+        }
+        nav {
+            width: 15%;
+            /*  background: rgb(87, 87, 87);
+        background: linear-gradient(132deg, rgba(87, 87, 87, 1) 12%, rgba(204, 204, 204, 1) 28%, rgba(182, 182, 182, 1) 65%, rgba(72, 72, 73, 1) 86%); */
+            height: 100vh;
+        }
+        nav img {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 100%;
+            width: 50%;
+        }
+        nav div {
+            align-items: flex-start;
+            flex-flow: column;
+            border: none;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+        nav a:hover {
+            color: rgb(249, 230, 67);
+            border-top: 2px solid rgb(249, 230, 67);
+            border-bottom: 2px solid rgb(249, 230, 67);
+            text-decoration: none;
+        }
+        nav a {
+            width: 100%;
+            justify-content: left !important;
+            border-top: 1px solid rgb(230, 231, 232);
+            border-bottom: 1px solid rgb(230, 231, 232);
+            margin-bottom: 10px;
+            margin-top: 10px;
+            border-radius: 15px;
+        }
+        article {
+            overflow: scroll;
+            width: 80%;
+        }
+    }

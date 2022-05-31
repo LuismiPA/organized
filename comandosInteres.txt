@@ -1,0 +1,5 @@
+npm run dev
+
+
+//Crear api
+php artisan make:controller API/PhotoController --api

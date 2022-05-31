@@ -18,6 +18,19 @@
             <a href="#" id="clientes"><li  class="d-inline">clientes</li></a>
             <a href="#" id="misDatos"><li  class="d-inline" >mis datos</li></a>
             <a href="#" id="misDatos"><li  class="d-inline" >mis datos2</li></a>
+             @guest
+                            <a href="#">ERROR</a>
+                        @else
+                                    <a class="" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                        @endguest
           </div>
     </nav>
     <article id="principalDetalle">
@@ -36,47 +49,35 @@
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <label for="inputCity">City</label>
+                    <label for="inputCity">Ciudad</label>
                     <input type="text" class="form-control" id="inputCity">
                   </div>
-                  <div class="form-group col-md-4">
-                    <label for="inputState">State</label>
-                    <select id="inputState" class="form-control">
-                      <option selected>Choose...</option>
-                      <option>...</option>
+                  <div class="form-group col-md-6">
+                    <label for="inputCpostal">Código postal</label>
+                    <input type="text" class="form-control" id="inputCpostal">
+                  </div>
+                </div>
+              <div class="form-row">
+                  <div class="col-md-6">
+                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Habitaciones</label>
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
                   </div>
-                  <div class="form-group col-md-2">
-                    <label for="inputZip">Zip</label>
-                    <input type="text" class="form-control" id="inputZip">
+                  <div class="col-md-6">
+                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Baños</label>
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                    <label class="form-check-label" for="gridCheck">
-                      Check me out
-                    </label>
-                  </div>
-                </div>
-      
-              <div class="form-row">
-                  <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Habitaciones</label>
-                  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                      <option selected value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                  </select>
-                  <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Baños</label>
-                  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                      <option selected value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                  </select>
               </div>
       
               <div class="form-check">
@@ -91,11 +92,17 @@
     </article>
 
     <article id="datosDetalle">
-          <h1>Mis datos detalles</h1>
-    </article>
+       <div id="app">
+          <usuarios-tabla></usuarios-tabla>
+       </div>
 </div>
+
+@auth
+    
+@endauth
 @endsection
 
 @section('jspropio')
   <script src={{asset('assets/js/panelControl.js')}}></script>
+  <script src={{asset('js/app.js')}}></script>
 @endsection
