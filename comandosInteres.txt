@@ -12,13 +12,26 @@ php artisan make:model Nota -mfr --api
 
 php artisan route:list
 
- eliminarUsuario($id){
-        if(!confirm('¿Desea eliminar este registro?')) return;
-        axios.post('action.php', {
-          action:'delete',
-          id:id
-        }).then(function(response){
-          application.fetchAlldata();
-          alert(response.data.message);
-        })
+//USAR ROUTE PUSH PARA MANDAR UN OBJETO
+vue con metodo que manda 
+imprimir(apartamento, id) {
+      this.$router.push({
+        name: "ticket",
+        params: {
+          apartamento,
+        },
+      });
+    }
+ 
+vue que lo recibe
+data(){
+      return{
+          apartamento: []
       }
+  },
+  methods:{
+    
+  },
+  mounted() {
+    this.apartamento = this.$route.params.apartamento;
+  }

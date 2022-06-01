@@ -29,6 +29,14 @@ Route::get('/admin/editar/{id}', [App\Http\Controllers\UserController::class, 'e
 /* Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); */
 
 Auth::routes();
-Route::get('{any}', function(){
-    return view()
-})
+Route::get('/admin/panel/{any}', function(){
+    return view('admin.panel');
+})->where('any','.*');
+
+/* Route::get('/worker/panel/{any}', function () {
+    return view('worker.panel');
+})->where('any', '.*');
+
+Route::get('/client/panel/{any}', function () {
+    return view('client.panel');
+})->where('any', '.*'); */

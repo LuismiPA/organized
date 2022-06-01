@@ -3,11 +3,6 @@
         width: 100%;
     }
     
-    #clientesDetalle,
-    #datosDetalle {
-        display: none;
-    }
-    
     .contenido {
         height: 100%;
     }
@@ -52,8 +47,9 @@
     }
     
     article {
+        margin: 0 auto;
         padding: 10px;
-        margin-left: 20px;
+        vertical-align: middle;
     }
     
     article h1 {
@@ -78,10 +74,11 @@
     
     .iconosTd {
         text-align: end;
+        width: 10%;
     }
     
     .iconosTabla {
-        width: 20px;
+        width: 1.5em;
         color: #1851ae;
     }
     

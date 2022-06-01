@@ -9,6 +9,7 @@ require('./fontawesome');
 window.Vue = require('vue').default;
 
 import router from './router'
+import { jsPDF } from "jspdf";
 
 /**
  * The following block of code may be used to automatically register your
@@ -20,9 +21,9 @@ import router from './router'
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
+/* 
 Vue.component('usuarios-tabla', require('./components/Usuarios.vue').default);
-Vue.component('apartamentos-tabla', require('./components/Apartamentos.vue').default);
+Vue.component('apartamentos-tabla', require('./components/Apartamentos.vue').default); */
 //import ejemplo from './components/ExampleComponent.vue';
 
 /**

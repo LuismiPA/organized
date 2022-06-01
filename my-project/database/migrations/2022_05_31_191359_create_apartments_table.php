@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('apartment', function (Blueprint $table) {
+        Schema::create('apartments', function (Blueprint $table) {
             $table->id();
             $table->text('direccion');
             $table->integer('codigo_postal');
@@ -22,10 +22,9 @@ return new class extends Migration
             $table->enum('camas_indiv', ['1', '2', '3', '4', '5', '6', '7', '8']);
             $table->enum('baños', ['1', '2', '3', '4', '5', '6']);
             $table->enum('solarium', ['si', 'no']);
-            $table->foreignId("id_user")->constrained('users')
+            $table->foreignId("user_id")->constrained('users')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-
             $table->timestamps();
         });
     }

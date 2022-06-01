@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Models\Apartment;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,6 @@ class ApartmentApiController extends Controller
     public function index()
     {
         //
-
         return Apartment::all();
     }
 
@@ -33,23 +33,22 @@ class ApartmentApiController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Apartment  $apartment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Apartment $apartment)
+    public function show($id)
     {
         //
-        return $apartment;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Apartment  $apartment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Apartment $apartment)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -57,11 +56,13 @@ class ApartmentApiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Apartment  $apartment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Apartment $apartment)
+    public function destroy($id)
     {
-        //
+        Apartment::where('id', $id)->delete();
+        return response()->json('success');
+        
     }
 }
