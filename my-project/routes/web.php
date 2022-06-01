@@ -18,10 +18,17 @@ Route::get('/', [App\Http\Controllers\PagesController::class, 'index'])->name('i
 
 Route::get('/', [App\Http\Controllers\PagesController::class, 'login'])->name('auth.login');
 Route::get('/admin/panel', [App\Http\Controllers\PagesController::class, 'adminPage'])->name('admin.panel');
-Route::get('/admin/crear', [App\Http\Controllers\PagesController::class, 'crear'])->name('admin.crear');
-    Route::post('/admin/crear', [App\Http\Controllers\PagesController::class, 'crear_usuario'])->name('admin.crear_usuario');
+Route::get('/admin/crear', [App\Http\Controllers\UserController::class, 'crear'])->name('admin.crear');
+    Route::post('/admin/crear', [App\Http\Controllers\UserController::class, 'crear_usuario'])->name('admin.crear_usuario');
+Route::get('/admin/editar/{id}', [App\Http\Controllers\UserController::class, 'editar'])->name('admin.editar');
+    Route::put('/admin/editar/{id}', [App\Http\Controllers\UserController::class, 'editado'])->name('admin.editado');
+
+
 
 
 /* Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); */
 
 Auth::routes();
+Route::get('{any}', function(){
+    return view()
+})

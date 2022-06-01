@@ -16,7 +16,7 @@ class PagesController extends Controller
     public function adminPage(){
         return view ("admin.panel");
     }
-    public function crear(){
+  /*   public function crear(){
         return view ("admin.crear");
     }
 
@@ -37,12 +37,11 @@ class PagesController extends Controller
         $usuarioNuevo->tipo = $request->tipo;
         $usuarioNuevo->save();
         redirect("/admin/panel");
-       /*  return back()->with("mensaje", "Usuario creado correctamente"); */
+        return back()->with("mensaje", "Usuario creado correctamente");
     }
 
-    /* public function listadoUsuarios()
-    {
-        $usuarios = User::all();
-        return view("admin.panel", compact("usuarios"));
+    public function listadoUsuarios()
+ listadoUsuarios()
+  return view("admin.panel", compact("usuarios"));
     } */
 }

@@ -6,9 +6,9 @@
 
 require('./bootstrap');
 require('./fontawesome');
-import Paginate from "vuejs-paginate-next";
 window.Vue = require('vue').default;
 
+import router from './router'
 
 /**
  * The following block of code may be used to automatically register your
@@ -33,4 +33,5 @@ Vue.component('apartamentos-tabla', require('./components/Apartamentos.vue').def
 
 const app = new Vue({
     el: '#app',
+    router: router,
 });

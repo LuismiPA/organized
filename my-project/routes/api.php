@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\API\UserController;
+//use App\Http\Controllers\ApartmentApiController;
+use App\Http\Controllers\API\UserApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,5 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('user', UserController::class);
-Route::apiResource('apartment', ApartmentController::class);
+Route::apiResource('user', UserApiController::class);
+/* Route::apiResource('apartment', ApartmentApiController::class); */
+
+Route::get('editar/{id}',  [UserApiController::class, 'edit']);
+
+ 

@@ -10,6 +10,7 @@ php artisan make:model Nota -mfr --api
                                 f -> factory
                                 r -> controlador resource(metodos crud ya creados)
 
+php artisan route:list
 
  eliminarUsuario($id){
         if(!confirm('¿Desea eliminar este registro?')) return;

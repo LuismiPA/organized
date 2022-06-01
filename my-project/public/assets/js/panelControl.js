@@ -1,7 +1,3 @@
-'use strict'
-
-require()
-
 //Selectores
 let principal = document.getElementById('principal');
 let principalDetalle = document.getElementById('principalDetalle');

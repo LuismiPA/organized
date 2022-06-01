@@ -5,8 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class UserApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -48,6 +49,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
+
     public function update(Request $request, $id)
     {
         //
@@ -59,8 +62,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function delete($id){
+    }
     public function destroy($id)
     {
-        //
+        User::where('id', $id)->delete();
+        return response()->json('success');
+        
     }
 }

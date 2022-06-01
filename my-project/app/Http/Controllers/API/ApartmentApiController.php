@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Apartment;
 use Illuminate\Http\Request;
 
-class ApartmentController extends Controller
+class ApartmentApiController extends Controller
 {
     /**
      * Display a listing of the resource.
