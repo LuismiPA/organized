@@ -7,6 +7,7 @@
           <th>nombre</th> 
           <th>email</th>
           <th>tipo</th> 
+          <th></th>
         </tr>
         <tr v-for="apartamento in apartamentos" v-bind:key="apartamento.id">
                         <th scope="row">{{ apartamento.id }}</th>
