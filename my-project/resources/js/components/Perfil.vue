@@ -1,15 +1,9 @@
 <template>
-    <article id="perfil">
-
+    <article id="perfil" class="mb-auto ml-auto mr-auto mt-5 shadow p-3 bg-body rounded">
         <section class="section about-section gray-bg" id="about">
             <div class="container">
                 <div class="row align-items-center flex-row-reverse">
-                    <div class="col-lg-6 col-sm-12">
-                        <div class="about-avatar">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" title="" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-sm-12">
+                    <div class="col-12">
                         <div class="about-text go-to">
                             <h3 class="dark-color">About Me</h3>
                             <h6 class="theme-color lead">A Lead UX &amp; UI designer based in Canada</h6>

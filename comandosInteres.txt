@@ -35,3 +35,14 @@ data(){
   mounted() {
     this.apartamento = this.$route.params.apartamento;
   }
+
+
+
+  APARTAMENTO 4
+  DIRECCION: 
+
+  habitaciones: 3 
+  camas dobles: 2
+  camas indiv: 2
+  baños:2
+  limpieza : standard

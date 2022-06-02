@@ -9,7 +9,6 @@ require('./fontawesome');
 window.Vue = require('vue').default;
 
 import router from './router'
-import { jsPDF } from "jspdf";
 
 /**
  * The following block of code may be used to automatically register your

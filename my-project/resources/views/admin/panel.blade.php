@@ -13,7 +13,7 @@
 @section('principal')
     <div id="app">
         <div class="contenido">
-            <nav class="text-center">
+            <nav class="text-center pt-5">
                 <img src="{{ asset('assets/images/panel_logo.png') }}" alt="logo">
                 <div class="d-flex justify-content-between">
                     <router-link :to="{ name: 'profile' }">
@@ -25,11 +25,15 @@
                     <router-link :to="{ name: 'panelApart' }">
                         Apartamentos
                     </router-link>
+                    <router-link :to="{ name: 'bienvenida' }">
+                        Bienvenida
+                    </router-link>
                     @guest
-                        <a href="#">ERROR</a>
+                        @if (Route::has('login'))
+                                    <a href="{{ route('login') }}">{{ __('Login') }}</a>
+                            @endif
                     @else
-                        <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                              document.getElementById('logout-form').submit();">
+                        <a class="" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Logout
                         </a>
 

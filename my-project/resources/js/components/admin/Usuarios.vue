@@ -1,14 +1,15 @@
 <template>
-    <article id="clientesDetalle">
-      <h1 class="mt-2 mb-3">Clientes</h1>
-      <table class="table table-hover">
-        <tr>
-          <th class="align-middle">nombre</th>
-          <th class="align-middle">email</th>
-          <th class="align-middle">tipo</th>
-          <th></th>
-          <!-- <th class="align-middle"><button type="button" class="btn btn-primary float-right">Registrar usuario</button></th> -->
-        </tr>
+  <article id="clientesDetalle" class="ml-auto mr-auto mb-3 mt-3 shadow p-3 mb-5 bg-body rounded">
+    <h1 class="mt-2 mb-3">Clientes</h1>
+    <table class="table table-striped">
+      <tr>
+        <th class="align-middle border-top-0">nombre</th>
+        <th class="align-middle border-top-0">email</th>
+        <th class="align-middle border-top-0">tipo</th>
+        <th class="align-middle border-top-0"></th>
+        <!-- <th class="align-middle"><button type="button" class="btn btn-primary float-right">Registrar usuario</button></th> -->
+      </tr>
+      <tbody>
         <tr class="border-bottom" v-for="usuario in usuarios" v-bind:key="usuario.id">
           <td scope="row">{{ usuario.name }}</td>
           <td>{{ usuario.email }}</td>
@@ -21,9 +22,10 @@
               alt="Borrar usuario" class="iconosTabla text-danger" />
           </td>
         </tr>
-      </table>
-      <a href="/admin/crear" class="btn btn-primary float-right mt-1 registrar">Registrar usuario</a>
-    </article>  
+      </tbody>
+    </table>
+    <a href="/admin/crear" class="btn btn-primary float-right mt-1 registrar">Registrar usuario</a>
+  </article>
 </template>
 
 <script>
