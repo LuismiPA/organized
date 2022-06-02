@@ -17,7 +17,7 @@
 </template>
 <style>
    #headerwrap {
-        background: url(https://pixabay.com/get/gfe45612d6b0b7e71cdc268c753b95ac9953a26043996336ce92df0a15b47fb122b850e168e9bc791a4b0aa331a94a126.jpg) no-repeat center top;
+        background: url('../../../public/assets/images/casa.jpg') no-repeat center top;
         margin-top: -70px;
         padding-top: 250px;
         text-align: center;

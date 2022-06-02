@@ -2,9 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import usuarios from './components/admin/Usuarios.vue'
-import apartamentos from './components/admin/apartamentos.vue'
-import profile from './components/perfil.vue'
-import ticket from './components/admin/ticket.vue'
+import apartamentos from './components/admin/Apartamentos.vue'
+import profile from './components/Perfil.vue'
+import ticket from './components/admin/Ticket.vue'
 import bienvenida from './components/Bienvenida.vue'
 
 Vue.use(Router)
