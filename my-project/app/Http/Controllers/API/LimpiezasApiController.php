@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Limpiezas;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
-class UserApiController extends Controller
+class LimpiezasApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,8 @@ class UserApiController extends Controller
      */
     public function index()
     {
-        //Devuelve todos los usuarios
-        return User::all();
+        //
+        return Limpiezas::all();
     }
 
     /**
@@ -38,9 +36,9 @@ class UserApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        return $user;
+        //
     }
 
     /**
@@ -50,9 +48,9 @@ class UserApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
-     public function detalles(){
-        return Auth::user();
+
+     public function trabajos($id_trabajador){
+        return Limpiezas::where('worker_id', $id_trabajador)->orderBy('horario', 'asc')->get();
      }
 
     public function update(Request $request, $id)
@@ -66,12 +64,8 @@ class UserApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete($id){
-    }
     public function destroy($id)
     {
-        User::where('id', $id)->delete();
-        return response()->json('success');
-        
+        //
     }
 }

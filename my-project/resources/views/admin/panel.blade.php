@@ -19,11 +19,14 @@
                     <router-link :to="{ name: 'profile' }">
                         Perfil
                     </router-link>
-                    <router-link :to="{ name: 'panelUsers' }">
-                        clientes
+                    <router-link :to="{ name: 'adminUsers' }">
+                        Clientes
                     </router-link>
-                    <router-link :to="{ name: 'panelApart' }">
+                    <router-link :to="{ name: 'adminApart' }">
                         Apartamentos
+                    </router-link>
+                    <router-link :to="{ name: 'adminTrabajo' }">
+                        Trabajo Pendiente
                     </router-link>
                     <router-link :to="{ name: 'bienvenida' }">
                         Bienvenida

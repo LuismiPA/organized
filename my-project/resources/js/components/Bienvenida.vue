@@ -1,24 +1,22 @@
 <template>
-        <div class="m-auto w-100 h-100">
-            <div id="headerwrap">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 col-lg-offset-3 ml-auto mr-auto">
-                            <div id="fondoTrans">
-                                <h2>Bienvenido</h2>
-                                <h1>USUARIO</h1>
-                                <h2>to Organized</h2>
-                            </div>
+    <div class="m-auto w-100 h-100">
+        <div id="headerwrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-lg-offset-3 ml-auto mr-auto">
+                        <div id="fondoTrans">
+                            <h2>Bienvenido a Organized</h2>
+                            <h1>{{usuario.name}}</h1>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </template>
 <style>
    #headerwrap {
         background: url('../../../public/assets/images/casa.jpg') no-repeat center top;
-        margin-top: -70px;
         padding-top: 250px;
         text-align: center;
         background-attachment: relative;
@@ -62,6 +60,9 @@ export default {
         return {
             usuario: []
         }
+    },
+    created() {
+        axios.get('/user/detalles').then(response => this.usuario = response.data);
     },
 }
 </script>

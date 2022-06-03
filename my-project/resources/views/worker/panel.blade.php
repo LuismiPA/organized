@@ -16,24 +16,17 @@
             <nav class="text-center pt-5">
                 <img src="{{ asset('assets/images/panel_logo.png') }}" alt="logo">
                 <div class="d-flex justify-content-between">
-                    @if (Auth::user())
-                    <a href="#">{{Auth::user()->name}}</a>
-                    @endif
-                    <router-link :to="{ name: 'panelApart' }">
+                    <router-link :to="{ name: 'trabajo' }">
                         Apartamentos
-                    </router-link>
-                    <router-link :to="{ name: 'bienvenida' }">
-                        Bienvenida
                     </router-link>
                     @guest
                         @if (Route::has('login'))
                                     <a href="{{ route('login') }}">{{ __('Login') }}</a>
-                            @endif
+                        @endif
                     @else
                         <a class="" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Logout
                         </a>
-
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>

@@ -32,7 +32,7 @@ class UserController extends Controller
         $usuarioNuevo->password = Hash::make($request->password);
         $usuarioNuevo->tipo = $request->tipo;
         $usuarioNuevo->save();
-        redirect("/admin/panel");
+        return view("admin.panel");
         /*  return back()->with("mensaje", "Usuario creado correctamente"); */
     }
     public function editar($id)

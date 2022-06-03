@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Limpiezas;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
-class UserApiController extends Controller
+class LimpiezasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +14,7 @@ class UserApiController extends Controller
      */
     public function index()
     {
-        //Devuelve todos los usuarios
-        return User::all();
+        //
     }
 
     /**
@@ -35,27 +31,22 @@ class UserApiController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Limpiezas  $limpiezas
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Limpiezas $limpiezas)
     {
-        return $user;
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Limpiezas  $limpiezas
      * @return \Illuminate\Http\Response
      */
-    
-     public function detalles(){
-        return Auth::user();
-     }
-
-    public function update(Request $request, $id)
+    public function update(Request $request, Limpiezas $limpiezas)
     {
         //
     }
@@ -63,15 +54,11 @@ class UserApiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Limpiezas  $limpiezas
      * @return \Illuminate\Http\Response
      */
-    public function delete($id){
-    }
-    public function destroy($id)
+    public function destroy(Limpiezas $limpiezas)
     {
-        User::where('id', $id)->delete();
-        return response()->json('success');
-        
+        //
     }
 }

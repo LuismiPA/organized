@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\UserApiController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -32,8 +33,29 @@ Route::middleware('auth', 'propietario')->group(function () {
     Route::get('/user/panel', [App\Http\Controllers\PagesController::class, 'userPage'])->name('user.panel');
 });
 
+Route::get('/worker/panel', [App\Http\Controllers\PagesController::class, 'workerPage'])->name('worker.panel');
+
+Route::get('user/detalles', [UserApiController::class, 'detalles']);
 
 
 /* Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); */
 
 Auth::routes();
+
+
+    Route::get('/{any}', function(){
+        return view('admin.panel');
+    })->where('any','.*')->middleware('admin');
+
+
+
+   Route::get('/{any}', function () {
+        return view('user.panel');
+    })->where('any', '.*')->middleware('auth');
+
+
+
+   /*  Route::get('/{any}', function () {
+        return view('admin.panel');
+    })->where('any', '.*');  */
+

@@ -20,7 +20,7 @@ class AdminAuth
         if (Auth::user() &&  Auth::user()->tipo == 'admin') {
             return $next($request);
         }
-        Auth::logout();
+        /* Auth::logout(); */
         return response()->view('auth.login');
     }
 }

@@ -17,6 +17,9 @@ class PagesController extends Controller
         if (Auth::check() && Auth::user()->tipo == "propietario") {
             return redirect()->route("user.panel");
         }
+        if (Auth::check() && Auth::user()->tipo == "trabajador") {
+            return redirect()->route("worker.panel");
+        }
         return view("auth.login");
     }
     //admin
@@ -27,5 +30,11 @@ class PagesController extends Controller
     public function userPage()
     {
         return view("user.panel");
+    }
+
+    //user
+    public function workerPage()
+    {
+        return view("worker.panel");
     }
 }
