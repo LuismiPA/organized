@@ -23,20 +23,11 @@ Route::get('/admin/crear', [App\Http\Controllers\UserController::class, 'crear']
 Route::get('/admin/editar/{id}', [App\Http\Controllers\UserController::class, 'editar'])->name('admin.editar');
     Route::put('/admin/editar/{id}', [App\Http\Controllers\UserController::class, 'editado'])->name('admin.editado');
 
+Route::get('/user/panel', [App\Http\Controllers\PagesController::class, 'userPage'])->name('user.panel');
+
 
 
 
 /* Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); */
 
 Auth::routes();
-Route::get('/admin/panel/{any}', function(){
-    return view('admin.panel');
-})->where('any','.*');
-
-/* Route::get('/worker/panel/{any}', function () {
-    return view('worker.panel');
-})->where('any', '.*');
-
-Route::get('/client/panel/{any}', function () {
-    return view('client.panel');
-})->where('any', '.*'); */
