@@ -17,7 +17,6 @@
                         <div class="">
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
-
                                 <div class="">
                                     <div class="">
                                         <p><span class="fa fa-user"></span><input id="email" type="email"

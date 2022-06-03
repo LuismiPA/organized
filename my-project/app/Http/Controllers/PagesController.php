@@ -17,7 +17,7 @@ class PagesController extends Controller
         if (Auth::check() && Auth::user()->tipo == "propietario") {
             return redirect()->route("user.panel");
         }
-        return redirect()->route("auth.login");
+        return view("auth.login");
     }
     //admin
     public function adminPage(){

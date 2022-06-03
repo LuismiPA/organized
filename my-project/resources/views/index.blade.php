@@ -17,7 +17,6 @@
                     <form action="javascript:void(0);" method="get">
 
                         <fieldset class="clearfix">
-
                             <p><span class="fa fa-user"></span><input type="text" Placeholder="Username" required>
                             </p> <!-- JS because of IE support; better: placeholder="Username" -->
                             <p><span class="fa fa-lock"></span><input type="password" Placeholder="Password" required>
