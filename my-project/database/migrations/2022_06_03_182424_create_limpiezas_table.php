@@ -19,12 +19,11 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->foreignId("worker_id")->constrained('users')
-            ->cascadeOnUpdate()
-            ->cascadeOnDelete()
-            ->nullable();
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->enum('estado', ['pendiente', 'planificada', 'acabada']);
             $table->timestamp('horario');
-            $table->enum('tipo_limpieza', ['normal', 'completa']);
+            $table->enum('tipo_limpieza', ['normal', 'completa'])->nullable();
             $table->timestamps();
         });
     }

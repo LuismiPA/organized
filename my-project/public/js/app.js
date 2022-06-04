@@ -20570,36 +20570,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     }
-    /*  imprimir(apartamento) {
-      const doc = new jspdf();
-      doc.text("apartamento numero : "+apartamento.id, 15 ,15);
-      doc.text()
-      doc.text("apartamento numero : "+apartamento.id, 15 ,30);
-      doc.text("Camas dobles : "+apartamento.camas_dobles, 15 ,45);
-      doc.text("Baños : "+apartamento.baños, 15 ,60);
-         // Save the PDF
-      doc.save("apartamento.pdf");
-    } */
-
-    /*  imprimir(apartamento) {
-       var doc = new jspdf();
-       var specialElementHandlers = {
-         '#getPDF': function (element, renderer) {
-           return true;
-         },
-         '.controls': function (element, renderer) {
-           return true;
-         }
-       };
-       let ticket = '<h1>ID apartamento' + apartamento.id + '</h1><p>Baños: ' + apartamento.baños+'</p>';
-       doc.html(ticket, {
-         callback: function (doc) {
-           doc.save('apartamento.pdf');
-         }
-       }
-       );
-     } */
-
   }
 });
 
@@ -20849,6 +20819,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'trabajo',
@@ -20869,7 +20883,9 @@ __webpack_require__.r(__webpack_exports__);
     });
     /* axios.get('/api/limpiezas/trabajos/'+usuario.id).then(response => this.trabajos = response.data); */
   },
-  methods: {}
+  methods: {
+    pruebaModal: {}
+  }
 });
 
 /***/ }),
@@ -47329,22 +47345,65 @@ var render = function () {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.trabajos, function (trabajo) {
-            return _c("tr", { key: trabajo.id, staticClass: "border-bottom" }, [
-              _c("td", { attrs: { scope: "row" } }, [
-                _vm._v(_vm._s(trabajo.id)),
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(trabajo.apartment_id))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(trabajo.horario))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(trabajo.tipo_limpieza))]),
-              _vm._v(" "),
-              _c("td", { staticClass: "iconosTd" }),
-            ])
-          }),
-          0
+          [
+            _vm._l(_vm.trabajos, function (trabajo) {
+              return _c(
+                "tr",
+                { key: trabajo.id, staticClass: "border-bottom" },
+                [
+                  _c("td", { attrs: { scope: "row" } }, [
+                    _vm._v(_vm._s(trabajo.id)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(trabajo.apartment_id))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(trabajo.horario))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(trabajo.tipo_limpieza))]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    { staticClass: "iconosTd" },
+                    [
+                      _c("font-awesome-icon", {
+                        staticClass: "iconosTabla",
+                        attrs: { icon: "fas fa-edit", alt: "Editar usuario" },
+                        on: {
+                          click: function ($event) {
+                            return _vm.pruebaModal()
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "text-center" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "trigger-btn",
+                            attrs: { href: "#myModal", "data-toggle": "modal" },
+                          },
+                          [
+                            _c("font-awesome-icon", {
+                              staticClass: "iconosTabla",
+                              attrs: {
+                                icon: "fas fa-edit",
+                                alt: "Editar usuario",
+                              },
+                            }),
+                          ],
+                          1
+                        ),
+                      ]),
+                    ],
+                    1
+                  ),
+                ]
+              )
+            }),
+            _vm._v(" "),
+            _vm._m(1),
+          ],
+          2
         ),
       ]),
       _vm._v(" "),
@@ -47380,6 +47439,104 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("th", { staticClass: "align-middle border-top-0" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal fade", attrs: { id: "myModal" } }, [
+      _c("div", { staticClass: "modal-dialog modal-login" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _c("div", { staticClass: "modal-header" }, [
+            _c("h4", { staticClass: "modal-title" }, [_vm._v("Sign In")]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "close",
+                attrs: {
+                  type: "button",
+                  "data-dismiss": "modal",
+                  "aria-hidden": "true",
+                },
+              },
+              [_vm._v("×")]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c(
+              "form",
+              {
+                attrs: {
+                  action: "/examples/actions/confirmation.php",
+                  method: "post",
+                },
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("span", { staticClass: "input-group-addon" }, [
+                      _c("i", { staticClass: "fa fa-user" }),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        name: "username",
+                        placeholder: "Username",
+                        required: "required",
+                      },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("span", { staticClass: "input-group-addon" }, [
+                      _c("i", { staticClass: "fa fa-lock" }),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        name: "password",
+                        placeholder: "Password",
+                        required: "required",
+                      },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary btn-block btn-lg",
+                      attrs: { type: "submit" },
+                    },
+                    [_vm._v("Sign In")]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "hint-text" }, [
+                  _c("a", { attrs: { href: "#" } }, [
+                    _vm._v("Forgot Password?"),
+                  ]),
+                ]),
+              ]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" }, [
+            _vm._v("Don't have an account? "),
+            _c("a", { attrs: { href: "#" } }, [_vm._v("Create one")]),
+          ]),
+        ]),
+      ]),
     ])
   },
 ]

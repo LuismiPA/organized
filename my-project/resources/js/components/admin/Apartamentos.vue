@@ -61,36 +61,6 @@ export default {
         },
       });
     }
-    /*  imprimir(apartamento) {
-      const doc = new jspdf();
-      doc.text("apartamento numero : "+apartamento.id, 15 ,15);
-      doc.text()
-      doc.text("apartamento numero : "+apartamento.id, 15 ,30);
-      doc.text("Camas dobles : "+apartamento.camas_dobles, 15 ,45);
-      doc.text("Baños : "+apartamento.baños, 15 ,60);
- 
-      // Save the PDF
-      doc.save("apartamento.pdf");
-    } */
-
-   /*  imprimir(apartamento) {
-      var doc = new jspdf();
-      var specialElementHandlers = {
-        '#getPDF': function (element, renderer) {
-          return true;
-        },
-        '.controls': function (element, renderer) {
-          return true;
-        }
-      };
-      let ticket = '<h1>ID apartamento' + apartamento.id + '</h1><p>Baños: ' + apartamento.baños+'</p>';
-      doc.html(ticket, {
-        callback: function (doc) {
-          doc.save('apartamento.pdf');
-        }
-      }
-      );
-    } */
   }
 }
 

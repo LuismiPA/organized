@@ -17,6 +17,8 @@
                     <td>{{ trabajo.horario }}</td>
                     <td>{{ trabajo.tipo_limpieza }}</td>
                     <td class="iconosTd">
+                        <font-awesome-icon v-on:click="pruebaModal()" icon="fas fa-edit"
+                            alt="Editar usuario" class="iconosTabla" />
                     </td>
                 </tr>
             </tbody>
@@ -45,6 +47,9 @@ export default {
         /* axios.get('/api/limpiezas/trabajos/'+usuario.id).then(response => this.trabajos = response.data); */
     },
     methods: {
+        pruebaModal:{
+
+        }
     },
 }
 
