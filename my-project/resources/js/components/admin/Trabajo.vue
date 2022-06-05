@@ -137,12 +137,11 @@ export default {
         axios.get('/api/limpiezas/trabajo/planificado').then(response => this.planificados = response.data);
     },
     methods: {
-        /* editarLimpieza($id){
-            this.$router.push({ name: 'limpiezaEditar' });
-        }, */
+        editarLimpieza($id){
+            this.$router.push('/limpieza/editar/'+$id);
+        },
         crearLimpieza() {
-            this.$route.puhs()
-            window.location.href = "/limpieza/crear/";
+            this.$router.push('/limpieza/crear/')
         },
     },
 }

@@ -41,7 +41,7 @@ class LimpiezasController extends Controller
         $limpieza->save();
     }
 
-    public function editar_limpieza(Request $request)
+    public function editar_limpieza(Request $request, $id)
     {
         /* $request->validate([
             "name" => "required",
@@ -50,9 +50,7 @@ class LimpiezasController extends Controller
             "password_confirmation" => "required | same:password",
             "tipo" => "required"
         ]); */
-        $limpieza = Limpiezas::findOrFail($request->id);
-        $limpieza = new Limpiezas();
-        $limpieza->apartment_id = $request->apartment_id;
+        $limpieza = Limpiezas::findOrFail($id);
         $limpieza->worker_id = $request->worker_id;
         $limpieza->estado = $request->estado;
         $limpieza->tipo_limpieza = $request->tipo;

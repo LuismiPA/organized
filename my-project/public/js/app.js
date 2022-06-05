@@ -20790,8 +20790,11 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    editarLimpieza: function editarLimpieza($id) {
+      this.$router.push('/limpieza/editar/' + $id);
+    },
     crearLimpieza: function crearLimpieza() {
-      window.location.href = "/limpieza/crear/";
+      this.$router.push('/limpieza/crear/');
     }
   }
 });
@@ -20858,24 +20861,150 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     editarUsuario: function editarUsuario(usuario, id) {
-      var _this2 = this;
-
-      axios__WEBPACK_IMPORTED_MODULE_0___default().put("/admin/editar/".concat(id)).then(function () {
-        _this2.$router.push({
-          name: 'panelUsers'
-        });
-      });
+      window.location.href = "/admin/editar/" + id;
     },
     eliminarUsuario: function eliminarUsuario(usuario, id) {
-      var _this3 = this;
+      var _this2 = this;
 
       if (!confirm('¿Desea eliminar este usuario?')) return;
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/api/user/".concat(id)).then(function () {
-        _this3.$router.push({
+        _this2.$router.push({
           name: 'panelUsers'
         });
       })["catch"](function (error) {
         return alert(error + ': Error al borrar');
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'perfil',
+  data: function data() {
+    return {
+      usuario: [],
+      trabajadores: [],
+      apartamentos: [],
+      limpieza: [],
+      limpiezaEditada: {
+        apartment_id: "",
+        worker_id: "",
+        estado: "",
+        tipo: "",
+        horario: ""
+      }
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/apartment').then(function (response) {
+      return _this.apartamentos = response.data;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/user/trabajadores').then(function (response) {
+      return _this.trabajadores = response.data;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get('/user/detalles').then(function (response) {
+      return _this.usuario = response.data;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/limpiezas/' + this.$route.params.id).then(function (response) {
+      return _this.limpieza = response.data;
+    });
+  },
+  methods: {
+    editarLimpieza: function editarLimpieza($id) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().put('/limpieza/editar/' + $id, this.limpiezaEditada).then(function (response) {
+        return console.log(response.data);
       });
     }
   }
@@ -21199,8 +21328,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _components_admin_Usuarios_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/admin/Usuarios.vue */ "./resources/js/components/admin/Usuarios.vue");
 /* harmony import */ var _components_admin_Apartamentos_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/admin/Apartamentos.vue */ "./resources/js/components/admin/Apartamentos.vue");
 /* harmony import */ var _components_Perfil_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Perfil.vue */ "./resources/js/components/Perfil.vue");
@@ -21209,6 +21338,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_Trabajo_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/admin/Trabajo.vue */ "./resources/js/components/admin/Trabajo.vue");
 /* harmony import */ var _components_worker_Trabajo_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/worker/Trabajo.vue */ "./resources/js/components/worker/Trabajo.vue");
 /* harmony import */ var _components_formularios_LimpiezaForm_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/formularios/LimpiezaForm.vue */ "./resources/js/components/formularios/LimpiezaForm.vue");
+/* harmony import */ var _components_formularios_LimpiezaEditar_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/formularios/LimpiezaEditar.vue */ "./resources/js/components/formularios/LimpiezaEditar.vue");
 
 
 
@@ -21219,8 +21349,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_8__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_9__["default"]);
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vue_router__WEBPACK_IMPORTED_MODULE_9__["default"]({
+
+vue__WEBPACK_IMPORTED_MODULE_9__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_10__["default"]);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vue_router__WEBPACK_IMPORTED_MODULE_10__["default"]({
   mode: 'history',
   routes: [{
     path: '/admin/panel/users',
@@ -21266,6 +21397,10 @@ vue__WEBPACK_IMPORTED_MODULE_8__["default"].use(vue_router__WEBPACK_IMPORTED_MOD
     path: '/limpieza/crear',
     name: 'limpiezaForm',
     component: _components_formularios_LimpiezaForm_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }, {
+    path: '/limpieza/editar/:id',
+    name: 'limpiezaEditar',
+    component: _components_formularios_LimpiezaEditar_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
   }]
 }));
 
@@ -26322,6 +26457,30 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_public_assets_images_casa_jpg__WEBPACK_IMPORTED_MODULE_2__["default"]);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n#headerwrap[data-v-1062c1fc] {\n     background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") no-repeat center top;\n     padding-top: 250px;\n     text-align: center;\n     background-attachment: relative;\n     background-position: center center;\n     min-height: 650px;\n     width: 100%;\n     background-size: 100%;\n     background-size: cover;\n}\n#headerwrap h1[data-v-1062c1fc] {\n     color: #ffffff;\n     padding-top: 10px;\n     padding-bottom: 20px;\n     letter-spacing: 4px;\n     font-size: 80px;\n     font-weight: bold;\n}\n#headerwrap h2[data-v-1062c1fc] {\n     font-weight: 400;\n     color: #ffffff\n}\n#fondoTrans[data-v-1062c1fc] {\n     background-color: rgba(0, 0, 0, 0.5);\n     box-sizing: border-box;\n}\n#headerwrap[data-v-1062c1fc] {\n         padding-top: 180px;\n}\n\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=style&index=0&id=312dab12&scoped=true&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=style&index=0&id=312dab12&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.abs-center[data-v-312dab12] {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    width: 82%;\r\n    min-height: 100vh;\n}\n.centrado[data-v-312dab12] {\r\n    background-color: white;\r\n    width: 40%;\n}\n#submit[data-v-312dab12]{\r\n     margin: 0 auto;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -46155,6 +46314,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=style&index=0&id=312dab12&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=style&index=0&id=312dab12&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LimpiezaEditar_vue_vue_type_style_index_0_id_312dab12_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LimpiezaEditar.vue?vue&type=style&index=0&id=312dab12&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=style&index=0&id=312dab12&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LimpiezaEditar_vue_vue_type_style_index_0_id_312dab12_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LimpiezaEditar_vue_vue_type_style_index_0_id_312dab12_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/LimpiezaForm.vue?vue&type=style&index=0&id=6fa48400&scoped=true&lang=css&":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/LimpiezaForm.vue?vue&type=style&index=0&id=6fa48400&scoped=true&lang=css& ***!
@@ -46700,6 +46889,47 @@ component.options.__file = "resources/js/components/admin/Usuarios.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/formularios/LimpiezaEditar.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/formularios/LimpiezaEditar.vue ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _LimpiezaEditar_vue_vue_type_template_id_312dab12_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LimpiezaEditar.vue?vue&type=template&id=312dab12&scoped=true& */ "./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=template&id=312dab12&scoped=true&");
+/* harmony import */ var _LimpiezaEditar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LimpiezaEditar.vue?vue&type=script&lang=js& */ "./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=script&lang=js&");
+/* harmony import */ var _LimpiezaEditar_vue_vue_type_style_index_0_id_312dab12_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LimpiezaEditar.vue?vue&type=style&index=0&id=312dab12&scoped=true&lang=css& */ "./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=style&index=0&id=312dab12&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _LimpiezaEditar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _LimpiezaEditar_vue_vue_type_template_id_312dab12_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _LimpiezaEditar_vue_vue_type_template_id_312dab12_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "312dab12",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/formularios/LimpiezaEditar.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/formularios/LimpiezaForm.vue":
 /*!**************************************************************!*\
   !*** ./resources/js/components/formularios/LimpiezaForm.vue ***!
@@ -46876,6 +47106,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LimpiezaEditar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LimpiezaEditar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LimpiezaEditar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/formularios/LimpiezaForm.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************!*\
   !*** ./resources/js/components/formularios/LimpiezaForm.vue?vue&type=script&lang=js& ***!
@@ -46917,6 +47163,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Bienvenida_vue_vue_type_style_index_0_id_1062c1fc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Bienvenida.vue?vue&type=style&index=0&id=1062c1fc&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Bienvenida.vue?vue&type=style&index=0&id=1062c1fc&scoped=true&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=style&index=0&id=312dab12&scoped=true&lang=css&":
+/*!*************************************************************************************************************************!*\
+  !*** ./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=style&index=0&id=312dab12&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LimpiezaEditar_vue_vue_type_style_index_0_id_312dab12_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LimpiezaEditar.vue?vue&type=style&index=0&id=312dab12&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=style&index=0&id=312dab12&scoped=true&lang=css&");
 
 
 /***/ }),
@@ -47032,6 +47291,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Usuarios_vue_vue_type_template_id_70c4b270___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Usuarios_vue_vue_type_template_id_70c4b270___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Usuarios.vue?vue&type=template&id=70c4b270& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/Usuarios.vue?vue&type=template&id=70c4b270&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=template&id=312dab12&scoped=true&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=template&id=312dab12&scoped=true& ***!
+  \***********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LimpiezaEditar_vue_vue_type_template_id_312dab12_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LimpiezaEditar_vue_vue_type_template_id_312dab12_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LimpiezaEditar_vue_vue_type_template_id_312dab12_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LimpiezaEditar.vue?vue&type=template&id=312dab12&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=template&id=312dab12&scoped=true&");
 
 
 /***/ }),
@@ -47521,14 +47797,11 @@ var render = function () {
                                   staticClass: "iconosTabla",
                                   attrs: {
                                     icon: "fas fa-edit",
-                                    alt: "Editar usuario",
+                                    alt: "Editar trabajo",
                                   },
                                   on: {
                                     click: function ($event) {
-                                      return _vm.editarLimpieza(
-                                        pendiente,
-                                        pendiente.id
-                                      )
+                                      return _vm.editarLimpieza(pendiente.id)
                                     },
                                   },
                                 }),
@@ -47592,7 +47865,12 @@ var render = function () {
                                   staticClass: "iconosTabla",
                                   attrs: {
                                     icon: "fas fa-edit",
-                                    alt: "Editar usuario",
+                                    alt: "Editar trabajo",
+                                  },
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.editarLimpieza(planificado.id)
+                                    },
                                   },
                                 }),
                               ],
@@ -47651,7 +47929,12 @@ var render = function () {
                                   staticClass: "iconosTabla",
                                   attrs: {
                                     icon: "fas fa-edit",
-                                    alt: "Editar usuario",
+                                    alt: "Editar trabajo",
+                                  },
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.editarLimpieza(acabado.id)
+                                    },
                                   },
                                 }),
                               ],
@@ -47972,6 +48255,301 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=template&id=312dab12&scoped=true&":
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/LimpiezaEditar.vue?vue&type=template&id=312dab12&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "abs-center" }, [
+    _c(
+      "form",
+      {
+        staticClass: "centrado shadow p-3 mb-5 bg-body rounded",
+        attrs: { action: "javascript:void(0)" },
+        on: {
+          submit: function ($event) {
+            $event.preventDefault()
+            return _vm.editarLimpieza(_vm.limpieza.id)
+          },
+        },
+      },
+      [
+        _c("h1", { staticClass: "mb-3 text-center" }, [
+          _vm._v("Editar Limpieza"),
+        ]),
+        _vm._v(" "),
+        _c("h2", [_vm._v(" " + _vm._s(_vm.limpieza))]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-row" }, [
+          _c("div", { staticClass: "form-group col-md-6" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.limpieza.apartment_id,
+                  expression: "limpieza.apartment_id",
+                },
+              ],
+              staticClass: "form-control",
+              attrs: { placeholder: [_vm.limpieza.apartment_id], disabled: "" },
+              domProps: { value: _vm.limpieza.apartment_id },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.limpieza, "apartment_id", $event.target.value)
+                },
+              },
+            }),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group col-md-6" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.limpiezaEditada.worker_id,
+                    expression: "limpiezaEditada.worker_id",
+                  },
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  id: "floatingSelect",
+                  name: "worker_id",
+                  "aria-label": "Floating label select example",
+                },
+                on: {
+                  change: function ($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function (o) {
+                        return o.selected
+                      })
+                      .map(function (o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.limpiezaEditada,
+                      "worker_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  },
+                },
+              },
+              [
+                _c("option", { attrs: { selected: "" } }, [
+                  _vm._v(_vm._s(_vm.limpieza.worker_id)),
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.trabajadores, function (trabajador) {
+                  return _c("option", { domProps: { value: trabajador.id } }, [
+                    _vm._v(_vm._s(trabajador.name) + "\n                    "),
+                  ])
+                }),
+              ],
+              2
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _vm.usuario.tipo === "admin"
+          ? _c("div", { staticClass: "form-row" }, [
+              _c("div", { staticClass: "form-group col-md-12" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.limpiezaEditada.estado,
+                        expression: "limpiezaEditada.estado",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "floatingSelect",
+                      name: "estado",
+                      "aria-label": "Floating label select example",
+                    },
+                    on: {
+                      change: function ($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function (o) {
+                            return o.selected
+                          })
+                          .map(function (o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.limpiezaEditada,
+                          "estado",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      },
+                    },
+                  },
+                  [
+                    _c("option", { attrs: { selected: "" } }, [
+                      _vm._v(_vm._s(_vm.limpieza.estado)),
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "pendiente" } }, [
+                      _vm._v("Pendiente"),
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "planificada" } }, [
+                      _vm._v("Planificada"),
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "acabada" } }, [
+                      _vm._v("Acabada"),
+                    ]),
+                  ]
+                ),
+              ]),
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.usuario.tipo === "admin"
+          ? _c("div", { staticClass: "form-row" }, [
+              _c("div", { staticClass: "form-group col-md-6" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.limpiezaEditada.tipo,
+                        expression: "limpiezaEditada.tipo",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "floatingSelect",
+                      name: "tipo_limpieza",
+                      "aria-label": "Floating label select example",
+                    },
+                    on: {
+                      change: function ($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function (o) {
+                            return o.selected
+                          })
+                          .map(function (o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.limpiezaEditada,
+                          "tipo",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      },
+                    },
+                  },
+                  [
+                    _c("option", { attrs: { selected: "" } }, [
+                      _vm._v(_vm._s(_vm.limpieza.estado)),
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "normal" } }, [
+                      _vm._v("Normal"),
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "completa" } }, [
+                      _vm._v("Completa"),
+                    ]),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group col-md-6" }, [
+                _c("div", { staticClass: "form-floating" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.limpiezaEditada.horario,
+                        expression: "limpiezaEditada.horario",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "datetime-local",
+                      name: "horario",
+                      placeholder: "Hora de la limpieza",
+                    },
+                    domProps: { value: _vm.limpiezaEditada.horario },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.limpiezaEditada,
+                          "horario",
+                          $event.target.value
+                        )
+                      },
+                    },
+                  }),
+                ]),
+              ]),
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm._m(0),
+      ]
+    ),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { type: "submit", id: "submit" },
+        },
+        [_vm._v("Modificar Limpieza")]
+      ),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/LimpiezaForm.vue?vue&type=template&id=6fa48400&scoped=true&":
 /*!************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/LimpiezaForm.vue?vue&type=template&id=6fa48400&scoped=true& ***!
@@ -48002,7 +48580,9 @@ var render = function () {
         },
       },
       [
-        _c("h1", { staticClass: "mb-2" }, [_vm._v("Crear Limpieza")]),
+        _c("h1", { staticClass: "mb-3 text-center" }, [
+          _vm._v("Crear Limpieza"),
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-row" }, [
           _c("div", { staticClass: "form-group col-md-6" }, [

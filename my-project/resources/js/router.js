@@ -68,7 +68,7 @@ export default new Router({
         },
 
         {
-            path: '/limpieza/editar',
+            path: '/limpieza/editar/:id',
             name: 'limpiezaEditar',
             component: limpiezaEditar,
         },

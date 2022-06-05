@@ -39,6 +39,7 @@ class LimpiezasApiController extends Controller
     public function show($id)
     {
         //
+        return Limpiezas::findOrFail($id);
     }
 
     /**

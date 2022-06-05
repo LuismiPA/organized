@@ -2,7 +2,7 @@
     <div class="abs-center">
         <form class="centrado shadow p-3 mb-5 bg-body rounded" action="javascript:void(0)"
             @submit.prevent="crearLimpieza">
-            <h1 class="mb-2">Crear Limpieza</h1>
+            <h1 class="mb-3 text-center">Crear Limpieza</h1>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <select class="form-control" id="floatingSelect" name="apartament_id"
@@ -50,7 +50,7 @@
             </div>
             <div class="d-flex">
                 <button type="submit" class="btn btn-primary mt-0 mb-0 ml-auto mr-auto">Crear limpieza</button>
-                    </div>
+            </div>
         </form>
     </div>
 </template>
