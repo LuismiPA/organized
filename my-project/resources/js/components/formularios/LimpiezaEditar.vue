@@ -3,7 +3,6 @@
         <form class="centrado shadow p-3 mb-5 bg-body rounded" action="javascript:void(0)"
             @submit.prevent="editarLimpieza(limpieza.id)">
             <h1 class="mb-3 text-center">Editar Limpieza</h1>
-            <h2> {{limpieza}}</h2>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <input class="form-control" v-model="limpieza.apartment_id" :placeholder="[limpieza.apartment_id]" disabled>
