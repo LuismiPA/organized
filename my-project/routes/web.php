@@ -31,8 +31,6 @@ Route::middleware('auth', 'admin')->group(function () {
 
 /* Route::get('/limpieza/crear', [App\Http\Controllers\LimpiezasController::class, 'limpiezaForm'])->name('limpiezaForm'); */
     Route::post('/limpieza/crear', [App\Http\Controllers\LimpiezasController::class, 'crear_limpieza'])->name('crear_limpieza');
-    Route::post('/limpieza/crear', [App\Http\Controllers\LimpiezasController::class, 'crear_limpieza'])->name('crear_limpieza');
-
     Route::put('/limpieza/editar/{id}', [App\Http\Controllers\LimpiezasController::class, 'editar_limpieza'])->name('editar_limpieza');
 
 Route::middleware('auth', 'propietario')->group(function () {

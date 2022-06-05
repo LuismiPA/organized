@@ -21,6 +21,9 @@ return new class extends Migration
             //ESTAS DOS LINEAS SUSTITUYEN A FOREIGNID CON LA VENTAJA QUE PUEDO PONERLO NULLABLE
             $table->unsignedBigInteger('worker_id')->nullable();
             $table->foreign('worker_id')->references('id')->on('users');
+            $table->foreignId("propietario_id")->constrained('users')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->enum('estado', ['pendiente', 'planificada', 'acabada'])->default('pendiente');
             $table->timestamp('horario')->nullable();
             $table->enum('tipo_limpieza', ['normal', 'completa']);

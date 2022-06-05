@@ -7,7 +7,6 @@
 @section('csspropio')
     <link rel="stylesheet" href="{{ asset('assets/css/panelControl.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/panelControl.css') }}">
-    
 @endsection
 
 @section('principal')
@@ -17,20 +16,24 @@
                 <img src="{{ asset('assets/images/panel_logo.png') }}" alt="logo">
                 <div class="d-flex justify-content-between">
                     @if (Auth::user())
-                    <a href="#">{{Auth::user()->name}}</a>
+                        <a href="#">{{ Auth::user()->name }}</a>
                     @endif
-                    <router-link :to="{ name: 'adminApart' }">
+                    <router-link :to="{ name: 'apartamentos_tabla' }">
                         Apartamentos
+                    </router-link>
+                    <router-link :to="{ name: 'trabajos_tabla' }">
+                        Trabajo Pendiente
                     </router-link>
                     <router-link :to="{ name: 'bienvenida' }">
                         Bienvenida
                     </router-link>
                     @guest
                         @if (Route::has('login'))
-                                    <a href="{{ route('login') }}">{{ __('Login') }}</a>
-                            @endif
+                            <a href="{{ route('login') }}">{{ __('Login') }}</a>
+                        @endif
                     @else
-                        <a class="" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <a class="" href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Logout
                         </a>
 
@@ -40,7 +43,7 @@
                     @endguest
                 </div>
             </nav>
-                <router-view></router-view>
+            <router-view></router-view>
         </div>
     </div>
 @endsection

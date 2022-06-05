@@ -1,5 +1,6 @@
 <template>
     <article id="clientesDetalle" class="ml-auto mr-auto mb-3 mt-3 shadow p-3 mb-5 bg-body rounded">
+        <h1>{{usuario.tipo}}</h1>
         <div class="accordion" id="accordionPanelsStayOpenExample">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="panelsStayOpen-headingOne">
@@ -22,11 +23,25 @@
                                 <!-- <th class="align-middle"><button type="button" class="btn btn-primary float-right">Registrar usuario</button></th> -->
                             </tr>
                             <tbody>
-                                <tr class="border-bottom" v-for="pendiente in pendientes" v-bind:key="pendiente.id">
+                                <tr class="border-bottom" v-for="pendiente in pendientes" v-bind:key="pendiente.id"
+                                    v-if="usuario.tipo==='admin'">
                                     <td scope="row">{{ pendiente.id }}</td>
                                     <td>{{ pendiente.apartment_id }}</td>
                                     <td>{{ pendiente.horario }}</td>
                                     <td>{{ pendiente.tipo_limpieza }}</td>
+                                    <td>{{ pendiente.propietario_id }}</td>
+                                    <td class="iconosTd">
+                                        <font-awesome-icon icon="fas fa-edit" alt="Editar trabajo"
+                                            v-on:click="editarLimpieza(pendiente.id)" class="iconosTabla" />
+                                    </td>
+                                </tr>
+                                <tr class="border-bottom" v-for="pendiente in pendientes" v-bind:key="pendiente.id"
+                                    v-if="usuario.tipo==='propietario' && usuario.id===pendiente.propietario_id">
+                                    <td scope="row">{{ pendiente.id }}</td>
+                                    <td>{{ pendiente.apartment_id }}</td>
+                                    <td>{{ pendiente.horario }}</td>
+                                    <td>{{ pendiente.tipo_limpieza }}</td>
+                                    <td>{{ pendiente.propietario_id }}</td>
                                     <td class="iconosTd">
                                         <font-awesome-icon icon="fas fa-edit" alt="Editar trabajo"
                                             v-on:click="editarLimpieza(pendiente.id)" class="iconosTabla" />
@@ -55,15 +70,27 @@
                                 <th class="align-middle border-top-0">Fecha y hora</th>
                                 <th class="align-middle border-top-0">Tipo de limpieza</th>
                                 <th class="align-middle border-top-0"></th>
-                                <!-- <th class="align-middle"><button type="button" class="btn btn-primary float-right">Registrar usuario</button></th> -->
                             </tr>
                             <tbody>
                                 <tr class="border-bottom" v-for="planificado in planificados"
-                                    v-bind:key="planificado.id">
+                                    v-if="usuario.tipo==='admin'">
                                     <td scope="row">{{ planificado.id }}</td>
                                     <td>{{ planificado.apartment_id }}</td>
                                     <td>{{ planificado.horario }}</td>
                                     <td>{{ planificado.tipo_limpieza }}</td>
+                                    <td>{{ planificado.propietario_id }}</td>
+                                    <td class="iconosTd">
+                                        <font-awesome-icon icon="fas fa-edit" alt="Editar trabajo"
+                                            v-on:click="editarLimpieza(planificado.id)" class="iconosTabla" />
+                                    </td>
+                                </tr>
+                                <tr class="border-bottom" v-for="planificado in planificados"
+                                    v-if="usuario.tipo==='propietario' && usuario.id===planificado.propietario_id">
+                                    <td scope="row">{{ planificado.id }}</td>
+                                    <td>{{ planificado.apartment_id }}</td>
+                                    <td>{{ planificado.horario }}</td>
+                                    <td>{{ planificado.tipo_limpieza }}</td>
+                                    <td>{{ planificado.propietario_id }}</td>
                                     <td class="iconosTd">
                                         <font-awesome-icon icon="fas fa-edit" alt="Editar trabajo"
                                             v-on:click="editarLimpieza(planificado.id)" class="iconosTabla" />
@@ -95,11 +122,25 @@
                                 <!-- <th class="align-middle"><button type="button" class="btn btn-primary float-right">Registrar usuario</button></th> -->
                             </tr>
                             <tbody>
-                                <tr class="border-bottom" v-for="acabado in acabados" v-bind:key="acabado.id">
+                                <tr class="border-bottom" v-for="acabado in acabados" v-bind:key="acabado.id"
+                                    v-if="usuario.tipo==='admin'">
                                     <td scope="row">{{ acabado.id }}</td>
                                     <td>{{ acabado.apartment_id }}</td>
                                     <td>{{ acabado.horario }}</td>
                                     <td>{{ acabado.tipo_limpieza }}</td>
+                                    <td>{{ acabado.propietario_id }}</td>
+                                    <td class="iconosTd">
+                                        <font-awesome-icon icon="fas fa-edit" alt="Editar trabajo"
+                                            v-on:click="editarLimpieza(acabado.id)" class="iconosTabla" />
+                                    </td>
+                                </tr>
+                                <tr class="border-bottom" v-for="acabado in acabados" v-bind:key="acabado.id"
+                                    v-if="usuario.tipo==='propietario' && usuario.id===acabado.propietario_id">
+                                    <td scope="row">{{ acabado.id }}</td>
+                                    <td>{{ acabado.apartment_id }}</td>
+                                    <td>{{ acabado.horario }}</td>
+                                    <td>{{ acabado.tipo_limpieza }}</td>
+                                    <td>{{ acabado.propietario_id }}</td>
                                     <td class="iconosTd">
                                         <font-awesome-icon icon="fas fa-edit" alt="Editar trabajo"
                                             v-on:click="editarLimpieza(acabado.id)" class="iconosTabla" />
@@ -141,7 +182,7 @@ export default {
             this.$router.push('/limpieza/editar/'+$id);
         },
         crearLimpieza() {
-            this.$router.push('/limpieza/crear/')
+            this.$router.push('/limpieza/formulario')
         },
     },
 }

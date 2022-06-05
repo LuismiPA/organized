@@ -2,11 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import usuarios from './components/admin/Usuarios.vue'
-import apartamentos from './components/admin/Apartamentos.vue'
-import profile from './components/Perfil.vue'
+import apartamentos_tabla from './components/tablas/Apartamentos.vue'
+import apartamento_perfil from './components/Perfil.vue'
 import ticket from './components/admin/Ticket.vue'
 import bienvenida from './components/Bienvenida.vue'
-import trabajoAdmin from './components/admin/Trabajo.vue'
+import trabajos_tabla from './components/tablas/Trabajo.vue'
 import trabajo from './components/worker/Trabajo.vue'
 import limpiezaForm from './components/formularios/LimpiezaForm.vue'
 import limpiezaEditar from './components/formularios/LimpiezaEditar.vue'
@@ -20,19 +20,19 @@ export default new Router({
             component: usuarios,
         },
         {
-            path: '/admin/panel/apartments',
-            name: 'adminApart',
-            component: apartamentos,
+            path: '/apartamentos/detalles',
+            name: 'apartamentos_tabla',
+            component: apartamentos_tabla,
         },
         {
-            path: '/admin/panel/profile',
-            name: 'profile',
-            component: profile,
+            path: '/apartamento/profile/:id',
+            name: 'apartamento_perfil',
+            component: apartamento_perfil,
         },
         {
-            name: "adminTrabajo",
-            path: "/admin/panel/trabajos",
-            component: trabajoAdmin,
+            path: "/trabajos/detalles",
+            name: "trabajos_tabla",
+            component: trabajos_tabla,
             props: {
                 default: true,
             },
@@ -62,7 +62,7 @@ export default new Router({
             },
         },
         {
-            path: '/limpieza/crear',
+            path: '/limpieza/formulario/:id?',
             name: 'limpiezaForm',
             component: limpiezaForm,
         },

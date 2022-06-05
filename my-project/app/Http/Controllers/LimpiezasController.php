@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Apartment;
 use App\Models\Limpiezas;
 use Illuminate\Http\Request;
 
@@ -17,8 +18,9 @@ class LimpiezasController extends Controller
         //
     }
 
-    public function limpiezaForm(){
-        
+    public function limpiezaForm()
+    {
+
         return view("admin.limpiezaForm");
     }
 
@@ -31,13 +33,20 @@ class LimpiezasController extends Controller
             "password_confirmation" => "required | same:password",
             "tipo" => "required"
         ]); */
-
+        $apartamento = Apartment::findOrFail($request->apartment_id);
         $limpieza = new Limpiezas();
         $limpieza->apartment_id = $request->apartment_id;
-        $limpieza->worker_id = $request->worker_id;
-        $limpieza->estado = $request->estado;
+        if ($request->worker_id) {
+            $limpieza->worker_id = $request->worker_id;
+        }
+        if ($request->estado) {
+            $limpieza->estado = $request->estado;
+        }
         $limpieza->tipo_limpieza = $request->tipo;
-        $limpieza->horario=$request->horario;
+        if ($request->horario) {
+            $limpieza->horario = $request->horario;
+        }
+        $limpieza->propietario_id = $apartamento->propietario_id;
         $limpieza->save();
     }
 
@@ -90,7 +99,7 @@ class LimpiezasController extends Controller
     public function update(Request $request, Limpiezas $limpiezas)
     {
         //
-        
+
     }
 
     /**

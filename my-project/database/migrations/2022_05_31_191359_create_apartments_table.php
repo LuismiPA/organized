@@ -22,7 +22,7 @@ return new class extends Migration
             $table->enum('camas_indiv', ['1', '2', '3', '4', '5', '6', '7', '8']);
             $table->enum('baños', ['1', '2', '3', '4', '5', '6']);
             $table->enum('solarium', ['si', 'no']);
-            $table->foreignId("user_id")->constrained('users')
+            $table->foreignId("propietario_id")->constrained('users')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->timestamps();
