@@ -43,6 +43,10 @@ class UserApiController extends Controller
         return $user;
     }
 
+    public function trabajadores(){
+        return User::where('tipo', 'trabajador')->get();
+    }
+
     /**
      * Update the specified resource in storage.
      *

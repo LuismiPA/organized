@@ -18,6 +18,7 @@
           <td>{{ apartamento.codigo_postal }}</td>
           <td>{{ apartamento.user_id }}</td>
           <td class="iconosTd">
+            <font-awesome-icon v-on:click="limpieza(apartamento)" icon="fa-solid fa-hand-sparkles" alt="Limpiar apartamento" class="iconosTabla" />
             <font-awesome-icon v-on:click="" icon="fas fa-edit" alt="Editar apartamento" class="iconosTabla" />
             <font-awesome-icon v-on:click="imprimir(apartamento)" icon="fa-solid fa-print" alt="Imprimir etiqueta"
               class="iconosTabla" />
@@ -44,14 +45,6 @@ export default {
     }
   },
   methods: {
-    /* 
-    $table->enum('habitaciones', ['1', '2', '3', '4', '5', '6']);
-                $table->enum('camas_dobles', ['1', '2', '3', '4', '5', '6']);
-                $table->enum('camas_indiv', ['1', '2', '3', '4', '5', '6', '7', '8']);
-                $table->enum('baños', ['1', '2', '3', '4', '5', '6']);
-                $table->enum('solarium', ['si', 'no']);
-                $table->foreignId("user_id")->constrained('users') */
-
 
     imprimir(apartamento, id) {
       this.$router.push({
@@ -60,6 +53,9 @@ export default {
           apartamento,
         },
       });
+    },
+    limpieza(){
+
     }
   }
 }

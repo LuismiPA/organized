@@ -42,8 +42,11 @@
         border-bottom: 2px solid rgb(249, 230, 67);
         text-decoration: none;
     }
-
     
+    .btn-primary {
+        background-color: #1851ae;
+        border-color: #1851ae;
+    }
     
     nav div {
         padding: 10px;
@@ -110,7 +113,6 @@
             color: white;
             text-decoration: none;
         }
-        
         article {
             overflow: scroll;
             width: 80%;

@@ -6,87 +6,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <style type="text/css">
-        #headerwrap {
-            background: url(https://cdn.pixabay.com/photo/2016/06/24/10/47/house-1477041_960_720.jpg) no-repeat center top;
-            margin-top: -70px;
-            padding-top: 250px;
-            text-align: center;
-            background-attachment: relative;
-            background-position: center center;
-            min-height: 650px;
-            width: 100%;
-            -webkit-background-size: 100%;
-            -moz-background-size: 100%;
-            -o-background-size: 100%;
-            background-size: 100%;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
+        .abs-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
         }
         
-        #headerwrap h1 {
-            color: #ffffff;
-            padding-top: 10px;
-            padding-bottom: 20px;
-            letter-spacing: 4px;
-            font-size: 80px;
-            font-weight: bold;
-        }
-        
-        #headerwrap h2 {
-            font-weight: 400;
-            color: #ffffff
-        }
-        
-        #fondoTrans {
-            background-color: rgba(0, 0, 0, 0.5);
-            box-sizing: border-box;
-        }
-        
-        @media (max-width: 768px) {
-            #headerwrap {
-                padding-top: 180px;
-            }
-        }
-        
-        #workwrap {
-            background: url(../img/work.jpg) no-repeat center top;
-            margin-top: -70px;
-            padding-top: 250px;
-            text-align: center;
-            background-attachment: relative;
-            background-position: center center;
-            min-height: 650px;
-            width: 100%;
-            -webkit-background-size: 100%;
-            -moz-background-size: 100%;
-            -o-background-size: 100%;
-            background-size: 100%;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
+        .form {
+            width: 60%;
         }
     </style>
 </head>
 
 <body>
-    <div id="headerwrap">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-lg-offset-3">
-                    <div id="fondoTrans">
-                        <h2>Bienvenido</h2>
-                        <h1>USUARIO</h1>
-                        <h2>to Organized</h2>
+    <div class="abs-center">
+        <form class="centrado shadow p-3 mb-5 bg-body rounded" action="javascript:void(0)" @submit.prevent="crearLimpieza">
+            <h1 class="mb-2">Crear Limpieza</h1>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <select class="form-control" name="apartament_id" aria-label="Floating label select example" v-model="limpieza.apartment_id">
+                        <option selected>Apartamento</option>
+                        <option v-for=" apartamento in apartamentos" :value='apartamento.id'>{{ apartamento.id }}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <select class="form-control" name="worker_id" aria-label="Floating label select example" v-model="limpieza.worker_id">
+                        <option selected>Trabajador</option>
+                        <option v-for="trabajador in trabajadores" :value='trabajador.id'>{{ trabajador.name }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row" v-if="usuario.tipo==='admin'">
+                <div class="form-group col-md-12">
+                    <select class="form-control" name="estado" aria-label="Floating label select example" v-model="limpieza.estado">
+                        <option selected>Estado de la limpieza</option>
+                        <option value="pendiente">Pendiente</option>
+                        <option value="planificada">Planificada</option>
+                        <option value="acabada">Acabada</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row" v-if="usuario.tipo==='admin'">
+                <div class="form-group col-md-6">
+                    <select class="form-control" name="tipo_limpieza" aria-label="Floating label select example" v-model="limpieza.tipo">
+                        <option selected>Tipo de limpieza</option>
+                        <option value="normal">Normal</option>
+                        <option value="completa">Completa</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <div class="form-floating">
+                        <input class="form-control" type="datetime-local" name="horario" placeholder="Hora de la limpieza" v-model="limpieza.horario">
                     </div>
                 </div>
             </div>
-        </div>
-
+            <div class="d-flex"><button type="submit" class="btn btn-primary mt-0 mb-0 ml-auto mr-auto">Crear limpieza</button></div>
+        </form>
     </div>
+
 </body>
+<script src="./public/assets/js/pruebas.js"></script>
 
 </html>

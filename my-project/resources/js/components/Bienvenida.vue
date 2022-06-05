@@ -14,7 +14,7 @@
         </div>
     </div>
 </template>
-<style>
+<style scoped>
    #headerwrap {
         background: url('../../../public/assets/images/casa.jpg') no-repeat center top;
         padding-top: 250px;

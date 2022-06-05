@@ -30,7 +30,7 @@
                                     @enderror
                                     <span class="fa fa-at"></span>
                                     <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email"
-                                     placeholder="Email" value="" required autocomplete="email">
+                                     placeholder="Email" value={{$usuario[0]['email']}} required autocomplete="email">
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">

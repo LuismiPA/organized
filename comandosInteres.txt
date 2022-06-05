@@ -1,3 +1,9 @@
+
+//ESTAS DOS LINEAS SUSTITUYEN A FOREIGNID CON LA VENTAJA QUE PUEDO PONERLO NULLABLE
+            $table->unsignedBigInteger('worker_id')->nullable();
+            $table->foreign('worker_id')->references('id')->on('users');
+            https://www.youtube.com/watch?v=QL0gKwGjJ-4
+            
 npm run dev
 
 
@@ -35,14 +41,3 @@ data(){
   mounted() {
     this.apartamento = this.$route.params.apartamento;
   }
-
-
-
-  APARTAMENTO 4
-  DIRECCION: 
-
-  habitaciones: 3 
-  camas dobles: 2
-  camas indiv: 2
-  baños:2
-  limpieza : standard

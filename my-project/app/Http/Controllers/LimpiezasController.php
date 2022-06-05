@@ -17,6 +17,48 @@ class LimpiezasController extends Controller
         //
     }
 
+    public function limpiezaForm(){
+        
+        return view("admin.limpiezaForm");
+    }
+
+    public function crear_limpieza(Request $request)
+    {
+        /* $request->validate([
+            "name" => "required",
+            "email" => "required",
+            "password" => "required",
+            "password_confirmation" => "required | same:password",
+            "tipo" => "required"
+        ]); */
+
+        $limpieza = new Limpiezas();
+        $limpieza->apartment_id = $request->apartment_id;
+        $limpieza->worker_id = $request->worker_id;
+        $limpieza->estado = $request->estado;
+        $limpieza->tipo_limpieza = $request->tipo;
+        $limpieza->horario=$request->horario;
+        $limpieza->save();
+    }
+
+    public function editar_limpieza(Request $request)
+    {
+        /* $request->validate([
+            "name" => "required",
+            "email" => "required",
+            "password" => "required",
+            "password_confirmation" => "required | same:password",
+            "tipo" => "required"
+        ]); */
+        $limpieza = Limpiezas::findOrFail($request->id);
+        $limpieza = new Limpiezas();
+        $limpieza->apartment_id = $request->apartment_id;
+        $limpieza->worker_id = $request->worker_id;
+        $limpieza->estado = $request->estado;
+        $limpieza->tipo_limpieza = $request->tipo;
+        $limpieza->horario = $request->horario;
+        $limpieza->save();
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -27,6 +69,7 @@ class LimpiezasController extends Controller
     {
         //
     }
+
 
     /**
      * Display the specified resource.
@@ -49,6 +92,7 @@ class LimpiezasController extends Controller
     public function update(Request $request, Limpiezas $limpiezas)
     {
         //
+        
     }
 
     /**

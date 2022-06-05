@@ -8,6 +8,8 @@ import ticket from './components/admin/Ticket.vue'
 import bienvenida from './components/Bienvenida.vue'
 import trabajoAdmin from './components/admin/Trabajo.vue'
 import trabajo from './components/worker/Trabajo.vue'
+import limpiezaForm from './components/formularios/LimpiezaForm.vue'
+import limpiezaEditar from './components/formularios/LimpiezaEditar.vue'
 
 Vue.use(Router)
 export default new Router({
@@ -29,7 +31,7 @@ export default new Router({
         },
         {
             name: "adminTrabajo",
-            path: "/admin/panel/apartamentos",
+            path: "/admin/panel/trabajos",
             component: trabajoAdmin,
             props: {
                 default: true,
@@ -53,11 +55,22 @@ export default new Router({
         },
         {
             name: "trabajo",
-            path: "/worker/panel/apartamentos",
+            path: "/worker/panel/trabajos",
             component: trabajo,
             props: {
                 default: true,
             },
+        },
+        {
+            path: '/limpieza/crear',
+            name: 'limpiezaForm',
+            component: limpiezaForm,
+        },
+
+        {
+            path: '/limpieza/editar',
+            name: 'limpiezaEditar',
+            component: limpiezaEditar,
         },
     ]
 })

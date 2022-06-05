@@ -19,7 +19,7 @@
                     @if (Auth::user())
                     <a href="#">{{Auth::user()->name}}</a>
                     @endif
-                    <router-link :to="{ name: 'panelApart' }">
+                    <router-link :to="{ name: 'adminApart' }">
                         Apartamentos
                     </router-link>
                     <router-link :to="{ name: 'bienvenida' }">

@@ -29,12 +29,17 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::put('/admin/editar/{id}', [App\Http\Controllers\UserController::class, 'editado'])->name('admin.editado');
 });
 
+/* Route::get('/limpieza/crear', [App\Http\Controllers\LimpiezasController::class, 'limpiezaForm'])->name('limpiezaForm'); */
+    Route::post('/limpieza/crear', [App\Http\Controllers\LimpiezasController::class, 'crear_limpieza'])->name('crear_limpieza');
+    Route::put('/limpieza/crear', [App\Http\Controllers\LimpiezasController::class, 'crear_limpieza'])->name('crear_limpieza');
+
 Route::middleware('auth', 'propietario')->group(function () {
     Route::get('/user/panel', [App\Http\Controllers\PagesController::class, 'userPage'])->name('user.panel');
 });
 
 Route::get('/worker/panel', [App\Http\Controllers\PagesController::class, 'workerPage'])->name('worker.panel');
 
+//Consulta usuario auth
 Route::get('user/detalles', [UserApiController::class, 'detalles']);
 
 
@@ -43,15 +48,16 @@ Route::get('user/detalles', [UserApiController::class, 'detalles']);
 Auth::routes();
 
 
+// HACER ESTO PARA ACTUALIZAR CON VUE
     Route::get('/{any}', function(){
         return view('admin.panel');
-    })->where('any','.*')->middleware('admin');
+    })->where('any','.*');
 
 
 
-   Route::get('/{any}', function () {
+   /* Route::get('/{any}', function () {
         return view('user.panel');
-    })->where('any', '.*')->middleware('auth');
+    })->where('any', '.*')->middleware('auth'); */
 
 
 

@@ -53,6 +53,21 @@ class LimpiezasApiController extends Controller
         return Limpiezas::where('worker_id', $id_trabajador)->orderBy('horario', 'asc')->get();
      }
 
+    public function pendiente()
+    {
+        return Limpiezas::where('estado', 'pendiente')->orderBy('horario', 'asc')->get();
+    }
+
+    public function planificado()
+    {
+        return Limpiezas::where('estado', 'planificada')->orderBy('horario', 'asc')->get();
+    }
+
+    public function acabado()
+    {
+        return Limpiezas::where('estado', 'acabada')->orderBy('horario', 'asc')->get();
+    }
+
     public function update(Request $request, $id)
     {
         //

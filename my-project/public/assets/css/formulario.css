@@ -1,0 +1,12 @@
+.abs-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: linear-gradient(to left top, #151f41, #192b5a, #1b3775, #1b4491, #1851ae, #1851ae, #1851ae, #1851ae, #1b4491, #1b3775, #192b5a, #151f41);
+}
+
+.centrado {
+    background-color: white;
+    width: 60%;
+}

@@ -18,12 +18,12 @@ return new class extends Migration
             $table->foreignId("apartment_id")->constrained('apartments')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->foreignId("worker_id")->constrained('users')
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
-            $table->enum('estado', ['pendiente', 'planificada', 'acabada']);
-            $table->timestamp('horario');
-            $table->enum('tipo_limpieza', ['normal', 'completa'])->nullable();
+            //ESTAS DOS LINEAS SUSTITUYEN A FOREIGNID CON LA VENTAJA QUE PUEDO PONERLO NULLABLE
+            $table->unsignedBigInteger('worker_id')->nullable();
+            $table->foreign('worker_id')->references('id')->on('users');
+            $table->enum('estado', ['pendiente', 'planificada', 'acabada'])->default('pendiente');
+            $table->timestamp('horario')->nullable();
+            $table->enum('tipo_limpieza', ['normal', 'completa']);
             $table->timestamps();
         });
     }

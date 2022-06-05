@@ -1,30 +1,117 @@
 <template>
     <article id="clientesDetalle" class="ml-auto mr-auto mb-3 mt-3 shadow p-3 mb-5 bg-body rounded">
-        <h1 class="mt-2 mb-3">Trabajos pendientes</h1>
-        <table class="table table-striped">
-            <tr>
-                <th class="align-middle border-top-0">Id</th>
-                <th class="align-middle border-top-0">Apartamento ID</th>
-                <th class="align-middle border-top-0">Trabajador ID</th>
-                <th class="align-middle border-top-0">Fecha y hora</th>
-                <th class="align-middle border-top-0">Tipo de limpieza</th>
-                <th class="align-middle border-top-0"></th>
-                <!-- <th class="align-middle"><button type="button" class="btn btn-primary float-right">Registrar usuario</button></th> -->
-            </tr>
-            <tbody>
-                <tr class="border-bottom" v-for="trabajo in trabajos" v-bind:key="trabajo.id">
-                    <td scope="row">{{ trabajo.id }}</td>
-                    <td>{{ trabajo.apartment_id }}</td>
-                    <td>{{ trabajo.worker_id }}</td>
-                    <td>{{ trabajo.horario }}</td>
-                    <td>{{ trabajo.tipo_limpieza }}</td>
-                    <td class="iconosTd">
-                        
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <a href="/admin/crear" class="btn btn-primary float-right mt-1 registrar">Registrar usuario</a>
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button btn btn-primary btn-lg btn-block" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne">
+                        Trabajos pendientes
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                    aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                        <table class="table table-striped">
+                            <tr>
+                                <th class="align-middle border-top-0">Id</th>
+                                <th class="align-middle border-top-0">Apartamento</th>
+                                <th class="align-middle border-top-0">Fecha y hora</th>
+                                <th class="align-middle border-top-0">Tipo de limpieza</th>
+                                <th class="align-middle border-top-0"></th>
+                                <!-- <th class="align-middle"><button type="button" class="btn btn-primary float-right">Registrar usuario</button></th> -->
+                            </tr>
+                            <tbody>
+                                <tr class="border-bottom" v-for="pendiente in pendientes" v-bind:key="pendiente.id">
+                                    <td scope="row">{{ pendiente.id }}</td>
+                                    <td>{{ pendiente.apartment_id }}</td>
+                                    <td>{{ pendiente.horario }}</td>
+                                    <td>{{ pendiente.tipo_limpieza }}</td>
+                                    <td class="iconosTd">
+                                        <font-awesome-icon icon="fas fa-edit" alt="Editar trabajo"
+                                            v-on:click="editarLimpieza(pendiente.id)" class="iconosTabla" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                    <button class="accordion-button collapsed btn btn-primary btn-lg btn-block" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseTwo">
+                        Trabajos Planificados
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingTwo">
+                    <div class="accordion-body">
+                        <table class="table table-striped">
+                            <tr>
+                                <th class="align-middle border-top-0">Id</th>
+                                <th class="align-middle border-top-0">Apartamento</th>
+                                <th class="align-middle border-top-0">Fecha y hora</th>
+                                <th class="align-middle border-top-0">Tipo de limpieza</th>
+                                <th class="align-middle border-top-0"></th>
+                                <!-- <th class="align-middle"><button type="button" class="btn btn-primary float-right">Registrar usuario</button></th> -->
+                            </tr>
+                            <tbody>
+                                <tr class="border-bottom" v-for="planificado in planificados"
+                                    v-bind:key="planificado.id">
+                                    <td scope="row">{{ planificado.id }}</td>
+                                    <td>{{ planificado.apartment_id }}</td>
+                                    <td>{{ planificado.horario }}</td>
+                                    <td>{{ planificado.tipo_limpieza }}</td>
+                                    <td class="iconosTd">
+                                        <font-awesome-icon icon="fas fa-edit" alt="Editar trabajo"
+                                            v-on:click="editarLimpieza(planificado.id)" class="iconosTabla" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                    <button class="accordion-button collapsed btn btn-primary btn-lg btn-block" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseThree">
+                        Trabajos Acabados
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingThree">
+                    <div class="accordion-body">
+                        <table class="table table-striped">
+                            <tr>
+                                <th class="align-middle border-top-0">Id</th>
+                                <th class="align-middle border-top-0">Apartamento</th>
+                                <th class="align-middle border-top-0">Fecha y hora</th>
+                                <th class="align-middle border-top-0">Tipo de limpieza</th>
+                                <th class="align-middle border-top-0"></th>
+                                <!-- <th class="align-middle"><button type="button" class="btn btn-primary float-right">Registrar usuario</button></th> -->
+                            </tr>
+                            <tbody>
+                                <tr class="border-bottom" v-for="acabado in acabados" v-bind:key="acabado.id">
+                                    <td scope="row">{{ acabado.id }}</td>
+                                    <td>{{ acabado.apartment_id }}</td>
+                                    <td>{{ acabado.horario }}</td>
+                                    <td>{{ acabado.tipo_limpieza }}</td>
+                                    <td class="iconosTd">
+                                        <font-awesome-icon icon="fas fa-edit" alt="Editar trabajo"
+                                            v-on:click="editarLimpieza(acabado.id)" class="iconosTabla" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" v-on:click="crearLimpieza()" class="btn btn-primary">Crear limpieza</button>
     </article>
 </template>
 
@@ -35,15 +122,28 @@ export default {
     name: 'trabajo',
     data() {
         return {
-            usuario:[],
-            trabajos: []
+            usuario: [],
+            trabajos: [],
+            acabados: [],
+            pendientes: [],
+            planificados: [],
         }
     },
     created() {
         axios.get('/user/detalles').then(response => this.usuario = response.data);
         axios.get('/api/limpiezas').then(response => this.trabajos = response.data);
+        axios.get('/api/limpiezas/trabajo/acabado').then(response => this.acabados = response.data);
+        axios.get('/api/limpiezas/trabajo/pendiente').then(response => this.pendientes = response.data);
+        axios.get('/api/limpiezas/trabajo/planificado').then(response => this.planificados = response.data);
     },
     methods: {
+        /* editarLimpieza($id){
+            this.$router.push({ name: 'limpiezaEditar' });
+        }, */
+        crearLimpieza() {
+            this.$route.puhs()
+            window.location.href = "/limpieza/crear/";
+        },
     },
 }
 
