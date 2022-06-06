@@ -22,8 +22,6 @@
             <font-awesome-icon v-on:click="crearLimpieza(apartamento.id)" icon="fa-solid fa-hand-sparkles"
               alt="Limpiar apartamento" class="iconosTabla" />
             <font-awesome-icon v-on:click="" icon="fas fa-edit" alt="Editar apartamento" class="iconosTabla" />
-            <font-awesome-icon v-on:click="imprimir(apartamento)" icon="fa-solid fa-print" alt="Imprimir etiqueta"
-              class="iconosTabla" />
             <font-awesome-icon v-on:click="" icon="fa-solid fa-user-xmark" alt="Borrar usuario"
               class="iconosTabla text-danger" />
           </td>
@@ -35,17 +33,18 @@
           <td>{{ apartamento.codigo_postal }}</td>
           <td>{{ apartamento.propietario_id }}</td>
           <td class="iconosTd">
-            <font-awesome-icon v-on:click="crearLimpieza(apartamento.id)" icon="fa-solid fa-hand-sparkles"
+            <font-awesome-icon v-on:click="crearApartamento()" icon="fa-solid fa-hand-sparkles"
               alt="Limpiar apartamento" class="iconosTabla" />
             <font-awesome-icon v-on:click="" icon="fas fa-edit" alt="Editar apartamento" class="iconosTabla" />
-            <font-awesome-icon v-on:click="imprimir(apartamento)" icon="fa-solid fa-print" alt="Imprimir etiqueta"
-              class="iconosTabla" />
             <font-awesome-icon v-on:click="" icon="fa-solid fa-user-xmark" alt="Borrar usuario"
               class="iconosTabla text-danger" />
           </td>
         </tr>
       </tbody>
     </table>
+    <div class=" d-flex">
+      <button type="submit" v-on:click="crearApartamento()" class="btn btn-primary mt-0 mb-0 ml-auto mr-auto">Crear Apartamento</button>
+    </div>
   </article>
 </template>
 
@@ -65,24 +64,9 @@ export default {
     axios.get('/api/apartment').then(response => this.apartamentos = response.data);
   },
   methods: {
-
-    imprimir(apartamento, id) {
-      this.$router.push({
-        name: "ticket",
-        params: {
-          apartamento,
-        },
-      });
+    crearApartamento() {
+      this.$router.push('/apartamento/formulario');
     },
-    crearLimpieza($id) {
-      this.$router.push('/limpieza/formulario/', {
-        params: {
-          id: $id,
-        }
-      });
-    }
   }
 }
-
-
 </script>

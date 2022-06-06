@@ -64,6 +64,12 @@ class UserApiController extends Controller
         //
     }
 
+    public function propietarios()
+    {
+        return User::where('tipo',"propietario")->get();
+        //
+    }
+
     /**
      * Remove the specified resource from storage.
      *

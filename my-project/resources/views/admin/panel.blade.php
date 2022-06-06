@@ -25,7 +25,7 @@
                             Apartamentos
                         </router-link>
                         <router-link :to="{ name: 'trabajos_tabla' }">
-                            Trabajo Pendiente
+                            Limpiezas
                         </router-link>
                         <router-link :to="{ name: 'bienvenida' }">
                             Bienvenida

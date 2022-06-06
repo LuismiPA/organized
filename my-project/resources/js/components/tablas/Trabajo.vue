@@ -1,6 +1,5 @@
 <template>
     <article id="clientesDetalle" class="ml-auto mr-auto mb-3 mt-3 shadow p-3 mb-5 bg-body rounded">
-        <h1>{{usuario.tipo}}</h1>
         <div class="accordion" id="accordionPanelsStayOpenExample">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="panelsStayOpen-headingOne">
@@ -24,7 +23,7 @@
                             </tr>
                             <tbody>
                                 <tr class="border-bottom" v-for="pendiente in pendientes" v-bind:key="pendiente.id"
-                                    v-if="usuario.tipo==='admin'">
+                                    v-if="usuario.tipo === 'admin'">
                                     <td scope="row">{{ pendiente.id }}</td>
                                     <td>{{ pendiente.apartment_id }}</td>
                                     <td>{{ pendiente.horario }}</td>
@@ -33,10 +32,12 @@
                                     <td class="iconosTd">
                                         <font-awesome-icon icon="fas fa-edit" alt="Editar trabajo"
                                             v-on:click="editarLimpieza(pendiente.id)" class="iconosTabla" />
+                                        <font-awesome-icon v-on:click="imprimir(pendiente.id)"
+                                            icon="fa-solid fa-print" alt="Imprimir etiqueta" class="iconosTabla" />
                                     </td>
                                 </tr>
                                 <tr class="border-bottom" v-for="pendiente in pendientes" v-bind:key="pendiente.id"
-                                    v-if="usuario.tipo==='propietario' && usuario.id===pendiente.propietario_id">
+                                    v-if="usuario.tipo === 'propietario' && usuario.id === pendiente.propietario_id">
                                     <td scope="row">{{ pendiente.id }}</td>
                                     <td>{{ pendiente.apartment_id }}</td>
                                     <td>{{ pendiente.horario }}</td>
@@ -73,7 +74,7 @@
                             </tr>
                             <tbody>
                                 <tr class="border-bottom" v-for="planificado in planificados"
-                                    v-if="usuario.tipo==='admin'">
+                                    v-if="usuario.tipo === 'admin'">
                                     <td scope="row">{{ planificado.id }}</td>
                                     <td>{{ planificado.apartment_id }}</td>
                                     <td>{{ planificado.horario }}</td>
@@ -82,10 +83,12 @@
                                     <td class="iconosTd">
                                         <font-awesome-icon icon="fas fa-edit" alt="Editar trabajo"
                                             v-on:click="editarLimpieza(planificado.id)" class="iconosTabla" />
+                                        <font-awesome-icon v-on:click="imprimir(planificado.id)"
+                                            icon="fa-solid fa-print" alt="Imprimir etiqueta" class="iconosTabla" />
                                     </td>
                                 </tr>
                                 <tr class="border-bottom" v-for="planificado in planificados"
-                                    v-if="usuario.tipo==='propietario' && usuario.id===planificado.propietario_id">
+                                    v-if="usuario.tipo === 'propietario' && usuario.id === planificado.propietario_id">
                                     <td scope="row">{{ planificado.id }}</td>
                                     <td>{{ planificado.apartment_id }}</td>
                                     <td>{{ planificado.horario }}</td>
@@ -123,7 +126,7 @@
                             </tr>
                             <tbody>
                                 <tr class="border-bottom" v-for="acabado in acabados" v-bind:key="acabado.id"
-                                    v-if="usuario.tipo==='admin'">
+                                    v-if="usuario.tipo === 'admin'">
                                     <td scope="row">{{ acabado.id }}</td>
                                     <td>{{ acabado.apartment_id }}</td>
                                     <td>{{ acabado.horario }}</td>
@@ -132,10 +135,12 @@
                                     <td class="iconosTd">
                                         <font-awesome-icon icon="fas fa-edit" alt="Editar trabajo"
                                             v-on:click="editarLimpieza(acabado.id)" class="iconosTabla" />
+                                        <font-awesome-icon v-on:click="imprimir(acabado.id)"
+                                            icon="fa-solid fa-print" alt="Imprimir etiqueta" class="iconosTabla" />
                                     </td>
                                 </tr>
                                 <tr class="border-bottom" v-for="acabado in acabados" v-bind:key="acabado.id"
-                                    v-if="usuario.tipo==='propietario' && usuario.id===acabado.propietario_id">
+                                    v-if="usuario.tipo === 'propietario' && usuario.id === acabado.propietario_id">
                                     <td scope="row">{{ acabado.id }}</td>
                                     <td>{{ acabado.apartment_id }}</td>
                                     <td>{{ acabado.horario }}</td>
@@ -178,13 +183,19 @@ export default {
         axios.get('/api/limpiezas/trabajo/planificado').then(response => this.planificados = response.data);
     },
     methods: {
-        editarLimpieza($id){
-            this.$router.push('/limpieza/editar/'+$id);
+        editarLimpieza($id) {
+            this.$router.push('/limpieza/editar/' + $id);
         },
         crearLimpieza() {
             this.$router.push('/limpieza/formulario')
         },
-    },
+
+        imprimir(id) {
+            this.$router.push({
+                path: '/admin/limpieza/ticket/' + id,
+            })
+        },
+    }
 }
 
 </script>

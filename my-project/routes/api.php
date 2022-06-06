@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('user/trabajadores', [UserApiController::class, 'trabajadores']);
+Route::get('user/propietarios', [UserApiController::class, 'propietarios']);
 
 Route::get('limpiezas/trabajador/{id_trabajador}',[LimpiezasApiController::class , 'trabajador']);
 Route::get('limpiezas/trabajo/acabado', [LimpiezasApiController::class, 'acabado']);

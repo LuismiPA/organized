@@ -3,21 +3,19 @@
         <form class="centrado shadow p-3 mb-5 bg-body rounded" action="javascript:void(0)"
             @submit.prevent="crearLimpieza">
             <h1 class="mb-3 text-center">Crear Limpieza</h1>
-            <h2>
-                {{ usuario.id }}
-            </h2>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <select class="form-control" id="floatingSelect" name="apartament_id"
                         aria-label="Floating label select example" v-model="limpieza.apartment_id"
                         v-if="usuario.tipo === 'admin'">
-                        <option selected>Apartamento</option>
+                        <option value="" disabled selected hidden>Apartamento</option>
                         <option v-for=" apartamento in apartamentos" :value='apartamento.id'>{{ apartamento.id }}
                         </option>
                     </select>
                     <select class="form-control" id="floatingSelect" name="apartament_id"
                         aria-label="Floating label select example" v-model="limpieza.apartment_id"
                         v-if="usuario.tipo === 'propietario'">
+                        <option disabled selected hidden>Apartamento</option>
                         <option v-for=" apartamento in apartamentos" :value='apartamento.id'
                             v-if="apartamento.propietario_id === usuario.id">{{apartamento.id}}
                         </option>
@@ -26,7 +24,7 @@
                 <div class="form-group col-md-6">
                     <select class="form-control" id="floatingSelect" name="tipo_limpieza"
                         aria-label="Floating label select example" v-model="limpieza.tipo">
-                        <option selected>Tipo de limpieza</option>
+                        <option value="" disabled selected hidden>Tipo de limpieza</option>
                         <option value="normal">Normal</option>
                         <option value="completa">Completa</option>
                     </select>
@@ -36,7 +34,7 @@
                 <div class="form-group col-md-12">
                     <select class="form-control" id="floatingSelect" name="estado"
                         aria-label="Floating label select example" v-model="limpieza.estado">
-                        <option selected>Estado de la limpieza</option>
+                        <option value="" disabled selected hidden>Estado Limpieza</option>
                         <option value="pendiente">Pendiente</option>
                         <option value="planificada">Planificada</option>
                         <option value="acabada">Acabada</option>
@@ -48,7 +46,7 @@
                     <select class="form-control" id="floatingSelect" name="worker_id"
                         aria-label="Floating label select example" v-model="limpieza.worker_id"
                         v-if="usuario.tipo === 'admin'">
-                        <option selected>Trabajador</option>
+                        <option value="" disabled selected hidden>Trabajador</option>
                         <option v-for="trabajador in trabajadores" :value='trabajador.id'>
                             {{ trabajador.name }}
                         </option>
@@ -56,14 +54,14 @@
                 </div>
                 <div class="form-group col-md-6">
                     <div class="form-floating">
-                        <input class="form-control" type="datetime-local" name="horario"
-                            placeholder="Hora de la limpieza" v-model="limpieza.horario" v-if="usuario.tipo === 'admin'">
+                        <input class="form-control" type="number" v-if="usuario.tipo === 'propietario'"
+                            :placeholder="[usuario.id]" name="propietario.id" :value='usuario.id'>
                     </div>
                 </div>
             </div>
             <div class=" d-flex">
-                        <button type="submit" class="btn btn-primary mt-0 mb-0 ml-auto mr-auto">Crear limpieza</button>
-                    </div>
+                <button type="submit" class="btn btn-primary mt-0 mb-0 ml-auto mr-auto">Crear limpieza</button>
+            </div>
         </form>
     </div>
 </template>

@@ -38,13 +38,7 @@ class ApartmentApiController extends Controller
      */
     public function show($id)
     {
-        return Apartment::where('id', $id)->get();
-        //
-    }
-
-    public function propietario($id_propietario)
-    {
-        return Apartment::where('user_id', $id_propietario)->get();
+        return Apartment::findOrFail($id);
         //
     }
 

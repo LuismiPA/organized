@@ -6,6 +6,7 @@
             
 npm run dev
 
+docker exec app /bin/bash
 
 //Crear api
 php artisan make:controller API/PhotoController --api

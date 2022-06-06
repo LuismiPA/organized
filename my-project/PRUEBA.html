@@ -25,51 +25,98 @@
 <body>
     <div class="abs-center">
         <form class="centrado shadow p-3 mb-5 bg-body rounded" action="javascript:void(0)" @submit.prevent="crearLimpieza">
-            <h1 class="mb-2">Crear Limpieza</h1>
+            <h1 class="mb-3 text-center">Crear Apartamento</h1>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <select class="form-control" name="apartament_id" aria-label="Floating label select example" v-model="limpieza.apartment_id">
-                        <option selected>Apartamento</option>
-                        <option v-for=" apartamento in apartamentos" :value='apartamento.id'>{{ apartamento.id }}
-                        </option>
+                    <input class="form-control" type="text" name="direccion" placeholder="Dirección" v-model="apartamento.direccion">
+                </div>
+                <div class="form-group col-md-6">
+                    <input class="form-control" type="number" size="5" name="codigo_postal" placeholder="Código Postal" v-model="apartamento.codigo_postal">
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <select class="form-control" id="floatingSelect" name="habitaciones" aria-label="Floating label select example" v-model="apartamento.habitaciones">
+                        <option value="" disabled selected hidden>Número de habitaciones</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
                     </select>
                 </div>
                 <div class="form-group col-md-6">
-                    <select class="form-control" name="worker_id" aria-label="Floating label select example" v-model="limpieza.worker_id">
-                        <option selected>Trabajador</option>
-                        <option v-for="trabajador in trabajadores" :value='trabajador.id'>{{ trabajador.name }}
-                        </option>
+                    <select class="form-control" id="floatingSelect" name="habitaciones" aria-label="Floating label select example" v-model="apartamento.camas_dobles">
+                        <option value="" disabled selected hidden>Número de camas dobles</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
                     </select>
                 </div>
             </div>
-            <div class="form-row" v-if="usuario.tipo==='admin'">
-                <div class="form-group col-md-12">
-                    <select class="form-control" name="estado" aria-label="Floating label select example" v-model="limpieza.estado">
-                        <option selected>Estado de la limpieza</option>
-                        <option value="pendiente">Pendiente</option>
-                        <option value="planificada">Planificada</option>
-                        <option value="acabada">Acabada</option>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <select class="form-control" id="floatingSelect" name="camas_indiv" aria-label="Floating label select example" v-model="apartamento.camas_indiv">
+                        <option value="" disabled selected hidden>Número de camas individuales</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <select class="form-control" id="floatingSelect" name="habitaciones" aria-label="Floating label select example" v-model="apartamento.aseos">
+                        <option value="" disabled selected hidden>Número de aseos</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
                     </select>
                 </div>
             </div>
-            <div class="form-row" v-if="usuario.tipo==='admin'">
+
+            <div class="form-row">
                 <div class="form-group col-md-6">
-                    <select class="form-control" name="tipo_limpieza" aria-label="Floating label select example" v-model="limpieza.tipo">
-                        <option selected>Tipo de limpieza</option>
-                        <option value="normal">Normal</option>
-                        <option value="completa">Completa</option>
+                    <select class="form-control" id="floatingSelect" name="solarium" aria-label="Floating label select example" v-model="apartamento.solarium">
+                        <option value="" disabled selected hidden>Solarium</option>
+                        <option value="si">Si</option>
+                        <option value="no">No</option>
                     </select>
                 </div>
-                <div class="form-group col-md-6">
-                    <div class="form-floating">
-                        <input class="form-control" type="datetime-local" name="horario" placeholder="Hora de la limpieza" v-model="limpieza.horario">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <select class="form-control" id="floatingSelect" name="propietario_id" aria-label="Floating label select example" v-model="propietario_id" v-if="usuario.tipo === 'admin'">
+                            <option value="" disabled selected hidden>Propietario</option>
+                            <option v-for="propietario in propietarios" :value='propietario.id'>
+                                {{ propietario.id }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6" v-if="usuario.tipo === 'propietario'">
+                        <input class="form-control" v-model="limpieza.apartment_id" :placeholder="[limpieza.apartment_id]" disabled>
                     </div>
                 </div>
             </div>
-            <div class="d-flex"><button type="submit" class="btn btn-primary mt-0 mb-0 ml-auto mr-auto">Crear limpieza</button></div>
+
+
+            <div class=" d-flex">
+                <button type="submit" class="btn btn-primary mt-0 mb-0 ml-auto mr-auto">Crear limpieza</button>
+            </div>
         </form>
     </div>
-
 </body>
 <script src="./public/assets/js/pruebas.js"></script>
 
