@@ -95,7 +95,7 @@
 
             </div>
             <div class=" d-flex">
-                <button type="submit" class="btn btn-primary mt-0 mb-0 ml-auto mr-auto">Crear limpieza</button>
+                <button type="submit" class="btn btn-primary mt-0 mb-0 ml-auto mr-auto">Crear Apartamento</button>
             </div>
         </form>
     </div>
