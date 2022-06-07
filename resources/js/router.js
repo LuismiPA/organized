@@ -60,7 +60,7 @@ export default new Router({
             component: apartmentoForm,
         },
         {
-            path: '/apartamento/editar/:id',
+            path: '/apartamento/editForm/:id',
             name: 'apartamentoEditar',
             component: apartamentoEditar,
         },
@@ -71,7 +71,7 @@ export default new Router({
         },
 
         {
-            path: '/limpieza/edit/:id',
+            path: '/limpieza/editForm/:id',
             name: 'limpiezaEditar',
             component: limpiezaEditar,
         },

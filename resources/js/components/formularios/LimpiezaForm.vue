@@ -5,9 +5,12 @@
             <h1 class="mb-3 text-center">Crear Limpieza</h1>
             <div class="form-row">
                 <div class="form-group col-md-6">
+                    <input class="form-control" v-if="this.$route.params.id" v-model="limpieza.apartment_id"
+                        :placeholder="[this.$route.params.id]" disabled>
+
                     <select class="form-control" id="floatingSelect" name="apartament_id"
                         aria-label="Floating label select example" v-model="limpieza.apartment_id"
-                        v-if="usuario.tipo === 'admin'">
+                        v-if="usuario.tipo === 'admin' &&  !this.$route.params.id">
                         <option value="" disabled selected hidden>Apartamento</option>
                         <option v-for=" apartamento in apartamentos" :value='apartamento.id'>{{ apartamento.id }}
                         </option>
@@ -108,7 +111,11 @@ export default {
     },
     methods: {
         crearLimpieza() {
-            axios.post('/limpieza/crear', this.limpieza).then(response => window.location.href = "/trabajos/detalles");
+            if (this.$route.params.id){
+                this.limpieza.apartment_id =this.$route.params.id;
+            }
+            console.log(this.limpieza);
+            /* axios.post('/limpieza/crear', this.limpieza).then(response => window.location.href = "/trabajos/detalles"); */
         }
     },
 }

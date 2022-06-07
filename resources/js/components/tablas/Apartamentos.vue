@@ -19,11 +19,11 @@
           <td>{{ apartamento.codigo_postal }}</td>
           <td>{{ apartamento.propietario_id }}</td>
           <td class="iconosTd">
-            <font-awesome-icon v-on:click="" icon="fa-solid fa-hand-sparkles" alt="Limpiar apartamento"
-              class="iconosTabla" />
+            <font-awesome-icon v-on:click="crearLimpieza(apartamento.id)" icon="fa-solid fa-hand-sparkles"
+              alt="Limpiar apartamento" class="iconosTabla" />
             <font-awesome-icon v-on:click="editarApartamento(apartamento.id)" icon="fas fa-edit"
               alt="Editar apartamento" class="iconosTabla" />
-            <font-awesome-icon v-on:click="eliminarApartamento(apartamento.id)" icon="fa-solid fa-user-xmark"
+            <font-awesome-icon v-on:click="eliminarApartamento(apartamento.id)" icon="fa-solid fa-delete-left"
               alt="Borrar usuario" class="iconosTabla text-danger" />
           </td>
         </tr>
@@ -34,11 +34,11 @@
           <td>{{ apartamento.codigo_postal }}</td>
           <td>{{ apartamento.propietario_id }}</td>
           <td class="iconosTd">
-            <font-awesome-icon v-on:click="" icon="fa-solid fa-hand-sparkles" alt="Limpiar apartamento"
-              class="iconosTabla" />
+            <font-awesome-icon v-on:click="crearLimpieza(apartamento.id)" icon="fa-solid fa-hand-sparkles"
+              alt="Limpiar apartamento" class="iconosTabla" />
             <font-awesome-icon v-on:click="editarApartamento(apartamento.id)" icon="fas fa-edit"
               alt="Editar apartamento" class="iconosTabla" />
-            <font-awesome-icon v-on:click="eliminarApartamento(apartamento.id)" icon="fa-solid fa-user-xmark"
+            <font-awesome-icon v-on:click="eliminarApartamento(apartamento.id)" icon="fa-solid fa-delete-left"
               alt="Borrar usuario" class="iconosTabla text-danger" />
           </td>
         </tr>
@@ -70,8 +70,11 @@ export default {
     crearApartamento() {
       this.$router.push('/apartamento/formulario');
     },
-    editarLimpieza($id) {
-      this.$router.push('/apartamento/editar/' + $id);
+    crearLimpieza(id) {
+      this.$router.push('/limpieza/formulario/'+id)
+    },
+    editarApartamento(id) {
+      this.$router.push('/apartamento/editForm/' + id);
     },
     eliminarApartamento(id) {
       if (!confirm('¿Desea eliminar este apartamento?')) return;

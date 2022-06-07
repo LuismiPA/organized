@@ -184,10 +184,10 @@ export default {
     },
     methods: {
         editarLimpieza($id) {
-            this.$router.push('/limpieza/editar/' + $id);
+            this.$router.push('/limpieza/editForm/' + $id);
         },
         crearLimpieza() {
-            this.$router.push('/limpieza/formulario')
+            this.$router.push('/limpieza/formulario');
         },
 
         imprimir(id) {

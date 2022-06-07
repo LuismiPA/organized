@@ -21214,6 +21214,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'perfil',
@@ -21246,9 +21249,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     crearLimpieza: function crearLimpieza() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/limpieza/crear', this.limpieza).then(function (response) {
-        return window.location.href = "/trabajos/detalles";
-      });
+      if (this.$route.params.id) {
+        this.limpieza.apartment_id = this.$route.params.id;
+      }
+
+      console.log(this.limpieza);
+      /* axios.post('/limpieza/crear', this.limpieza).then(response => window.location.href = "/trabajos/detalles"); */
     }
   }
 });
@@ -21268,6 +21274,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
 //
 //
 //
@@ -21341,6 +21349,12 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     crearApartamento: function crearApartamento() {
       this.$router.push('/apartamento/formulario');
+    },
+    crearLimpieza: function crearLimpieza(id) {
+      this.$router.push('/limpieza/formulario/' + id);
+    },
+    editarApartamento: function editarApartamento(id) {
+      this.$router.push('/apartamento/editForm/' + id);
     },
     eliminarApartamento: function eliminarApartamento(id) {
       if (!confirm('¿Desea eliminar este apartamento?')) return;
@@ -21564,7 +21578,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     editarLimpieza: function editarLimpieza($id) {
-      this.$router.push('/limpieza/editar/' + $id);
+      this.$router.push('/limpieza/editForm/' + $id);
     },
     crearLimpieza: function crearLimpieza() {
       this.$router.push('/limpieza/formulario');
@@ -21765,7 +21779,7 @@ vue__WEBPACK_IMPORTED_MODULE_10__["default"].use(vue_router__WEBPACK_IMPORTED_MO
     name: 'apartamentoForm',
     component: _components_formularios_ApartamentoForm_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
-    path: '/apartamento/editar/:id',
+    path: '/apartamento/editForm/:id',
     name: 'apartamentoEditar',
     component: _components_formularios_ApartamentoEditar_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {
@@ -21773,7 +21787,7 @@ vue__WEBPACK_IMPORTED_MODULE_10__["default"].use(vue_router__WEBPACK_IMPORTED_MO
     name: 'limpiezaForm',
     component: _components_formularios_LimpiezaForm_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
   }, {
-    path: '/limpieza/editar/:id',
+    path: '/limpieza/editForm/:id',
     name: 'limpiezaEditar',
     component: _components_formularios_LimpiezaEditar_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
   }]
@@ -49697,7 +49711,35 @@ var render = function () {
         _vm._v(" "),
         _c("div", { staticClass: "form-row" }, [
           _c("div", { staticClass: "form-group col-md-6" }, [
-            _vm.usuario.tipo === "admin"
+            this.$route.params.id
+              ? _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.limpieza.apartment_id,
+                      expression: "limpieza.apartment_id",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: { placeholder: [this.$route.params.id], disabled: "" },
+                  domProps: { value: _vm.limpieza.apartment_id },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.limpieza,
+                        "apartment_id",
+                        $event.target.value
+                      )
+                    },
+                  },
+                })
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.usuario.tipo === "admin" && !this.$route.params.id
               ? _c(
                   "select",
                   {
@@ -50151,7 +50193,11 @@ var render = function () {
                             icon: "fa-solid fa-hand-sparkles",
                             alt: "Limpiar apartamento",
                           },
-                          on: { click: function ($event) {} },
+                          on: {
+                            click: function ($event) {
+                              return _vm.crearLimpieza(apartamento.id)
+                            },
+                          },
                         }),
                         _vm._v(" "),
                         _c("font-awesome-icon", {
@@ -50160,13 +50206,17 @@ var render = function () {
                             icon: "fas fa-edit",
                             alt: "Editar apartamento",
                           },
-                          on: { click: function ($event) {} },
+                          on: {
+                            click: function ($event) {
+                              return _vm.editarApartamento(apartamento.id)
+                            },
+                          },
                         }),
                         _vm._v(" "),
                         _c("font-awesome-icon", {
                           staticClass: "iconosTabla text-danger",
                           attrs: {
-                            icon: "fa-solid fa-user-xmark",
+                            icon: "fa-solid fa-delete-left",
                             alt: "Borrar usuario",
                           },
                           on: {
@@ -50206,7 +50256,11 @@ var render = function () {
                             icon: "fa-solid fa-hand-sparkles",
                             alt: "Limpiar apartamento",
                           },
-                          on: { click: function ($event) {} },
+                          on: {
+                            click: function ($event) {
+                              return _vm.crearLimpieza(apartamento.id)
+                            },
+                          },
                         }),
                         _vm._v(" "),
                         _c("font-awesome-icon", {
@@ -50215,13 +50269,17 @@ var render = function () {
                             icon: "fas fa-edit",
                             alt: "Editar apartamento",
                           },
-                          on: { click: function ($event) {} },
+                          on: {
+                            click: function ($event) {
+                              return _vm.editarApartamento(apartamento.id)
+                            },
+                          },
                         }),
                         _vm._v(" "),
                         _c("font-awesome-icon", {
                           staticClass: "iconosTabla text-danger",
                           attrs: {
-                            icon: "fa-solid fa-user-xmark",
+                            icon: "fa-solid fa-delete-left",
                             alt: "Borrar usuario",
                           },
                           on: {

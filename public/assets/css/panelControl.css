@@ -97,7 +97,7 @@
             width: 15%;
             /*  background: rgb(87, 87, 87);
         background: linear-gradient(132deg, rgba(87, 87, 87, 1) 12%, rgba(204, 204, 204, 1) 28%, rgba(182, 182, 182, 1) 65%, rgba(72, 72, 73, 1) 86%); */
-            height: 100vh;
+            min-height: 100vh;
         }
         nav img {
             background-color: rgba(0, 0, 0, 0.5);
