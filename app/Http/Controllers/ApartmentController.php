@@ -32,4 +32,21 @@ class ApartmentController extends Controller
         
        /*  return view("admin.panel"); */
     }
+    public function editar_apartamento(Request $request,$id){
+
+        $apartment = Apartment::findOrFail($id);
+        $apartment->direccion = $request->direccion;
+        $apartment->codigo_postal = $request->codigo_postal;
+        $apartment->habitaciones = $request->habitaciones;
+        $apartment->camas_indiv = $request->camas_indiv;
+        $apartment->aseos = $request->aseos;
+        $apartment->solarium = $request->solarium;
+        if($request->propietario_id){
+            $apartment->propietario_id = $request->propietario_id;
+        }
+        $apartment->save();
+    }
+    public function borrar_apartamento($id){
+        $apartamento = Apartment::findOrFail($id)->delete();
+    }
 }

@@ -52,13 +52,12 @@ class LimpiezasController extends Controller
 
     public function editar_limpieza(Request $request, $id)
     {
-        /* $request->validate([
-            "name" => "required",
-            "email" => "required",
-            "password" => "required",
-            "password_confirmation" => "required | same:password",
-            "tipo" => "required"
-        ]); */
+        $request->validate([
+            "worker_id" => "required",
+            "estado" => "required",
+            "tipo" => "required",
+            "horario" => "required",
+        ]);
         $limpieza = Limpiezas::findOrFail($id);
         $limpieza->worker_id = $request->worker_id;
         $limpieza->estado = $request->estado;

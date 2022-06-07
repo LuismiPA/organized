@@ -19,11 +19,12 @@
           <td>{{ apartamento.codigo_postal }}</td>
           <td>{{ apartamento.propietario_id }}</td>
           <td class="iconosTd">
-            <font-awesome-icon v-on:click="crearLimpieza(apartamento.id)" icon="fa-solid fa-hand-sparkles"
-              alt="Limpiar apartamento" class="iconosTabla" />
-            <font-awesome-icon v-on:click="" icon="fas fa-edit" alt="Editar apartamento" class="iconosTabla" />
-            <font-awesome-icon v-on:click="" icon="fa-solid fa-user-xmark" alt="Borrar usuario"
-              class="iconosTabla text-danger" />
+            <font-awesome-icon v-on:click="" icon="fa-solid fa-hand-sparkles" alt="Limpiar apartamento"
+              class="iconosTabla" />
+            <font-awesome-icon v-on:click="editarApartamento(apartamento.id)" icon="fas fa-edit"
+              alt="Editar apartamento" class="iconosTabla" />
+            <font-awesome-icon v-on:click="eliminarApartamento(apartamento.id)" icon="fa-solid fa-user-xmark"
+              alt="Borrar usuario" class="iconosTabla text-danger" />
           </td>
         </tr>
         <tr class="border-bottom" v-for="apartamento in apartamentos"
@@ -33,17 +34,19 @@
           <td>{{ apartamento.codigo_postal }}</td>
           <td>{{ apartamento.propietario_id }}</td>
           <td class="iconosTd">
-            <font-awesome-icon v-on:click="crearApartamento()" icon="fa-solid fa-hand-sparkles"
-              alt="Limpiar apartamento" class="iconosTabla" />
-            <font-awesome-icon v-on:click="" icon="fas fa-edit" alt="Editar apartamento" class="iconosTabla" />
-            <font-awesome-icon v-on:click="" icon="fa-solid fa-user-xmark" alt="Borrar usuario"
-              class="iconosTabla text-danger" />
+            <font-awesome-icon v-on:click="" icon="fa-solid fa-hand-sparkles" alt="Limpiar apartamento"
+              class="iconosTabla" />
+            <font-awesome-icon v-on:click="editarApartamento(apartamento.id)" icon="fas fa-edit"
+              alt="Editar apartamento" class="iconosTabla" />
+            <font-awesome-icon v-on:click="eliminarApartamento(apartamento.id)" icon="fa-solid fa-user-xmark"
+              alt="Borrar usuario" class="iconosTabla text-danger" />
           </td>
         </tr>
       </tbody>
     </table>
     <div class=" d-flex">
-      <button type="submit" v-on:click="crearApartamento()" class="btn btn-primary mt-0 mb-0 ml-auto mr-auto">Crear Apartamento</button>
+      <button type="submit" v-on:click="crearApartamento()" class="btn btn-primary mt-0 mb-0 ml-auto mr-auto">Crear
+        Apartamento</button>
     </div>
   </article>
 </template>
@@ -66,6 +69,17 @@ export default {
   methods: {
     crearApartamento() {
       this.$router.push('/apartamento/formulario');
+    },
+    editarLimpieza($id) {
+      this.$router.push('/apartamento/editar/' + $id);
+    },
+    eliminarApartamento(id) {
+      if (!confirm('¿Desea eliminar este apartamento?')) return;
+      axios.delete('/apartamento/borrar/' + id).then(() => {
+        window.location.href = "/apartamentos/detalles";
+      }).catch(error => (
+        alert(error + ': Error al borrar')
+      ))
     },
   }
 }

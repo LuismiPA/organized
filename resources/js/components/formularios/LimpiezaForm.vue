@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6" v-if="usuario.tipo === 'admin'">
                     <select class="form-control" id="floatingSelect" name="worker_id"
                         aria-label="Floating label select example" v-model="limpieza.worker_id"
                         v-if="usuario.tipo === 'admin'">
@@ -54,8 +54,8 @@
                 </div>
                 <div class="form-group col-md-6">
                     <div class="form-floating">
-                        <input class="form-control" type="number" v-if="usuario.tipo === 'propietario'"
-                            :placeholder="[usuario.id]" name="propietario.id" :value='usuario.id'>
+                        <input class="form-control" type="datetime-local" name="horario"
+                            placeholder="Hora de la limpieza" v-model="limpieza.horario">
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@ export default {
     },
     methods: {
         crearLimpieza() {
-            axios.post('/limpieza/crear', this.limpieza).then(response => window.location.href = "/");
+            axios.post('/limpieza/crear', this.limpieza).then(response => window.location.href = "/trabajos/detalles");
         }
     },
 }

@@ -2,10 +2,11 @@
     <div class="abs-center">
         <form class="centrado shadow p-3 mb-5 bg-body rounded" action="javascript:void(0)"
             @submit.prevent="crearApartamento">
-            <h1 class="mb-3 text-center">Crear Apartamento</h1>
+            <h1 class="mb-3 text-center">Editar Apartamento</h1>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <input class="form-control" type="text" placeholder="Dirección" v-model="apartamento.direccion">
+                    <input class="form-control" type="text" :placeholder="[[ apartamento.direccion ]]"
+                        v-model="apartamentoEditado.direccion">
                 </div>
                 <div class="form-group col-md-6">
                     <input class="form-control" type="number" size="5" placeholder="Código Postal"
@@ -87,15 +88,12 @@
                             {{ propietario.id }}
                         </option>
                     </select>
-                </div>
-                <div class="form-group col-md-6" v-if="usuario.tipo === 'propietario'">
                     <input class="form-control" name="propietario_id" :value='usuario.id' :placeholder="[usuario.id]"
-                        disabled>
+                        disabled v-if="usuario.tipo === 'propietario'">
                 </div>
-
             </div>
             <div class=" d-flex">
-                <button type="submit" class="btn btn-primary mt-0 mb-0 ml-auto mr-auto">Crear Apartamento</button>
+                <button type="submit" class="btn btn-primary mt-0 mb-0 ml-auto mr-auto">Editar Apartamento</button>
             </div>
         </form>
     </div>
@@ -126,7 +124,8 @@ export default {
         return {
             usuario: [],
             propietarios: [],
-            apartamento: {
+            apartamento:[],
+            apartamentoEditado: {
                 direccion: "",
                 codigo_postal: "",
                 habitaciones: "",
@@ -140,12 +139,12 @@ export default {
     },
     created() {
         axios.get('/user/detalles').then(response => this.usuario = response.data);
-        axios.get('/api/user/propietarios').then(response => this.propietarios = response.data);
+        axios.get('/api/user/propietarios').then(response => this.propietarios = response.data); 
+        axios.get('/api/apartment/'+this.$route.params.id).then(response => this.apartamento = response.data);
     },
     methods: {
-        
-        crearApartamento() {
-            axios.post('/apartamento/crear', this.apartamento).then(response => window.location.href = "/apartamentos/detalles");
+        editarApartamento() {
+            axios.put('/apartamento/editar' + $id, this.apartamentoEditado).then(response => window.location.href = "/");
         }
     },
 }

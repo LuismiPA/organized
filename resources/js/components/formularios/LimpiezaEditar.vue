@@ -5,12 +5,13 @@
             <h1 class="mb-3 text-center">Editar Limpieza</h1>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <input class="form-control" v-model="limpieza.apartment_id" :placeholder="[limpieza.apartment_id]" disabled>
+                    <input class="form-control" v-model="limpieza.apartment_id" :placeholder="[limpieza.apartment_id]"
+                        disabled>
                 </div>
                 <div class="form-group col-md-6">
                     <select class="form-control" id="floatingSelect" name="worker_id"
                         aria-label="Floating label select example" v-model="limpiezaEditada.worker_id">
-                        <option selected>{{ limpieza.worker_id }}</option>
+                        <option value="" disabled selected>{{ limpieza.worker_id }}</option>
                         <option v-for="trabajador in trabajadores" :value='trabajador.id'>{{ trabajador.name }}
                         </option>
                     </select>
@@ -20,8 +21,8 @@
                 <div class="form-group col-md-12">
                     <select class="form-control" id="floatingSelect" name="estado"
                         aria-label="Floating label select example" v-model="limpiezaEditada.estado">
-                        <option selected>{{ limpieza.estado }}</option>
-                        <option value="pendiente">Pendiente</option>
+                        <option value="" disabled selected>{{ limpieza.estado }}</option>
+                        <option value="pendiente" selected>Pendiente</option>
                         <option value="planificada">Planificada</option>
                         <option value="acabada">Acabada</option>
                     </select>
@@ -31,8 +32,8 @@
                 <div class="form-group col-md-6">
                     <select class="form-control" id="floatingSelect" name="tipo_limpieza"
                         aria-label="Floating label select example" v-model="limpiezaEditada.tipo">
-                        <option selected>{{ limpieza.estado }}</option>
-                        <option value="normal">Normal</option>
+                        <option value="" disabled selected>Tipo de limpieza</option>
+                        <option value="normal" selected>Normal</option>
                         <option value="completa">Completa</option>
                     </select>
                 </div>
@@ -101,7 +102,7 @@ export default {
     },
     methods: {
         editarLimpieza($id) {
-            axios.put('/limpieza/editar/'+$id, this.limpiezaEditada).then(response => console.log(response.data));
+            axios.put('/limpieza/editar/' + $id, this.limpiezaEditada).then(response => window.location.href = "/trabajos/detalles");
         }
     },
 }

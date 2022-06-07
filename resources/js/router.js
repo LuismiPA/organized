@@ -7,7 +7,8 @@ import apartamento_perfil from './components/Perfil.vue'
 import ticket from './components/admin/Ticket.vue'
 import bienvenida from './components/Bienvenida.vue'
 import trabajos_tabla from './components/tablas/Trabajo.vue'
-import apartmentForm from './components/formularios/ApartamentoForm.vue'
+import apartmentoForm from './components/formularios/ApartamentoForm.vue'
+import apartamentoEditar from './components/formularios/ApartamentoEditar.vue'
 import limpiezaForm from './components/formularios/LimpiezaForm.vue'
 import limpiezaEditar from './components/formularios/LimpiezaEditar.vue'
 
@@ -55,8 +56,13 @@ export default new Router({
         },
         {
             path: '/apartamento/formulario',
-            name: 'apartamntForm',
-            component: apartmentForm,
+            name: 'apartamentoForm',
+            component: apartmentoForm,
+        },
+        {
+            path: '/apartamento/editar/:id',
+            name: 'apartamentoEditar',
+            component: apartamentoEditar,
         },
         {
             path: '/limpieza/formulario/:id?',
@@ -65,7 +71,7 @@ export default new Router({
         },
 
         {
-            path: '/limpieza/editar/:id',
+            path: '/limpieza/edit/:id',
             name: 'limpiezaEditar',
             component: limpiezaEditar,
         },

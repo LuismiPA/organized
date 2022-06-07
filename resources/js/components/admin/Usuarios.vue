@@ -48,7 +48,7 @@ export default {
     eliminarUsuario(usuario, id) {
       if (!confirm('¿Desea eliminar este usuario?')) return;
       axios.delete(`/api/user/${id}`).then(() => {
-        this.$router.push({ name: 'panelUsers' });
+        window.location.href = "/admin/panel/users";
       }).catch(error => (
         alert(error + ': Error al borrar')
       ))

@@ -20630,15 +20630,184 @@ __webpack_require__.r(__webpack_exports__);
       window.location.href = "/admin/editar/" + id;
     },
     eliminarUsuario: function eliminarUsuario(usuario, id) {
-      var _this2 = this;
-
       if (!confirm('¿Desea eliminar este usuario?')) return;
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/api/user/".concat(id)).then(function () {
-        _this2.$router.push({
-          name: 'panelUsers'
-        });
+        window.location.href = "/admin/panel/users";
       })["catch"](function (error) {
         return alert(error + ': Error al borrar');
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'perfil',
+  data: function data() {
+    return {
+      usuario: [],
+      propietarios: [],
+      apartamento: [],
+      apartamentoEditado: {
+        direccion: "",
+        codigo_postal: "",
+        habitaciones: "",
+        camas_dobles: "",
+        camas_indiv: "",
+        aseos: "",
+        solarium: "",
+        propietario_id: ""
+      }
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get('/user/detalles').then(function (response) {
+      return _this.usuario = response.data;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/user/propietarios').then(function (response) {
+      return _this.propietarios = response.data;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/apartment/' + this.$route.params.id).then(function (response) {
+      return _this.apartamento = response.data;
+    });
+  },
+  methods: {
+    editarApartamento: function editarApartamento() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().put('/apartamento/editar' + $id, this.apartamentoEditado).then(function (response) {
+        return window.location.href = "/";
       });
     }
   }
@@ -20809,9 +20978,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     crearApartamento: function crearApartamento() {
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/apartamento/crear', this.apartamento).then(function (response) {
-        return console.log(response.data);
+        return window.location.href = "/apartamentos/detalles";
       });
-      /* .then(response => window.location.href = "/"); */
     }
   }
 });
@@ -20831,6 +20999,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
 //
 //
 //
@@ -20941,7 +21110,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     editarLimpieza: function editarLimpieza($id) {
       axios__WEBPACK_IMPORTED_MODULE_0___default().put('/limpieza/editar/' + $id, this.limpiezaEditada).then(function (response) {
-        return console.log(response.data);
+        return window.location.href = "/trabajos/detalles";
       });
     }
   }
@@ -21078,7 +21247,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     crearLimpieza: function crearLimpieza() {
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/limpieza/crear', this.limpieza).then(function (response) {
-        return window.location.href = "/";
+        return window.location.href = "/trabajos/detalles";
       });
     }
   }
@@ -21099,6 +21268,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
 //
 //
 //
@@ -21171,6 +21341,14 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     crearApartamento: function crearApartamento() {
       this.$router.push('/apartamento/formulario');
+    },
+    eliminarApartamento: function eliminarApartamento(id) {
+      if (!confirm('¿Desea eliminar este apartamento?')) return;
+      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]('/apartamento/borrar/' + id).then(function () {
+        window.location.href = "/apartamentos/detalles";
+      })["catch"](function (error) {
+        return alert(error + ': Error al borrar');
+      });
     }
   }
 });
@@ -21522,8 +21700,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _components_admin_Usuarios_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/admin/Usuarios.vue */ "./resources/js/components/admin/Usuarios.vue");
 /* harmony import */ var _components_tablas_Apartamentos_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/tablas/Apartamentos.vue */ "./resources/js/components/tablas/Apartamentos.vue");
 /* harmony import */ var _components_Perfil_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Perfil.vue */ "./resources/js/components/Perfil.vue");
@@ -21531,8 +21709,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Bienvenida_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Bienvenida.vue */ "./resources/js/components/Bienvenida.vue");
 /* harmony import */ var _components_tablas_Trabajo_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/tablas/Trabajo.vue */ "./resources/js/components/tablas/Trabajo.vue");
 /* harmony import */ var _components_formularios_ApartamentoForm_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/formularios/ApartamentoForm.vue */ "./resources/js/components/formularios/ApartamentoForm.vue");
-/* harmony import */ var _components_formularios_LimpiezaForm_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/formularios/LimpiezaForm.vue */ "./resources/js/components/formularios/LimpiezaForm.vue");
-/* harmony import */ var _components_formularios_LimpiezaEditar_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/formularios/LimpiezaEditar.vue */ "./resources/js/components/formularios/LimpiezaEditar.vue");
+/* harmony import */ var _components_formularios_ApartamentoEditar_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/formularios/ApartamentoEditar.vue */ "./resources/js/components/formularios/ApartamentoEditar.vue");
+/* harmony import */ var _components_formularios_LimpiezaForm_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/formularios/LimpiezaForm.vue */ "./resources/js/components/formularios/LimpiezaForm.vue");
+/* harmony import */ var _components_formularios_LimpiezaEditar_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/formularios/LimpiezaEditar.vue */ "./resources/js/components/formularios/LimpiezaEditar.vue");
 
 
 
@@ -21544,8 +21723,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_9__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_10__["default"]);
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vue_router__WEBPACK_IMPORTED_MODULE_10__["default"]({
+
+vue__WEBPACK_IMPORTED_MODULE_10__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_11__["default"]);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vue_router__WEBPACK_IMPORTED_MODULE_11__["default"]({
   mode: 'history',
   routes: [{
     path: '/admin/panel/users',
@@ -21582,16 +21762,20 @@ vue__WEBPACK_IMPORTED_MODULE_9__["default"].use(vue_router__WEBPACK_IMPORTED_MOD
     }
   }, {
     path: '/apartamento/formulario',
-    name: 'apartamntForm',
+    name: 'apartamentoForm',
     component: _components_formularios_ApartamentoForm_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }, {
+    path: '/apartamento/editar/:id',
+    name: 'apartamentoEditar',
+    component: _components_formularios_ApartamentoEditar_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {
     path: '/limpieza/formulario/:id?',
     name: 'limpiezaForm',
-    component: _components_formularios_LimpiezaForm_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _components_formularios_LimpiezaForm_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
   }, {
     path: '/limpieza/editar/:id',
     name: 'limpiezaEditar',
-    component: _components_formularios_LimpiezaEditar_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _components_formularios_LimpiezaEditar_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
   }]
 }));
 
@@ -26648,6 +26832,30 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_public_assets_images_casa_jpg__WEBPACK_IMPORTED_MODULE_2__["default"]);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n#headerwrap[data-v-1062c1fc] {\n     background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") no-repeat center top;\n     padding-top: 250px;\n     text-align: center;\n     background-attachment: relative;\n     background-position: center center;\n     min-height: 650px;\n     width: 100%;\n     background-size: 100%;\n     background-size: cover;\n}\n#headerwrap h1[data-v-1062c1fc] {\n     color: #ffffff;\n     padding-top: 10px;\n     padding-bottom: 20px;\n     letter-spacing: 4px;\n     font-size: 80px;\n     font-weight: bold;\n}\n#headerwrap h2[data-v-1062c1fc] {\n     font-weight: 400;\n     color: #ffffff\n}\n#fondoTrans[data-v-1062c1fc] {\n     background-color: rgba(0, 0, 0, 0.5);\n     box-sizing: border-box;\n}\n#headerwrap[data-v-1062c1fc] {\n         padding-top: 180px;\n}\n\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=style&index=0&id=4b570fd4&scoped=true&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=style&index=0&id=4b570fd4&scoped=true&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.abs-center[data-v-4b570fd4] {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    width: 82%;\r\n    min-height: 100vh;\n}\n.centrado[data-v-4b570fd4] {\r\n    background-color: white;\r\n    width: 40%;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -46529,6 +46737,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=style&index=0&id=4b570fd4&scoped=true&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=style&index=0&id=4b570fd4&scoped=true&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ApartamentoEditar_vue_vue_type_style_index_0_id_4b570fd4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ApartamentoEditar.vue?vue&type=style&index=0&id=4b570fd4&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=style&index=0&id=4b570fd4&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ApartamentoEditar_vue_vue_type_style_index_0_id_4b570fd4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ApartamentoEditar_vue_vue_type_style_index_0_id_4b570fd4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/ApartamentoForm.vue?vue&type=style&index=0&id=9416a542&scoped=true&lang=css&":
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/ApartamentoForm.vue?vue&type=style&index=0&id=9416a542&scoped=true&lang=css& ***!
@@ -47056,6 +47294,47 @@ component.options.__file = "resources/js/components/admin/Usuarios.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/formularios/ApartamentoEditar.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/formularios/ApartamentoEditar.vue ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ApartamentoEditar_vue_vue_type_template_id_4b570fd4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ApartamentoEditar.vue?vue&type=template&id=4b570fd4&scoped=true& */ "./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=template&id=4b570fd4&scoped=true&");
+/* harmony import */ var _ApartamentoEditar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ApartamentoEditar.vue?vue&type=script&lang=js& */ "./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=script&lang=js&");
+/* harmony import */ var _ApartamentoEditar_vue_vue_type_style_index_0_id_4b570fd4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ApartamentoEditar.vue?vue&type=style&index=0&id=4b570fd4&scoped=true&lang=css& */ "./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=style&index=0&id=4b570fd4&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _ApartamentoEditar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ApartamentoEditar_vue_vue_type_template_id_4b570fd4_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ApartamentoEditar_vue_vue_type_template_id_4b570fd4_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "4b570fd4",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/formularios/ApartamentoEditar.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/formularios/ApartamentoForm.vue":
 /*!*****************************************************************!*\
   !*** ./resources/js/components/formularios/ApartamentoForm.vue ***!
@@ -47321,6 +47600,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ApartamentoEditar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ApartamentoEditar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ApartamentoEditar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/formularios/ApartamentoForm.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************!*\
   !*** ./resources/js/components/formularios/ApartamentoForm.vue?vue&type=script&lang=js& ***!
@@ -47410,6 +47705,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Bienvenida_vue_vue_type_style_index_0_id_1062c1fc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Bienvenida.vue?vue&type=style&index=0&id=1062c1fc&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Bienvenida.vue?vue&type=style&index=0&id=1062c1fc&scoped=true&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=style&index=0&id=4b570fd4&scoped=true&lang=css&":
+/*!****************************************************************************************************************************!*\
+  !*** ./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=style&index=0&id=4b570fd4&scoped=true&lang=css& ***!
+  \****************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ApartamentoEditar_vue_vue_type_style_index_0_id_4b570fd4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ApartamentoEditar.vue?vue&type=style&index=0&id=4b570fd4&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=style&index=0&id=4b570fd4&scoped=true&lang=css&");
 
 
 /***/ }),
@@ -47517,6 +47825,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Usuarios_vue_vue_type_template_id_70c4b270___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Usuarios_vue_vue_type_template_id_70c4b270___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Usuarios.vue?vue&type=template&id=70c4b270& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/Usuarios.vue?vue&type=template&id=70c4b270&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=template&id=4b570fd4&scoped=true&":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=template&id=4b570fd4&scoped=true& ***!
+  \**************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ApartamentoEditar_vue_vue_type_template_id_4b570fd4_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ApartamentoEditar_vue_vue_type_template_id_4b570fd4_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ApartamentoEditar_vue_vue_type_template_id_4b570fd4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ApartamentoEditar.vue?vue&type=template&id=4b570fd4&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=template&id=4b570fd4&scoped=true&");
 
 
 /***/ }),
@@ -47967,6 +48292,538 @@ var staticRenderFns = [
       _c("th", { staticClass: "align-middle border-top-0" }, [_vm._v("tipo")]),
       _vm._v(" "),
       _c("th", { staticClass: "align-middle border-top-0" }),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=template&id=4b570fd4&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/formularios/ApartamentoEditar.vue?vue&type=template&id=4b570fd4&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "abs-center" }, [
+    _c(
+      "form",
+      {
+        staticClass: "centrado shadow p-3 mb-5 bg-body rounded",
+        attrs: { action: "javascript:void(0)" },
+        on: {
+          submit: function ($event) {
+            $event.preventDefault()
+            return _vm.crearApartamento.apply(null, arguments)
+          },
+        },
+      },
+      [
+        _c("h1", { staticClass: "mb-3 text-center" }, [
+          _vm._v("Editar Apartamento"),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-row" }, [
+          _c("div", { staticClass: "form-group col-md-6" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.apartamentoEditado.direccion,
+                  expression: "apartamentoEditado.direccion",
+                },
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                placeholder: [[_vm.apartamento.direccion]],
+              },
+              domProps: { value: _vm.apartamentoEditado.direccion },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.apartamentoEditado,
+                    "direccion",
+                    $event.target.value
+                  )
+                },
+              },
+            }),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group col-md-6" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.apartamento.codigo_postal,
+                  expression: "apartamento.codigo_postal",
+                },
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "number",
+                size: "5",
+                placeholder: "Código Postal",
+              },
+              domProps: { value: _vm.apartamento.codigo_postal },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.apartamento,
+                    "codigo_postal",
+                    $event.target.value
+                  )
+                },
+              },
+            }),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-row" }, [
+          _c("div", { staticClass: "form-group col-md-6" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.apartamento.habitaciones,
+                    expression: "apartamento.habitaciones",
+                  },
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  id: "floatingSelect",
+                  "aria-label": "Floating label select example",
+                },
+                on: {
+                  change: function ($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function (o) {
+                        return o.selected
+                      })
+                      .map(function (o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.apartamento,
+                      "habitaciones",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  },
+                },
+              },
+              [
+                _c(
+                  "option",
+                  {
+                    attrs: {
+                      value: "",
+                      disabled: "",
+                      selected: "",
+                      hidden: "",
+                    },
+                  },
+                  [_vm._v("Número de habitaciones")]
+                ),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "2" } }, [_vm._v("2")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "3" } }, [_vm._v("3")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "4" } }, [_vm._v("4")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "5" } }, [_vm._v("5")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "6" } }, [_vm._v("6")]),
+              ]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group col-md-6" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.apartamento.camas_dobles,
+                    expression: "apartamento.camas_dobles",
+                  },
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  id: "floatingSelect",
+                  "aria-label": "Floating label select example",
+                },
+                on: {
+                  change: function ($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function (o) {
+                        return o.selected
+                      })
+                      .map(function (o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.apartamento,
+                      "camas_dobles",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  },
+                },
+              },
+              [
+                _c(
+                  "option",
+                  {
+                    attrs: {
+                      value: "",
+                      disabled: "",
+                      selected: "",
+                      hidden: "",
+                    },
+                  },
+                  [_vm._v("Número de camas dobles")]
+                ),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "2" } }, [_vm._v("2")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "3" } }, [_vm._v("3")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "4" } }, [_vm._v("4")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "5" } }, [_vm._v("5")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "6" } }, [_vm._v("6")]),
+              ]
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-row" }, [
+          _c("div", { staticClass: "form-group col-md-6" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.apartamento.camas_indiv,
+                    expression: "apartamento.camas_indiv",
+                  },
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  id: "floatingSelect",
+                  "aria-label": "Floating label select example",
+                },
+                on: {
+                  change: function ($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function (o) {
+                        return o.selected
+                      })
+                      .map(function (o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.apartamento,
+                      "camas_indiv",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  },
+                },
+              },
+              [
+                _c(
+                  "option",
+                  {
+                    attrs: {
+                      value: "",
+                      disabled: "",
+                      selected: "",
+                      hidden: "",
+                    },
+                  },
+                  [_vm._v("Número de camas individuales")]
+                ),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "2" } }, [_vm._v("2")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "3" } }, [_vm._v("3")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "4" } }, [_vm._v("4")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "5" } }, [_vm._v("5")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "6" } }, [_vm._v("6")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "7" } }, [_vm._v("7")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "8" } }, [_vm._v("8")]),
+              ]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group col-md-6" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.apartamento.aseos,
+                    expression: "apartamento.aseos",
+                  },
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  id: "floatingSelect",
+                  "aria-label": "Floating label select example",
+                },
+                on: {
+                  change: function ($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function (o) {
+                        return o.selected
+                      })
+                      .map(function (o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.apartamento,
+                      "aseos",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  },
+                },
+              },
+              [
+                _c(
+                  "option",
+                  {
+                    attrs: {
+                      value: "",
+                      disabled: "",
+                      selected: "",
+                      hidden: "",
+                    },
+                  },
+                  [_vm._v("Número de aseos")]
+                ),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "2" } }, [_vm._v("2")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "3" } }, [_vm._v("3")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "4" } }, [_vm._v("4")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "5" } }, [_vm._v("5")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "6" } }, [_vm._v("6")]),
+              ]
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-row" }, [
+          _c("div", { staticClass: "form-group col-md-6" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.apartamento.solarium,
+                    expression: "apartamento.solarium",
+                  },
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  id: "floatingSelect",
+                  "aria-label": "Floating label select example",
+                },
+                on: {
+                  change: function ($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function (o) {
+                        return o.selected
+                      })
+                      .map(function (o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.apartamento,
+                      "solarium",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  },
+                },
+              },
+              [
+                _c(
+                  "option",
+                  {
+                    attrs: {
+                      value: "",
+                      disabled: "",
+                      selected: "",
+                      hidden: "",
+                    },
+                  },
+                  [_vm._v("Solarium")]
+                ),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "si" } }, [_vm._v("Si")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "no" } }, [_vm._v("No")]),
+              ]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group col-md-6" }, [
+            _vm.usuario.tipo === "admin"
+              ? _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.apartamento.propietario_id,
+                        expression: "apartamento.propietario_id",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "floatingSelect",
+                      "aria-label": "Floating label select example",
+                    },
+                    on: {
+                      change: function ($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function (o) {
+                            return o.selected
+                          })
+                          .map(function (o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.apartamento,
+                          "propietario_id",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      },
+                    },
+                  },
+                  [
+                    _c(
+                      "option",
+                      {
+                        attrs: {
+                          value: "",
+                          disabled: "",
+                          selected: "",
+                          hidden: "",
+                        },
+                      },
+                      [_vm._v("Propietario")]
+                    ),
+                    _vm._v(" "),
+                    _vm._l(_vm.propietarios, function (propietario) {
+                      return _c(
+                        "option",
+                        { domProps: { value: propietario.id } },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(propietario.id) +
+                              "\n                    "
+                          ),
+                        ]
+                      )
+                    }),
+                  ],
+                  2
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.usuario.tipo === "propietario"
+              ? _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "propietario_id",
+                    placeholder: [_vm.usuario.id],
+                    disabled: "",
+                  },
+                  domProps: { value: _vm.usuario.id },
+                })
+              : _vm._e(),
+          ]),
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+      ]
+    ),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: " d-flex" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary mt-0 mb-0 ml-auto mr-auto",
+          attrs: { type: "submit" },
+        },
+        [_vm._v("Editar Apartamento")]
+      ),
     ])
   },
 ]
@@ -48492,7 +49349,7 @@ var staticRenderFns = [
           staticClass: "btn btn-primary mt-0 mb-0 ml-auto mr-auto",
           attrs: { type: "submit" },
         },
-        [_vm._v("Crear limpieza")]
+        [_vm._v("Crear Apartamento")]
       ),
     ])
   },
@@ -48599,9 +49456,11 @@ var render = function () {
                 },
               },
               [
-                _c("option", { attrs: { selected: "" } }, [
-                  _vm._v(_vm._s(_vm.limpieza.worker_id)),
-                ]),
+                _c(
+                  "option",
+                  { attrs: { value: "", disabled: "", selected: "" } },
+                  [_vm._v(_vm._s(_vm.limpieza.worker_id))]
+                ),
                 _vm._v(" "),
                 _vm._l(_vm.trabajadores, function (trabajador) {
                   return _c("option", { domProps: { value: trabajador.id } }, [
@@ -48655,13 +49514,17 @@ var render = function () {
                     },
                   },
                   [
-                    _c("option", { attrs: { selected: "" } }, [
-                      _vm._v(_vm._s(_vm.limpieza.estado)),
-                    ]),
+                    _c(
+                      "option",
+                      { attrs: { value: "", disabled: "", selected: "" } },
+                      [_vm._v(_vm._s(_vm.limpieza.estado))]
+                    ),
                     _vm._v(" "),
-                    _c("option", { attrs: { value: "pendiente" } }, [
-                      _vm._v("Pendiente"),
-                    ]),
+                    _c(
+                      "option",
+                      { attrs: { value: "pendiente", selected: "" } },
+                      [_vm._v("Pendiente")]
+                    ),
                     _vm._v(" "),
                     _c("option", { attrs: { value: "planificada" } }, [
                       _vm._v("Planificada"),
@@ -48717,11 +49580,13 @@ var render = function () {
                     },
                   },
                   [
-                    _c("option", { attrs: { selected: "" } }, [
-                      _vm._v(_vm._s(_vm.limpieza.estado)),
-                    ]),
+                    _c(
+                      "option",
+                      { attrs: { value: "", disabled: "", selected: "" } },
+                      [_vm._v("Tipo de limpieza")]
+                    ),
                     _vm._v(" "),
-                    _c("option", { attrs: { value: "normal" } }, [
+                    _c("option", { attrs: { value: "normal", selected: "" } }, [
                       _vm._v("Normal"),
                     ]),
                     _vm._v(" "),
@@ -49099,91 +49964,107 @@ var render = function () {
           : _vm._e(),
         _vm._v(" "),
         _c("div", { staticClass: "form-row" }, [
-          _c("div", { staticClass: "form-group col-md-6" }, [
-            _vm.usuario.tipo === "admin"
-              ? _c(
-                  "select",
-                  {
-                    directives: [
+          _vm.usuario.tipo === "admin"
+            ? _c("div", { staticClass: "form-group col-md-6" }, [
+                _vm.usuario.tipo === "admin"
+                  ? _c(
+                      "select",
                       {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.limpieza.worker_id,
-                        expression: "limpieza.worker_id",
-                      },
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      id: "floatingSelect",
-                      name: "worker_id",
-                      "aria-label": "Floating label select example",
-                    },
-                    on: {
-                      change: function ($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function (o) {
-                            return o.selected
-                          })
-                          .map(function (o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.limpieza,
-                          "worker_id",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      },
-                    },
-                  },
-                  [
-                    _c(
-                      "option",
-                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.limpieza.worker_id,
+                            expression: "limpieza.worker_id",
+                          },
+                        ],
+                        staticClass: "form-control",
                         attrs: {
-                          value: "",
-                          disabled: "",
-                          selected: "",
-                          hidden: "",
+                          id: "floatingSelect",
+                          name: "worker_id",
+                          "aria-label": "Floating label select example",
+                        },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.limpieza,
+                              "worker_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
                         },
                       },
-                      [_vm._v("Trabajador")]
-                    ),
-                    _vm._v(" "),
-                    _vm._l(_vm.trabajadores, function (trabajador) {
-                      return _c(
-                        "option",
-                        { domProps: { value: trabajador.id } },
-                        [
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(trabajador.name) +
-                              "\n                    "
-                          ),
-                        ]
-                      )
-                    }),
-                  ],
-                  2
-                )
-              : _vm._e(),
-          ]),
+                      [
+                        _c(
+                          "option",
+                          {
+                            attrs: {
+                              value: "",
+                              disabled: "",
+                              selected: "",
+                              hidden: "",
+                            },
+                          },
+                          [_vm._v("Trabajador")]
+                        ),
+                        _vm._v(" "),
+                        _vm._l(_vm.trabajadores, function (trabajador) {
+                          return _c(
+                            "option",
+                            { domProps: { value: trabajador.id } },
+                            [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(trabajador.name) +
+                                  "\n                    "
+                              ),
+                            ]
+                          )
+                        }),
+                      ],
+                      2
+                    )
+                  : _vm._e(),
+              ])
+            : _vm._e(),
           _vm._v(" "),
           _c("div", { staticClass: "form-group col-md-6" }, [
             _c("div", { staticClass: "form-floating" }, [
-              _vm.usuario.tipo === "propietario"
-                ? _c("input", {
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "number",
-                      placeholder: [_vm.usuario.id],
-                      name: "propietario.id",
-                    },
-                    domProps: { value: _vm.usuario.id },
-                  })
-                : _vm._e(),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.limpieza.horario,
+                    expression: "limpieza.horario",
+                  },
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "datetime-local",
+                  name: "horario",
+                  placeholder: "Hora de la limpieza",
+                },
+                domProps: { value: _vm.limpieza.horario },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.limpieza, "horario", $event.target.value)
+                  },
+                },
+              }),
             ]),
           ]),
         ]),
@@ -49270,11 +50151,7 @@ var render = function () {
                             icon: "fa-solid fa-hand-sparkles",
                             alt: "Limpiar apartamento",
                           },
-                          on: {
-                            click: function ($event) {
-                              return _vm.crearLimpieza(apartamento.id)
-                            },
-                          },
+                          on: { click: function ($event) {} },
                         }),
                         _vm._v(" "),
                         _c("font-awesome-icon", {
@@ -49292,7 +50169,11 @@ var render = function () {
                             icon: "fa-solid fa-user-xmark",
                             alt: "Borrar usuario",
                           },
-                          on: { click: function ($event) {} },
+                          on: {
+                            click: function ($event) {
+                              return _vm.eliminarApartamento(apartamento.id)
+                            },
+                          },
                         }),
                       ],
                       1
@@ -49325,11 +50206,7 @@ var render = function () {
                             icon: "fa-solid fa-hand-sparkles",
                             alt: "Limpiar apartamento",
                           },
-                          on: {
-                            click: function ($event) {
-                              return _vm.crearApartamento()
-                            },
-                          },
+                          on: { click: function ($event) {} },
                         }),
                         _vm._v(" "),
                         _c("font-awesome-icon", {
@@ -49347,7 +50224,11 @@ var render = function () {
                             icon: "fa-solid fa-user-xmark",
                             alt: "Borrar usuario",
                           },
-                          on: { click: function ($event) {} },
+                          on: {
+                            click: function ($event) {
+                              return _vm.eliminarApartamento(apartamento.id)
+                            },
+                          },
                         }),
                       ],
                       1
@@ -49372,7 +50253,7 @@ var render = function () {
               },
             },
           },
-          [_vm._v("Crear Apartamento")]
+          [_vm._v("Crear\n      Apartamento")]
         ),
       ]),
     ]
