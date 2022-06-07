@@ -10,6 +10,7 @@
 
 @section('principal')
     <div class="main">
+        <h1>FUNCIONAAAAAAAAAAAAAAAAA</h1>
         <div class="container mx-auto">
             <div class="middle">
                 <div id="login">
