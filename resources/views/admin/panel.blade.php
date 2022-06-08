@@ -27,9 +27,6 @@
                         <router-link :to="{ name: 'trabajos_tabla' }">
                             Limpiezas
                         </router-link>
-                        <router-link :to="{ name: 'bienvenida' }">
-                            Bienvenida
-                        </router-link>
                         @guest
                             @if (Route::has('login'))
                                         <a href="{{ route('login') }}">{{ __('Login') }}</a>

@@ -1,12 +1,12 @@
 <template>
     <div class="abs-center">
         <form class="centrado shadow p-3 mb-5 bg-body rounded" action="javascript:void(0)"
-            @submit.prevent="crearApartamento">
+            @submit.prevent="editarApartamento(apartamento.id)">
             <h1 class="mb-3 text-center">Editar Apartamento</h1>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <input class="form-control" type="text" :placeholder="[[ apartamento.direccion ]]"
-                        v-model="apartamentoEditado.direccion">
+                        v-model="apartamento.direccion">
                 </div>
                 <div class="form-group col-md-6">
                     <input class="form-control" type="number" size="5" placeholder="Código Postal"
@@ -125,16 +125,6 @@ export default {
             usuario: [],
             propietarios: [],
             apartamento:[],
-            apartamentoEditado: {
-                direccion: "",
-                codigo_postal: "",
-                habitaciones: "",
-                camas_dobles: "",
-                camas_indiv: "",
-                aseos: "",
-                solarium: "",
-                propietario_id: ""
-            }
         }
     },
     created() {
@@ -143,8 +133,8 @@ export default {
         axios.get('/api/apartment/'+this.$route.params.id).then(response => this.apartamento = response.data);
     },
     methods: {
-        editarApartamento() {
-            axios.put('/apartamento/editar' + $id, this.apartamentoEditado).then(response => window.location.href = "/");
+        editarApartamento(id) {
+            axios.put('/apartamento/editar/' + id, this.apartamento).then(response => window.location.href = "/apartamentos/detalles");
         }
     },
 }

@@ -20778,17 +20778,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       usuario: [],
       propietarios: [],
-      apartamento: [],
-      apartamentoEditado: {
-        direccion: "",
-        codigo_postal: "",
-        habitaciones: "",
-        camas_dobles: "",
-        camas_indiv: "",
-        aseos: "",
-        solarium: "",
-        propietario_id: ""
-      }
+      apartamento: []
     };
   },
   created: function created() {
@@ -20805,9 +20795,9 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    editarApartamento: function editarApartamento() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default().put('/apartamento/editar' + $id, this.apartamentoEditado).then(function (response) {
-        return window.location.href = "/";
+    editarApartamento: function editarApartamento(id) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().put('/apartamento/editar/' + id, this.apartamento).then(function (response) {
+        return window.location.href = "/apartamentos/detalles";
       });
     }
   }
@@ -21071,8 +21061,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'perfil',
@@ -21081,14 +21069,7 @@ __webpack_require__.r(__webpack_exports__);
       usuario: [],
       trabajadores: [],
       apartamentos: [],
-      limpieza: [],
-      limpiezaEditada: {
-        apartment_id: "",
-        worker_id: "",
-        estado: "",
-        tipo: "",
-        horario: ""
-      }
+      limpieza: []
     };
   },
   created: function created() {
@@ -21108,8 +21089,9 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    editarLimpieza: function editarLimpieza($id) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default().put('/limpieza/editar/' + $id, this.limpiezaEditada).then(function (response) {
+    editarLimpieza: function editarLimpieza(id) {
+      console.log(this.limpieza);
+      axios__WEBPACK_IMPORTED_MODULE_0___default().put('/limpieza/editar/' + id, this.limpieza).then(function (response) {
         return window.location.href = "/trabajos/detalles";
       });
     }
@@ -48340,7 +48322,7 @@ var render = function () {
         on: {
           submit: function ($event) {
             $event.preventDefault()
-            return _vm.crearApartamento.apply(null, arguments)
+            return _vm.editarApartamento(_vm.apartamento.id)
           },
         },
       },
@@ -48356,8 +48338,8 @@ var render = function () {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.apartamentoEditado.direccion,
-                  expression: "apartamentoEditado.direccion",
+                  value: _vm.apartamento.direccion,
+                  expression: "apartamento.direccion",
                 },
               ],
               staticClass: "form-control",
@@ -48365,17 +48347,13 @@ var render = function () {
                 type: "text",
                 placeholder: [[_vm.apartamento.direccion]],
               },
-              domProps: { value: _vm.apartamentoEditado.direccion },
+              domProps: { value: _vm.apartamento.direccion },
               on: {
                 input: function ($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(
-                    _vm.apartamentoEditado,
-                    "direccion",
-                    $event.target.value
-                  )
+                  _vm.$set(_vm.apartamento, "direccion", $event.target.value)
                 },
               },
             }),
@@ -49405,7 +49383,7 @@ var render = function () {
       },
       [
         _c("h1", { staticClass: "mb-3 text-center" }, [
-          _vm._v("Editar Limpieza"),
+          _vm._v("Editar Limpieza " + _vm._s(_vm.limpieza.id)),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-row" }, [
@@ -49420,7 +49398,7 @@ var render = function () {
                 },
               ],
               staticClass: "form-control",
-              attrs: { placeholder: [_vm.limpieza.apartment_id], disabled: "" },
+              attrs: { disabled: "" },
               domProps: { value: _vm.limpieza.apartment_id },
               on: {
                 input: function ($event) {
@@ -49441,8 +49419,8 @@ var render = function () {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.limpiezaEditada.worker_id,
-                    expression: "limpiezaEditada.worker_id",
+                    value: _vm.limpieza.worker_id,
+                    expression: "limpieza.worker_id",
                   },
                 ],
                 staticClass: "form-control",
@@ -49462,7 +49440,7 @@ var render = function () {
                         return val
                       })
                     _vm.$set(
-                      _vm.limpiezaEditada,
+                      _vm.limpieza,
                       "worker_id",
                       $event.target.multiple ? $$selectedVal : $$selectedVal[0]
                     )
@@ -49497,8 +49475,8 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.limpiezaEditada.estado,
-                        expression: "limpiezaEditada.estado",
+                        value: _vm.limpieza.estado,
+                        expression: "limpieza.estado",
                       },
                     ],
                     staticClass: "form-control",
@@ -49518,7 +49496,7 @@ var render = function () {
                             return val
                           })
                         _vm.$set(
-                          _vm.limpiezaEditada,
+                          _vm.limpieza,
                           "estado",
                           $event.target.multiple
                             ? $$selectedVal
@@ -49563,8 +49541,8 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.limpiezaEditada.tipo,
-                        expression: "limpiezaEditada.tipo",
+                        value: _vm.limpieza.tipo_limpieza,
+                        expression: "limpieza.tipo_limpieza",
                       },
                     ],
                     staticClass: "form-control",
@@ -49584,8 +49562,8 @@ var render = function () {
                             return val
                           })
                         _vm.$set(
-                          _vm.limpiezaEditada,
-                          "tipo",
+                          _vm.limpieza,
+                          "tipo_limpieza",
                           $event.target.multiple
                             ? $$selectedVal
                             : $$selectedVal[0]
@@ -49594,13 +49572,7 @@ var render = function () {
                     },
                   },
                   [
-                    _c(
-                      "option",
-                      { attrs: { value: "", disabled: "", selected: "" } },
-                      [_vm._v("Tipo de limpieza")]
-                    ),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "normal", selected: "" } }, [
+                    _c("option", { attrs: { value: "normal" } }, [
                       _vm._v("Normal"),
                     ]),
                     _vm._v(" "),
@@ -49618,8 +49590,8 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.limpiezaEditada.horario,
-                        expression: "limpiezaEditada.horario",
+                        value: _vm.limpieza.horario,
+                        expression: "limpieza.horario",
                       },
                     ],
                     staticClass: "form-control",
@@ -49628,17 +49600,13 @@ var render = function () {
                       name: "horario",
                       placeholder: "Hora de la limpieza",
                     },
-                    domProps: { value: _vm.limpiezaEditada.horario },
+                    domProps: { value: _vm.limpieza.horario },
                     on: {
                       input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(
-                          _vm.limpiezaEditada,
-                          "horario",
-                          $event.target.value
-                        )
+                        _vm.$set(_vm.limpieza, "horario", $event.target.value)
                       },
                     },
                   }),

@@ -20,9 +20,6 @@ Route::get('/', [App\Http\Controllers\PagesController::class, 'index'])->name('i
 
 
 Route::get('/', [App\Http\Controllers\PagesController::class, 'login'])->name('auth.login');
-Route::post('/apartamento/crear', [App\Http\Controllers\ApartmentController::class, 'crear_apartamento'])->name('crear_apartamento');
-Route::put('/apartamento/editar/{id}', [App\Http\Controllers\ApartmentController::class, 'editar_apartamento'])->name('editar_apartamento');
-Route::delete('/apartamento/borrar/{id}', [App\Http\Controllers\ApartmentController::class , 'borrar_apartamento'])->name('borrar_partamento');
 
 Route::middleware('auth', 'admin')->group(function () {
     Route::get('/admin/panel', [App\Http\Controllers\PagesController::class, 'adminPage'])->middleware('admin')->name('admin.panel');
@@ -32,6 +29,9 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::put('/admin/editar/{id}', [App\Http\Controllers\UserController::class, 'editado'])->name('admin.editado');
 });
 
+Route::post('/apartamento/crear', [App\Http\Controllers\ApartmentController::class, 'crear_apartamento'])->name('crear_apartamento');
+Route::put('/apartamento/editar/{id}', [App\Http\Controllers\ApartmentController::class, 'editar_apartamento'])->name('editar_apartamento');
+Route::delete('/apartamento/borrar/{id}', [App\Http\Controllers\ApartmentController::class , 'borrar_apartamento'])->name('borrar_partamento');
 
     Route::post('/limpieza/crear', [App\Http\Controllers\LimpiezasController::class, 'crear_limpieza'])->name('crear_limpieza');
     Route::put('/limpieza/editar/{id}', [App\Http\Controllers\LimpiezasController::class, 'editar_limpieza'])->name('editar_limpieza');

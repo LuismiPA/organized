@@ -55,13 +55,13 @@ class LimpiezasController extends Controller
         $request->validate([
             "worker_id" => "required",
             "estado" => "required",
-            "tipo" => "required",
+            "tipo_limpieza" => "required",
             "horario" => "required",
         ]);
         $limpieza = Limpiezas::findOrFail($id);
         $limpieza->worker_id = $request->worker_id;
         $limpieza->estado = $request->estado;
-        $limpieza->tipo_limpieza = $request->tipo;
+        $limpieza->tipo_limpieza = $request->tipo_limpieza;
         $limpieza->horario = $request->horario;
         $limpieza->save();
     }
