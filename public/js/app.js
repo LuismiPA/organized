@@ -20630,8 +20630,8 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    editarUsuario: function editarUsuario(usuarioEditado, id) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default().put('/admin/editar/' + id, usuarioEditado).then(console.log(usuarioEditado));
+    editarUsuario: function editarUsuario(usuario, id) {
+      window.location.href = "/admin/editar/" + id;
     },
     eliminarUsuario: function eliminarUsuario(usuario, id) {
       if (!confirm('¿Desea eliminar este usuario?')) return;
