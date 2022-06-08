@@ -55,7 +55,7 @@ Auth::routes();
 // HACER ESTO PARA ACTUALIZAR CON VUE
     Route::get('/{any}', function(){
         return view('admin.panel');
-    })->where('any','.*');
+    })->where('any','.*')->middleware('admin');
 
 
 

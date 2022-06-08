@@ -20615,12 +20615,16 @@ __webpack_require__.r(__webpack_exports__);
   name: 'usuario',
   data: function data() {
     return {
+      usuario: [],
       usuarios: []
     };
   },
   created: function created() {
     var _this = this;
 
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get('/user/detalles').then(function (response) {
+      return _this.usuario = response.data;
+    });
     axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/user').then(function (response) {
       return _this.usuarios = response.data;
     });

@@ -35,10 +35,12 @@ export default {
   name: 'usuario',
   data() {
     return {
+      usuario:[],
       usuarios: []
     }
   },
   created() {
+    axios.get('/user/detalles').then(response => this.usuario = response.data);
     axios.get('/api/user').then(response => this.usuarios = response.data);
   },
   methods: {
