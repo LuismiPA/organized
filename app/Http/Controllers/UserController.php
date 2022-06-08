@@ -51,11 +51,12 @@ class UserController extends Controller
             "tipo" => "required"
         ]);
 
-        $usuario = User::where('id', $id);
+        $usuario = User::findOrFail($id);
         $usuario->name = $request->name;
         $usuario->email = $request->email;
         $usuario->password = Hash::make($request->password);
         $usuario->tipo = $request->tipo;
         $usuario->save();
+        return view("admin.panel");
     }
 }

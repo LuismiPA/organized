@@ -137,8 +137,13 @@ export default {
     },
     methods: {
         editarApartamento(id) {
-            axios.put('/apartamento/editar/' + id, this.apartamento).then(response => window.location.href = "/apartamentos/detalles");
-        }
+            
+            axios.put('/apartamento/editar/' + id, this.apartamento).then(
+                this.$router.push({
+                    name: "apartamentos_tabla",
+                })
+            );
     },
+}
 }
 </script>

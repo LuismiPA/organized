@@ -151,7 +151,10 @@ export default {
             if(this.usuario.tipo=="propietario"){
                 this.apartamento.propietario_id=this.usuario.id;
             }
-            axios.post('/apartamento/crear', this.apartamento).then(response => window.location.href = "/apartamentos/detalles");
+            axios.post('/apartamento/crear', this.apartamento).then(
+                this.$router.push({
+                    name: "apartamentos_tabla",
+                }));
         }
     },
 }

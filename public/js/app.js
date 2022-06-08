@@ -20630,8 +20630,8 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    editarUsuario: function editarUsuario(usuario, id) {
-      window.location.href = "/admin/editar/" + id;
+    editarUsuario: function editarUsuario(usuarioEditado, id) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().put('/admin/editar/' + id, usuarioEditado).then(console.log(usuarioEditado));
     },
     eliminarUsuario: function eliminarUsuario(usuario, id) {
       if (!confirm('¿Desea eliminar este usuario?')) return;
@@ -20803,9 +20803,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     editarApartamento: function editarApartamento(id) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default().put('/apartamento/editar/' + id, this.apartamento).then(function (response) {
-        return window.location.href = "/apartamentos/detalles";
-      });
+      axios__WEBPACK_IMPORTED_MODULE_0___default().put('/apartamento/editar/' + id, this.apartamento).then(this.$router.push({
+        name: "apartamentos_tabla"
+      }));
     }
   }
 });
@@ -20981,9 +20981,9 @@ __webpack_require__.r(__webpack_exports__);
         this.apartamento.propietario_id = this.usuario.id;
       }
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/apartamento/crear', this.apartamento).then(function (response) {
-        return window.location.href = "/apartamentos/detalles";
-      });
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/apartamento/crear', this.apartamento).then(this.$router.push({
+        name: "apartamentos_tabla"
+      }));
     }
   }
 });
@@ -21112,9 +21112,9 @@ __webpack_require__.r(__webpack_exports__);
           return window.location.href = "/user/panel";
         });
       } else {
-        axios__WEBPACK_IMPORTED_MODULE_0___default().put('/limpieza/editar/' + id, this.limpieza).then(function (response) {
-          return window.location.href = "/trabajos/detalles";
-        });
+        axios__WEBPACK_IMPORTED_MODULE_0___default().put('/limpieza/editar/' + id, this.limpieza).then(this.$router.push({
+          name: "trabajos_tabla"
+        }));
       }
     }
   }
@@ -21263,9 +21263,9 @@ __webpack_require__.r(__webpack_exports__);
           return window.location.href = "/user/panel";
         });
       } else {
-        axios__WEBPACK_IMPORTED_MODULE_0___default().post('/limpieza/crear', this.limpieza).then(function (response) {
-          return window.location.href = "/trabajos/detalles";
-        });
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post('/limpieza/crear', this.limpieza).then(this.$router.push({
+          name: "trabajos_tabla"
+        }));
       }
     }
   }
@@ -26903,7 +26903,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.abs-center[data-v-4b570fd4] {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    width: 82%;\r\n    min-height: 100vh;\n}\n.centrado[data-v-4b570fd4] {\r\n    background-color: white;\r\n    width: 40%;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.abs-center[data-v-4b570fd4] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    width: 82%;\n    min-height: 100vh;\n}\n.centrado[data-v-4b570fd4] {\n    background-color: white;\n    width: 40%;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -26927,7 +26927,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.abs-center[data-v-9416a542] {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    width: 82%;\r\n    min-height: 100vh;\n}\n.centrado[data-v-9416a542] {\r\n    background-color: white;\r\n    width: 40%;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.abs-center[data-v-9416a542] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    width: 82%;\n    min-height: 100vh;\n}\n.centrado[data-v-9416a542] {\n    background-color: white;\n    width: 40%;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -26951,7 +26951,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.abs-center[data-v-312dab12] {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    width: 82%;\r\n    min-height: 100vh;\n}\n.centrado[data-v-312dab12] {\r\n    background-color: white;\r\n    width: 40%;\n}\n#submit[data-v-312dab12]{\r\n     margin: 0 auto;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.abs-center[data-v-312dab12] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    width: 82%;\n    min-height: 100vh;\n}\n.centrado[data-v-312dab12] {\n    background-color: white;\n    width: 40%;\n}\n#submit[data-v-312dab12]{\n     margin: 0 auto;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -26975,7 +26975,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.abs-center[data-v-6fa48400] {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    width: 82%;\r\n    min-height: 100vh;\n}\n.centrado[data-v-6fa48400] {\r\n    background-color: white;\r\n    width: 40%;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.abs-center[data-v-6fa48400] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    width: 82%;\n    min-height: 100vh;\n}\n.centrado[data-v-6fa48400] {\n    background-color: white;\n    width: 40%;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

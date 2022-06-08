@@ -98,7 +98,11 @@ export default {
                 this.limpieza.estado = "pendiente";
                 axios.put('/limpieza/editar/' + id, this.limpieza).then(response => window.location.href = "/user/panel");
             } else {
-                axios.put('/limpieza/editar/' + id, this.limpieza).then(response => window.location.href = "/trabajos/detalles");
+                axios.put('/limpieza/editar/' + id, this.limpieza).then(
+                        this.$router.push({
+                        name: "trabajos_tabla",
+                    })
+                );
             }
             
         }

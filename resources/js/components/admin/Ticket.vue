@@ -45,7 +45,6 @@ export default {
       doc.text(20, 72, 'ID propietario: ' + apartamento.propietario_id);
       doc.text(20, 82, 'Solarium: ' + apartamento.solarium);
       doc.text(20, 92, 'Tipo de limpieza: ' + this.limpieza.tipo_limpieza);
-
       doc.save('Test.pdf');
       window.location.href = "/";
     },
