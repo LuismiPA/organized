@@ -17,7 +17,7 @@
                     </select>
                     <select class="form-control" id="floatingSelect" name="apartament_id"
                         aria-label="Floating label select example" v-model="limpieza.apartment_id"
-                        v-if="usuario.tipo === 'propietario'">
+                        v-if="usuario.tipo === 'propietario' && !this.$route.params.id ">
                         <option disabled selected hidden>Apartamento</option>
                         <option v-for=" apartamento in apartamentos" :value='apartamento.id'
                             v-if="apartamento.propietario_id === usuario.id">{{apartamento.id}}
@@ -25,8 +25,8 @@
                     </select>
                 </div>
                 <div class="form-group col-md-6">
-                    <select class="form-control" id="floatingSelect" name="tipo_limpieza"
-                        aria-label="Floating label select example" v-model="limpieza.tipo">
+                    <select class="form-control" id="floatingSelect" aria-label="Floating label select example"
+                        v-model="limpieza.tipo_limpieza">
                         <option value="" disabled selected hidden>Tipo de limpieza</option>
                         <option value="normal">Normal</option>
                         <option value="completa">Completa</option>
@@ -99,7 +99,7 @@ export default {
                 apartment_id: "",
                 worker_id: "",
                 estado: "",
-                tipo: "",
+                tipo_limpieza: "",
                 horario: "",
             }
         }
@@ -114,8 +114,12 @@ export default {
             if (this.$route.params.id){
                 this.limpieza.apartment_id =this.$route.params.id;
             }
-            console.log(this.limpieza);
-            /* axios.post('/limpieza/crear', this.limpieza).then(response => window.location.href = "/trabajos/detalles"); */
+            if (this.usuario.tipo=="propietario") {
+                this.limpieza.estado= "pendiente";
+                axios.post('/limpieza/crear', this.limpieza).then(response => window.location.href = "/user/panel");
+            }else{
+                axios.post('/limpieza/crear', this.limpieza).then(response => window.location.href = "/trabajos/detalles");
+            }
         }
     },
 }

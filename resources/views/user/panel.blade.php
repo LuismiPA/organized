@@ -1,7 +1,7 @@
 @extends('plantilla')
 
 @section('title')
-    Panel de control | Admin
+    Panel de control | Propietario
 @endsection
 
 @section('csspropio')

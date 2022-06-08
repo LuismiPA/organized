@@ -88,7 +88,7 @@
         color: #1851ae;
     }
     
-    @media (min-width: 600px) {
+    @media (min-width: 1196px) {
         .contenido {
             margin: 0 auto;
             display: flex;

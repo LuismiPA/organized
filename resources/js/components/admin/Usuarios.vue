@@ -1,5 +1,6 @@
 <template>
-  <article id="clientesDetalle" class="ml-auto mr-auto mb-3 mt-3 shadow p-3 mb-5 bg-body rounded">
+  <article id="clientesDetalle" class="ml-auto mr-auto mb-3 mt-3 shadow p-3 mb-5 bg-body rounded"
+    v-if="usuario.tipo === 'admin'">
     <h1 class="mt-2 mb-3">Clientes</h1>
     <table class="table table-striped">
       <tr>
@@ -17,7 +18,6 @@
           <td class="iconosTd">
             <font-awesome-icon v-on:click="editarUsuario(usuario, usuario.id)" icon="fas fa-edit" alt="Editar usuario"
               class="iconosTabla" />
-            <font-awesome-icon icon="fa-solid fa-house-user" alt="Apartamentos del usuario" class="iconosTabla" />
             <font-awesome-icon v-on:click="eliminarUsuario(usuario, usuario.id)" icon="fa-solid fa-user-xmark"
               alt="Borrar usuario" class="iconosTabla text-danger" />
           </td>

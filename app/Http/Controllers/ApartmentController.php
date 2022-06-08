@@ -9,7 +9,7 @@ class ApartmentController extends Controller
 {
     //
     public function crear_apartamento(Request $request){
-       /*  $request->validate([
+        $request->validate([
             "direccion" => "required",
             "codigo_postal" => "required",
             "habitaciones" => "required",
@@ -18,7 +18,7 @@ class ApartmentController extends Controller
             "aseos" =>"required",
             "solarium" => "required",
             "propietario_id" => "required",
-        ]); */
+        ]);
 
         $apartment = new Apartment();
         $apartment->direccion = $request->direccion;

@@ -20525,7 +20525,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -20551,6 +20550,7 @@ __webpack_require__.r(__webpack_exports__);
       doc.text(20, 82, 'Solarium: ' + apartamento.solarium);
       doc.text(20, 92, 'Tipo de limpieza: ' + this.limpieza.tipo_limpieza);
       doc.save('Test.pdf');
+      window.location.href = "/";
     }
   },
   created: function created() {
@@ -20655,6 +20655,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
 //
 //
 //
@@ -20936,6 +20939,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'perfil',
@@ -20967,6 +20973,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     crearApartamento: function crearApartamento() {
+      if (this.usuario.tipo == "propietario") {
+        this.apartamento.propietario_id = this.usuario.id;
+      }
+
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/apartamento/crear', this.apartamento).then(function (response) {
         return window.location.href = "/apartamentos/detalles";
       });
@@ -20989,6 +20999,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
 //
 //
 //
@@ -21090,10 +21102,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     editarLimpieza: function editarLimpieza(id) {
-      console.log(this.limpieza);
-      axios__WEBPACK_IMPORTED_MODULE_0___default().put('/limpieza/editar/' + id, this.limpieza).then(function (response) {
-        return window.location.href = "/trabajos/detalles";
-      });
+      if (this.usuario.tipo == "propietario") {
+        this.limpieza.estado = "pendiente";
+        axios__WEBPACK_IMPORTED_MODULE_0___default().put('/limpieza/editar/' + id, this.limpieza).then(function (response) {
+          return window.location.href = "/user/panel";
+        });
+      } else {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().put('/limpieza/editar/' + id, this.limpieza).then(function (response) {
+          return window.location.href = "/trabajos/detalles";
+        });
+      }
     }
   }
 });
@@ -21211,7 +21229,7 @@ __webpack_require__.r(__webpack_exports__);
         apartment_id: "",
         worker_id: "",
         estado: "",
-        tipo: "",
+        tipo_limpieza: "",
         horario: ""
       }
     };
@@ -21235,8 +21253,16 @@ __webpack_require__.r(__webpack_exports__);
         this.limpieza.apartment_id = this.$route.params.id;
       }
 
-      console.log(this.limpieza);
-      /* axios.post('/limpieza/crear', this.limpieza).then(response => window.location.href = "/trabajos/detalles"); */
+      if (this.usuario.tipo == "propietario") {
+        this.limpieza.estado = "pendiente";
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post('/limpieza/crear', this.limpieza).then(function (response) {
+          return window.location.href = "/user/panel";
+        });
+      } else {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post('/limpieza/crear', this.limpieza).then(function (response) {
+          return window.location.href = "/trabajos/detalles";
+        });
+      }
     }
   }
 });
@@ -21256,6 +21282,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
 //
 //
 //
@@ -21527,6 +21554,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'trabajo',
@@ -21568,6 +21611,11 @@ __webpack_require__.r(__webpack_exports__);
     imprimir: function imprimir(id) {
       this.$router.push({
         path: '/admin/limpieza/ticket/' + id
+      });
+    },
+    finalizado: function finalizado(id) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().put('/limpieza/finalizado/' + id).then(function (response) {
+        return window.location.href = "/";
       });
     }
   }
@@ -48124,8 +48172,6 @@ var render = function () {
     },
     [
       _c("main", { staticClass: "container", attrs: { role: "main" } }, [
-        _c("h1", [_vm._v(_vm._s(_vm.apartamento))]),
-        _vm._v(" "),
         _c("h1", [_vm._v(" APARTAMENTO " + _vm._s(_vm.apartamento.id))]),
         _vm._v(" "),
         _c("p", { staticClass: "lead" }, [
@@ -48195,83 +48241,82 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "article",
-    {
-      staticClass: "ml-auto mr-auto mb-3 mt-3 shadow p-3 mb-5 bg-body rounded",
-      attrs: { id: "clientesDetalle" },
-    },
-    [
-      _c("h1", { staticClass: "mt-2 mb-3" }, [_vm._v("Clientes")]),
-      _vm._v(" "),
-      _c("table", { staticClass: "table table-striped" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.usuarios, function (usuario) {
-            return _c("tr", { key: usuario.id, staticClass: "border-bottom" }, [
-              _c("td", { attrs: { scope: "row" } }, [
-                _vm._v(_vm._s(usuario.name)),
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(usuario.email))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(usuario.tipo))]),
-              _vm._v(" "),
-              _c(
-                "td",
-                { staticClass: "iconosTd" },
-                [
-                  _c("font-awesome-icon", {
-                    staticClass: "iconosTabla",
-                    attrs: { icon: "fas fa-edit", alt: "Editar usuario" },
-                    on: {
-                      click: function ($event) {
-                        return _vm.editarUsuario(usuario, usuario.id)
-                      },
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c("font-awesome-icon", {
-                    staticClass: "iconosTabla",
-                    attrs: {
-                      icon: "fa-solid fa-house-user",
-                      alt: "Apartamentos del usuario",
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c("font-awesome-icon", {
-                    staticClass: "iconosTabla text-danger",
-                    attrs: {
-                      icon: "fa-solid fa-user-xmark",
-                      alt: "Borrar usuario",
-                    },
-                    on: {
-                      click: function ($event) {
-                        return _vm.eliminarUsuario(usuario, usuario.id)
-                      },
-                    },
-                  }),
-                ],
-                1
-              ),
-            ])
-          }),
-          0
-        ),
-      ]),
-      _vm._v(" "),
-      _c(
-        "a",
+  return _vm.usuario.tipo === "admin"
+    ? _c(
+        "article",
         {
-          staticClass: "btn btn-primary float-right mt-1 registrar",
-          attrs: { href: "/admin/crear" },
+          staticClass:
+            "ml-auto mr-auto mb-3 mt-3 shadow p-3 mb-5 bg-body rounded",
+          attrs: { id: "clientesDetalle" },
         },
-        [_vm._v("Registrar usuario")]
-      ),
-    ]
-  )
+        [
+          _c("h1", { staticClass: "mt-2 mb-3" }, [_vm._v("Clientes")]),
+          _vm._v(" "),
+          _c("table", { staticClass: "table table-striped" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.usuarios, function (usuario) {
+                return _c(
+                  "tr",
+                  { key: usuario.id, staticClass: "border-bottom" },
+                  [
+                    _c("td", { attrs: { scope: "row" } }, [
+                      _vm._v(_vm._s(usuario.name)),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(usuario.email))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(usuario.tipo))]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      { staticClass: "iconosTd" },
+                      [
+                        _c("font-awesome-icon", {
+                          staticClass: "iconosTabla",
+                          attrs: { icon: "fas fa-edit", alt: "Editar usuario" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.editarUsuario(usuario, usuario.id)
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("font-awesome-icon", {
+                          staticClass: "iconosTabla text-danger",
+                          attrs: {
+                            icon: "fa-solid fa-user-xmark",
+                            alt: "Borrar usuario",
+                          },
+                          on: {
+                            click: function ($event) {
+                              return _vm.eliminarUsuario(usuario, usuario.id)
+                            },
+                          },
+                        }),
+                      ],
+                      1
+                    ),
+                  ]
+                )
+              }),
+              0
+            ),
+          ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-primary float-right mt-1 registrar",
+              attrs: { href: "/admin/crear" },
+            },
+            [_vm._v("Registrar usuario")]
+          ),
+        ]
+      )
+    : _vm._e()
 }
 var staticRenderFns = [
   function () {
@@ -48506,6 +48551,8 @@ var render = function () {
                   [_vm._v("Número de camas dobles")]
                 ),
                 _vm._v(" "),
+                _c("option", { attrs: { value: "0" } }, [_vm._v("0")]),
+                _vm._v(" "),
                 _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
                 _vm._v(" "),
                 _c("option", { attrs: { value: "2" } }, [_vm._v("2")]),
@@ -48571,6 +48618,8 @@ var render = function () {
                   },
                   [_vm._v("Número de camas individuales")]
                 ),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "0" } }, [_vm._v("0")]),
                 _vm._v(" "),
                 _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
                 _vm._v(" "),
@@ -48639,6 +48688,8 @@ var render = function () {
                   },
                   [_vm._v("Número de aseos")]
                 ),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "0" } }, [_vm._v("0")]),
                 _vm._v(" "),
                 _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
                 _vm._v(" "),
@@ -49031,6 +49082,8 @@ var render = function () {
                   [_vm._v("Número de camas dobles")]
                 ),
                 _vm._v(" "),
+                _c("option", { attrs: { value: "0" } }, [_vm._v("0")]),
+                _vm._v(" "),
                 _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
                 _vm._v(" "),
                 _c("option", { attrs: { value: "2" } }, [_vm._v("2")]),
@@ -49096,6 +49149,8 @@ var render = function () {
                   },
                   [_vm._v("Número de camas individuales")]
                 ),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "0" } }, [_vm._v("0")]),
                 _vm._v(" "),
                 _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
                 _vm._v(" "),
@@ -49164,6 +49219,8 @@ var render = function () {
                   },
                   [_vm._v("Número de aseos")]
                 ),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "0" } }, [_vm._v("0")]),
                 _vm._v(" "),
                 _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
                 _vm._v(" "),
@@ -49307,21 +49364,14 @@ var render = function () {
                   2
                 )
               : _vm._e(),
-          ]),
-          _vm._v(" "),
-          _vm.usuario.tipo === "propietario"
-            ? _c("div", { staticClass: "form-group col-md-6" }, [
-                _c("input", {
+            _vm._v(" "),
+            _vm.usuario.tipo === "propietario"
+              ? _c("input", {
                   staticClass: "form-control",
-                  attrs: {
-                    name: "propietario_id",
-                    placeholder: [_vm.usuario.id],
-                    disabled: "",
-                  },
-                  domProps: { value: _vm.usuario.id },
-                }),
-              ])
-            : _vm._e(),
+                  attrs: { placeholder: [_vm.usuario.id], disabled: "" },
+                })
+              : _vm._e(),
+          ]),
         ]),
         _vm._v(" "),
         _vm._m(0),
@@ -49419,14 +49469,14 @@ var render = function () {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.limpieza.worker_id,
-                    expression: "limpieza.worker_id",
+                    value: _vm.limpieza.tipo_limpieza,
+                    expression: "limpieza.tipo_limpieza",
                   },
                 ],
                 staticClass: "form-control",
                 attrs: {
                   id: "floatingSelect",
-                  name: "worker_id",
+                  name: "tipo_limpieza",
                   "aria-label": "Floating label select example",
                 },
                 on: {
@@ -49441,26 +49491,21 @@ var render = function () {
                       })
                     _vm.$set(
                       _vm.limpieza,
-                      "worker_id",
+                      "tipo_limpieza",
                       $event.target.multiple ? $$selectedVal : $$selectedVal[0]
                     )
                   },
                 },
               },
               [
-                _c(
-                  "option",
-                  { attrs: { value: "", disabled: "", selected: "" } },
-                  [_vm._v(_vm._s(_vm.limpieza.worker_id))]
-                ),
+                _c("option", { attrs: { value: "normal" } }, [
+                  _vm._v("Normal"),
+                ]),
                 _vm._v(" "),
-                _vm._l(_vm.trabajadores, function (trabajador) {
-                  return _c("option", { domProps: { value: trabajador.id } }, [
-                    _vm._v(_vm._s(trabajador.name) + "\n                    "),
-                  ])
-                }),
-              ],
-              2
+                _c("option", { attrs: { value: "completa" } }, [
+                  _vm._v("Completa"),
+                ]),
+              ]
             ),
           ]),
         ]),
@@ -49531,24 +49576,54 @@ var render = function () {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _vm.usuario.tipo === "admin"
-          ? _c("div", { staticClass: "form-row" }, [
-              _c("div", { staticClass: "form-group col-md-6" }, [
-                _c(
+        _c("div", { staticClass: "form-row" }, [
+          _c("div", { staticClass: "form-group col-md-6" }, [
+            _c("div", { staticClass: "form-floating" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.limpieza.horario,
+                    expression: "limpieza.horario",
+                  },
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "datetime-local",
+                  name: "horario",
+                  placeholder: "Hora de la limpieza",
+                },
+                domProps: { value: _vm.limpieza.horario },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.limpieza, "horario", $event.target.value)
+                  },
+                },
+              }),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group col-md-6" }, [
+            _vm.usuario.tipo === "admin"
+              ? _c(
                   "select",
                   {
                     directives: [
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.limpieza.tipo_limpieza,
-                        expression: "limpieza.tipo_limpieza",
+                        value: _vm.limpieza.worker_id,
+                        expression: "limpieza.worker_id",
                       },
                     ],
                     staticClass: "form-control",
                     attrs: {
                       id: "floatingSelect",
-                      name: "tipo_limpieza",
+                      name: "worker_id",
                       "aria-label": "Floating label select example",
                     },
                     on: {
@@ -49563,7 +49638,7 @@ var render = function () {
                           })
                         _vm.$set(
                           _vm.limpieza,
-                          "tipo_limpieza",
+                          "worker_id",
                           $event.target.multiple
                             ? $$selectedVal
                             : $$selectedVal[0]
@@ -49572,48 +49647,29 @@ var render = function () {
                     },
                   },
                   [
-                    _c("option", { attrs: { value: "normal" } }, [
-                      _vm._v("Normal"),
-                    ]),
+                    _c(
+                      "option",
+                      { attrs: { value: "", disabled: "", selected: "" } },
+                      [_vm._v(_vm._s(_vm.limpieza.worker_id))]
+                    ),
                     _vm._v(" "),
-                    _c("option", { attrs: { value: "completa" } }, [
-                      _vm._v("Completa"),
-                    ]),
-                  ]
-                ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-md-6" }, [
-                _c("div", { staticClass: "form-floating" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.limpieza.horario,
-                        expression: "limpieza.horario",
-                      },
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "datetime-local",
-                      name: "horario",
-                      placeholder: "Hora de la limpieza",
-                    },
-                    domProps: { value: _vm.limpieza.horario },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.limpieza, "horario", $event.target.value)
-                      },
-                    },
-                  }),
-                ]),
-              ]),
-            ])
-          : _vm._e(),
+                    _vm._l(_vm.trabajadores, function (trabajador) {
+                      return _c(
+                        "option",
+                        { domProps: { value: trabajador.id } },
+                        [
+                          _vm._v(
+                            _vm._s(trabajador.name) + "\n                    "
+                          ),
+                        ]
+                      )
+                    }),
+                  ],
+                  2
+                )
+              : _vm._e(),
+          ]),
+        ]),
         _vm._v(" "),
         _vm._m(0),
       ]
@@ -49775,7 +49831,7 @@ var render = function () {
                 )
               : _vm._e(),
             _vm._v(" "),
-            _vm.usuario.tipo === "propietario"
+            _vm.usuario.tipo === "propietario" && !this.$route.params.id
               ? _c(
                   "select",
                   {
@@ -49848,14 +49904,13 @@ var render = function () {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.limpieza.tipo,
-                    expression: "limpieza.tipo",
+                    value: _vm.limpieza.tipo_limpieza,
+                    expression: "limpieza.tipo_limpieza",
                   },
                 ],
                 staticClass: "form-control",
                 attrs: {
                   id: "floatingSelect",
-                  name: "tipo_limpieza",
                   "aria-label": "Floating label select example",
                 },
                 on: {
@@ -49870,7 +49925,7 @@ var render = function () {
                       })
                     _vm.$set(
                       _vm.limpieza,
-                      "tipo",
+                      "tipo_limpieza",
                       $event.target.multiple ? $$selectedVal : $$selectedVal[0]
                     )
                   },
@@ -50268,19 +50323,21 @@ var render = function () {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: " d-flex" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary mt-0 mb-0 ml-auto mr-auto",
-            attrs: { type: "submit" },
-            on: {
-              click: function ($event) {
-                return _vm.crearApartamento()
+        _vm.usuario.tipo === "admin" || _vm.usuario.tipo === "propietario"
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-primary mt-0 mb-0 ml-auto mr-auto",
+                attrs: { type: "submit" },
+                on: {
+                  click: function ($event) {
+                    return _vm.crearApartamento()
+                  },
+                },
               },
-            },
-          },
-          [_vm._v("Crear\n      Apartamento")]
-        ),
+              [_vm._v("Crear\n      Apartamento")]
+            )
+          : _vm._e(),
       ]),
     ]
   )
@@ -50347,153 +50404,165 @@ var render = function () {
           attrs: { id: "accordionPanelsStayOpenExample" },
         },
         [
-          _c("div", { staticClass: "accordion-item" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "accordion-collapse collapse show",
-                attrs: {
-                  id: "panelsStayOpen-collapseOne",
-                  "aria-labelledby": "panelsStayOpen-headingOne",
-                },
-              },
-              [
-                _c("div", { staticClass: "accordion-body" }, [
-                  _c("table", { staticClass: "table table-striped" }, [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      [
-                        _vm._l(_vm.pendientes, function (pendiente) {
-                          return _vm.usuario.tipo === "admin"
-                            ? _c(
-                                "tr",
-                                {
-                                  key: pendiente.id,
-                                  staticClass: "border-bottom",
-                                },
-                                [
-                                  _c("td", { attrs: { scope: "row" } }, [
-                                    _vm._v(_vm._s(pendiente.id)),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(pendiente.apartment_id)),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(pendiente.horario))]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(pendiente.tipo_limpieza)),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(pendiente.propietario_id)),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "td",
-                                    { staticClass: "iconosTd" },
-                                    [
-                                      _c("font-awesome-icon", {
-                                        staticClass: "iconosTabla",
-                                        attrs: {
-                                          icon: "fas fa-edit",
-                                          alt: "Editar trabajo",
-                                        },
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.editarLimpieza(
-                                              pendiente.id
-                                            )
-                                          },
-                                        },
-                                      }),
-                                      _vm._v(" "),
-                                      _c("font-awesome-icon", {
-                                        staticClass: "iconosTabla",
-                                        attrs: {
-                                          icon: "fa-solid fa-print",
-                                          alt: "Imprimir etiqueta",
-                                        },
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.imprimir(pendiente.id)
-                                          },
-                                        },
-                                      }),
-                                    ],
-                                    1
-                                  ),
-                                ]
-                              )
-                            : _vm._e()
-                        }),
+          _vm.usuario.tipo === "admin" || _vm.usuario.tipo === "propietario"
+            ? _c("div", { staticClass: "accordion-item" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "accordion-collapse collapse show",
+                    attrs: {
+                      id: "panelsStayOpen-collapseOne",
+                      "aria-labelledby": "panelsStayOpen-headingOne",
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "accordion-body" }, [
+                      _c("table", { staticClass: "table table-striped" }, [
+                        _vm._m(1),
                         _vm._v(" "),
-                        _vm._l(_vm.pendientes, function (pendiente) {
-                          return _vm.usuario.tipo === "propietario" &&
-                            _vm.usuario.id === pendiente.propietario_id
-                            ? _c(
-                                "tr",
-                                {
-                                  key: pendiente.id,
-                                  staticClass: "border-bottom",
-                                },
-                                [
-                                  _c("td", { attrs: { scope: "row" } }, [
-                                    _vm._v(_vm._s(pendiente.id)),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(pendiente.apartment_id)),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(pendiente.horario))]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(pendiente.tipo_limpieza)),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(pendiente.propietario_id)),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "td",
-                                    { staticClass: "iconosTd" },
+                        _c(
+                          "tbody",
+                          [
+                            _vm._l(_vm.pendientes, function (pendiente) {
+                              return _vm.usuario.tipo === "admin"
+                                ? _c(
+                                    "tr",
+                                    {
+                                      key: pendiente.id,
+                                      staticClass: "border-bottom",
+                                    },
                                     [
-                                      _c("font-awesome-icon", {
-                                        staticClass: "iconosTabla",
-                                        attrs: {
-                                          icon: "fas fa-edit",
-                                          alt: "Editar trabajo",
-                                        },
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.editarLimpieza(
-                                              pendiente.id
-                                            )
-                                          },
-                                        },
-                                      }),
-                                    ],
-                                    1
-                                  ),
-                                ]
-                              )
-                            : _vm._e()
-                        }),
-                      ],
-                      2
-                    ),
-                  ]),
-                ]),
-              ]
-            ),
-          ]),
+                                      _c("td", { attrs: { scope: "row" } }, [
+                                        _vm._v(_vm._s(pendiente.id)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(pendiente.apartment_id)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(pendiente.horario)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(pendiente.tipo_limpieza)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          _vm._s(pendiente.propietario_id)
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        { staticClass: "iconosTd" },
+                                        [
+                                          _c("font-awesome-icon", {
+                                            staticClass: "iconosTabla",
+                                            attrs: {
+                                              icon: "fas fa-edit",
+                                              alt: "Editar trabajo",
+                                            },
+                                            on: {
+                                              click: function ($event) {
+                                                return _vm.editarLimpieza(
+                                                  pendiente.id
+                                                )
+                                              },
+                                            },
+                                          }),
+                                          _vm._v(" "),
+                                          _c("font-awesome-icon", {
+                                            staticClass: "iconosTabla",
+                                            attrs: {
+                                              icon: "fa-solid fa-print",
+                                              alt: "Imprimir etiqueta",
+                                            },
+                                            on: {
+                                              click: function ($event) {
+                                                return _vm.imprimir(
+                                                  pendiente.id
+                                                )
+                                              },
+                                            },
+                                          }),
+                                        ],
+                                        1
+                                      ),
+                                    ]
+                                  )
+                                : _vm._e()
+                            }),
+                            _vm._v(" "),
+                            _vm._l(_vm.pendientes, function (pendiente) {
+                              return _vm.usuario.tipo === "propietario" &&
+                                _vm.usuario.id === pendiente.propietario_id
+                                ? _c(
+                                    "tr",
+                                    {
+                                      key: pendiente.id,
+                                      staticClass: "border-bottom",
+                                    },
+                                    [
+                                      _c("td", { attrs: { scope: "row" } }, [
+                                        _vm._v(_vm._s(pendiente.id)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(pendiente.apartment_id)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(pendiente.horario)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(pendiente.tipo_limpieza)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          _vm._s(pendiente.propietario_id)
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        { staticClass: "iconosTd" },
+                                        [
+                                          _c("font-awesome-icon", {
+                                            staticClass: "iconosTabla",
+                                            attrs: {
+                                              icon: "fas fa-edit",
+                                              alt: "Editar trabajo",
+                                            },
+                                            on: {
+                                              click: function ($event) {
+                                                return _vm.editarLimpieza(
+                                                  pendiente.id
+                                                )
+                                              },
+                                            },
+                                          }),
+                                        ],
+                                        1
+                                      ),
+                                    ]
+                                  )
+                                : _vm._e()
+                            }),
+                          ],
+                          2
+                        ),
+                      ]),
+                    ]),
+                  ]
+                ),
+              ])
+            : _vm._e(),
           _vm._v(" "),
           _c("div", { staticClass: "accordion-item" }, [
             _vm._m(2),
@@ -50620,6 +50689,61 @@ var render = function () {
                               ])
                             : _vm._e()
                         }),
+                        _vm._v(" "),
+                        _vm._l(_vm.planificados, function (planificado) {
+                          return _vm.usuario.tipo === "trabajador"
+                            ? _c("tr", { staticClass: "border-bottom" }, [
+                                _c("td", { attrs: { scope: "row" } }, [
+                                  _vm._v(_vm._s(planificado.id)),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(planificado.apartment_id)),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(planificado.direccion)),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(planificado.tipo_limpieza)),
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  { staticClass: "iconosTd" },
+                                  [
+                                    _c("font-awesome-icon", {
+                                      staticClass: "iconosTabla",
+                                      attrs: {
+                                        icon: "fa-solid fa-house-circle-check text-success",
+                                        alt: "Editar trabajo",
+                                      },
+                                      on: {
+                                        click: function ($event) {
+                                          return _vm.finalizado(planificado.id)
+                                        },
+                                      },
+                                    }),
+                                    _vm._v(" "),
+                                    _c("font-awesome-icon", {
+                                      staticClass: "iconosTabla",
+                                      attrs: {
+                                        icon: "fa-solid fa-print",
+                                        alt: "Imprimir etiqueta",
+                                      },
+                                      on: {
+                                        click: function ($event) {
+                                          return _vm.imprimir(planificado.id)
+                                        },
+                                      },
+                                    }),
+                                  ],
+                                  1
+                                ),
+                              ])
+                            : _vm._e()
+                        }),
                       ],
                       2
                     ),
@@ -50629,169 +50753,177 @@ var render = function () {
             ),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "accordion-item" }, [
-            _vm._m(4),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "accordion-collapse collapse",
-                attrs: {
-                  id: "panelsStayOpen-collapseThree",
-                  "aria-labelledby": "panelsStayOpen-headingThree",
-                },
-              },
-              [
-                _c("div", { staticClass: "accordion-body" }, [
-                  _c("table", { staticClass: "table table-striped" }, [
-                    _vm._m(5),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      [
-                        _vm._l(_vm.acabados, function (acabado) {
-                          return _vm.usuario.tipo === "admin"
-                            ? _c(
-                                "tr",
-                                {
-                                  key: acabado.id,
-                                  staticClass: "border-bottom",
-                                },
-                                [
-                                  _c("td", { attrs: { scope: "row" } }, [
-                                    _vm._v(_vm._s(acabado.id)),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(acabado.apartment_id)),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(acabado.horario))]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(acabado.tipo_limpieza)),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(acabado.propietario_id)),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "td",
-                                    { staticClass: "iconosTd" },
-                                    [
-                                      _c("font-awesome-icon", {
-                                        staticClass: "iconosTabla",
-                                        attrs: {
-                                          icon: "fas fa-edit",
-                                          alt: "Editar trabajo",
-                                        },
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.editarLimpieza(
-                                              acabado.id
-                                            )
-                                          },
-                                        },
-                                      }),
-                                      _vm._v(" "),
-                                      _c("font-awesome-icon", {
-                                        staticClass: "iconosTabla",
-                                        attrs: {
-                                          icon: "fa-solid fa-print",
-                                          alt: "Imprimir etiqueta",
-                                        },
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.imprimir(acabado.id)
-                                          },
-                                        },
-                                      }),
-                                    ],
-                                    1
-                                  ),
-                                ]
-                              )
-                            : _vm._e()
-                        }),
+          _vm.usuario.tipo === "admin" || _vm.usuario.tipo === "propietario"
+            ? _c("div", { staticClass: "accordion-item" }, [
+                _vm._m(4),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "accordion-collapse collapse",
+                    attrs: {
+                      id: "panelsStayOpen-collapseThree",
+                      "aria-labelledby": "panelsStayOpen-headingThree",
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "accordion-body" }, [
+                      _c("table", { staticClass: "table table-striped" }, [
+                        _vm._m(5),
                         _vm._v(" "),
-                        _vm._l(_vm.acabados, function (acabado) {
-                          return _vm.usuario.tipo === "propietario" &&
-                            _vm.usuario.id === acabado.propietario_id
-                            ? _c(
-                                "tr",
-                                {
-                                  key: acabado.id,
-                                  staticClass: "border-bottom",
-                                },
-                                [
-                                  _c("td", { attrs: { scope: "row" } }, [
-                                    _vm._v(_vm._s(acabado.id)),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(acabado.apartment_id)),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(acabado.horario))]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(acabado.tipo_limpieza)),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(acabado.propietario_id)),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "td",
-                                    { staticClass: "iconosTd" },
+                        _c(
+                          "tbody",
+                          [
+                            _vm._l(_vm.acabados, function (acabado) {
+                              return _vm.usuario.tipo === "admin"
+                                ? _c(
+                                    "tr",
+                                    {
+                                      key: acabado.id,
+                                      staticClass: "border-bottom",
+                                    },
                                     [
-                                      _c("font-awesome-icon", {
-                                        staticClass: "iconosTabla",
-                                        attrs: {
-                                          icon: "fas fa-edit",
-                                          alt: "Editar trabajo",
-                                        },
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.editarLimpieza(
-                                              acabado.id
-                                            )
-                                          },
-                                        },
-                                      }),
-                                    ],
-                                    1
-                                  ),
-                                ]
-                              )
-                            : _vm._e()
-                        }),
-                      ],
-                      2
-                    ),
-                  ]),
-                ]),
-              ]
-            ),
-          ]),
+                                      _c("td", { attrs: { scope: "row" } }, [
+                                        _vm._v(_vm._s(acabado.id)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(acabado.apartment_id)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(acabado.horario)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(acabado.tipo_limpieza)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(acabado.propietario_id)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        { staticClass: "iconosTd" },
+                                        [
+                                          _c("font-awesome-icon", {
+                                            staticClass: "iconosTabla",
+                                            attrs: {
+                                              icon: "fas fa-edit",
+                                              alt: "Editar trabajo",
+                                            },
+                                            on: {
+                                              click: function ($event) {
+                                                return _vm.editarLimpieza(
+                                                  acabado.id
+                                                )
+                                              },
+                                            },
+                                          }),
+                                          _vm._v(" "),
+                                          _c("font-awesome-icon", {
+                                            staticClass: "iconosTabla",
+                                            attrs: {
+                                              icon: "fa-solid fa-print",
+                                              alt: "Imprimir etiqueta",
+                                            },
+                                            on: {
+                                              click: function ($event) {
+                                                return _vm.imprimir(acabado.id)
+                                              },
+                                            },
+                                          }),
+                                        ],
+                                        1
+                                      ),
+                                    ]
+                                  )
+                                : _vm._e()
+                            }),
+                            _vm._v(" "),
+                            _vm._l(_vm.acabados, function (acabado) {
+                              return _vm.usuario.tipo === "propietario" &&
+                                _vm.usuario.id === acabado.propietario_id
+                                ? _c(
+                                    "tr",
+                                    {
+                                      key: acabado.id,
+                                      staticClass: "border-bottom",
+                                    },
+                                    [
+                                      _c("td", { attrs: { scope: "row" } }, [
+                                        _vm._v(_vm._s(acabado.id)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(acabado.apartment_id)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(acabado.horario)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(acabado.tipo_limpieza)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(acabado.propietario_id)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        { staticClass: "iconosTd" },
+                                        [
+                                          _c("font-awesome-icon", {
+                                            staticClass: "iconosTabla",
+                                            attrs: {
+                                              icon: "fas fa-edit",
+                                              alt: "Editar trabajo",
+                                            },
+                                            on: {
+                                              click: function ($event) {
+                                                return _vm.editarLimpieza(
+                                                  acabado.id
+                                                )
+                                              },
+                                            },
+                                          }),
+                                        ],
+                                        1
+                                      ),
+                                    ]
+                                  )
+                                : _vm._e()
+                            }),
+                          ],
+                          2
+                        ),
+                      ]),
+                    ]),
+                  ]
+                ),
+              ])
+            : _vm._e(),
         ]
       ),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: { type: "submit" },
-          on: {
-            click: function ($event) {
-              return _vm.crearLimpieza()
+      _vm.usuario.tipo === "admin" || _vm.usuario.tipo === "propietario"
+        ? _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { type: "submit" },
+              on: {
+                click: function ($event) {
+                  return _vm.crearLimpieza()
+                },
+              },
             },
-          },
-        },
-        [_vm._v("Crear limpieza")]
-      ),
+            [_vm._v("Crear limpieza")]
+          )
+        : _vm._e(),
     ]
   )
 }

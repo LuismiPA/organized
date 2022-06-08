@@ -32,6 +32,7 @@
                     <select class="form-control" id="floatingSelect" aria-label="Floating label select example"
                         v-model="apartamento.camas_dobles">
                         <option value="" disabled selected hidden>Número de camas dobles</option>
+                        <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -47,6 +48,7 @@
                     <select class="form-control" id="floatingSelect" aria-label="Floating label select example"
                         v-model="apartamento.camas_indiv">
                         <option value="" disabled selected hidden>Número de camas individuales</option>
+                        <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -61,6 +63,7 @@
                     <select class="form-control" id="floatingSelect" aria-label="Floating label select example"
                         v-model="apartamento.aseos">
                         <option value="" disabled selected hidden>Número de aseos</option>
+                        <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>

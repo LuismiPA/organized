@@ -33,8 +33,9 @@ Route::post('/apartamento/crear', [App\Http\Controllers\ApartmentController::cla
 Route::put('/apartamento/editar/{id}', [App\Http\Controllers\ApartmentController::class, 'editar_apartamento'])->name('editar_apartamento');
 Route::delete('/apartamento/borrar/{id}', [App\Http\Controllers\ApartmentController::class , 'borrar_apartamento'])->name('borrar_partamento');
 
-    Route::post('/limpieza/crear', [App\Http\Controllers\LimpiezasController::class, 'crear_limpieza'])->name('crear_limpieza');
-    Route::put('/limpieza/editar/{id}', [App\Http\Controllers\LimpiezasController::class, 'editar_limpieza'])->name('editar_limpieza');
+Route::post('/limpieza/crear', [App\Http\Controllers\LimpiezasController::class, 'crear_limpieza'])->name('crear_limpieza');
+Route::put('/limpieza/editar/{id}', [App\Http\Controllers\LimpiezasController::class, 'editar_limpieza'])->name('editar_limpieza');
+Route::put('/limpieza/finalizado/{id}', [App\Http\Controllers\LimpiezasController::class, 'finalizado'])->name('finalizar_limpieza');
 
 Route::middleware('auth', 'propietario')->group(function () {
     Route::get('/user/panel', [App\Http\Controllers\PagesController::class, 'userPage'])->name('user.panel');

@@ -1,7 +1,7 @@
 @extends('plantilla')
 
 @section('title')
-    Panel de control | Admin
+    Panel de control | Trabajador
 @endsection
 
 @section('csspropio')
@@ -16,8 +16,8 @@
             <nav class="text-center pt-5">
                 <img src="{{ asset('assets/images/panel_logo.png') }}" alt="logo">
                 <div class="d-flex justify-content-between">
-                    <router-link :to="{ name: 'trabajo' }">
-                        Apartamentos
+                    <router-link :to="{ name: 'trabajos_tabla' }">
+                        Limpiezas
                     </router-link>
                     @guest
                         @if (Route::has('login'))

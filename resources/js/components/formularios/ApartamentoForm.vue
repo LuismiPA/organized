@@ -31,6 +31,7 @@
                     <select class="form-control" id="floatingSelect" aria-label="Floating label select example"
                         v-model="apartamento.camas_dobles">
                         <option value="" disabled selected hidden>Número de camas dobles</option>
+                        <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -46,6 +47,7 @@
                     <select class="form-control" id="floatingSelect" aria-label="Floating label select example"
                         v-model="apartamento.camas_indiv">
                         <option value="" disabled selected hidden>Número de camas individuales</option>
+                        <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -60,6 +62,7 @@
                     <select class="form-control" id="floatingSelect" aria-label="Floating label select example"
                         v-model="apartamento.aseos">
                         <option value="" disabled selected hidden>Número de aseos</option>
+                        <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -87,10 +90,10 @@
                             {{ propietario.id }}
                         </option>
                     </select>
-                </div>
-                <div class="form-group col-md-6" v-if="usuario.tipo === 'propietario'">
-                    <input class="form-control" name="propietario_id" :value='usuario.id' :placeholder="[usuario.id]"
+
+                    <input class="form-control" v-if="usuario.tipo === 'propietario'" :placeholder="[usuario.id]"
                         disabled>
+
                 </div>
 
             </div>
@@ -143,8 +146,11 @@ export default {
         axios.get('/api/user/propietarios').then(response => this.propietarios = response.data);
     },
     methods: {
-        
+
         crearApartamento() {
+            if(this.usuario.tipo=="propietario"){
+                this.apartamento.propietario_id=this.usuario.id;
+            }
             axios.post('/apartamento/crear', this.apartamento).then(response => window.location.href = "/apartamentos/detalles");
         }
     },

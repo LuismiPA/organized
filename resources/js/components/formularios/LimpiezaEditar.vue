@@ -8,12 +8,12 @@
                     <input class="form-control" v-model="limpieza.apartment_id" disabled>
                 </div>
                 <div class="form-group col-md-6">
-                    <select class="form-control" id="floatingSelect" name="worker_id"
-                        aria-label="Floating label select example" v-model="limpieza.worker_id">
-                        <option value="" disabled selected>{{ limpieza.worker_id }}</option>
-                        <option v-for="trabajador in trabajadores" :value='trabajador.id'>{{ trabajador.name }}
-                        </option>
+                    <select class="form-control" id="floatingSelect" name="tipo_limpieza"
+                        aria-label="Floating label select example" v-model="limpieza.tipo_limpieza">
+                        <option value="normal">Normal</option>
+                        <option value="completa">Completa</option>
                     </select>
+
                 </div>
             </div>
             <div class="form-row" v-if="usuario.tipo === 'admin'">
@@ -27,19 +27,21 @@
                     </select>
                 </div>
             </div>
-            <div class="form-row" v-if="usuario.tipo === 'admin'">
-                <div class="form-group col-md-6">
-                    <select class="form-control" id="floatingSelect" name="tipo_limpieza"
-                        aria-label="Floating label select example" v-model="limpieza.tipo_limpieza">
-                        <option value="normal">Normal</option>
-                        <option value="completa">Completa</option>
-                    </select>
-                </div>
+            <div class="form-row">
                 <div class="form-group col-md-6">
                     <div class="form-floating">
                         <input class="form-control" type="datetime-local" name="horario"
                             placeholder="Hora de la limpieza" v-model="limpieza.horario">
                     </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <select class="form-control" id="floatingSelect" name="worker_id"
+                        aria-label="Floating label select example" v-model="limpieza.worker_id"
+                        v-if="usuario.tipo === 'admin'">
+                        <option value="" disabled selected>{{ limpieza.worker_id }}</option>
+                        <option v-for="trabajador in trabajadores" :value='trabajador.id'>{{ trabajador.name }}
+                        </option>
+                    </select>
                 </div>
             </div>
             <div class="d-flex">
@@ -92,8 +94,13 @@ export default {
     },
     methods: {
         editarLimpieza(id) {
-            console.log(this.limpieza);
-            axios.put('/limpieza/editar/' + id, this.limpieza).then(response => window.location.href = "/trabajos/detalles");
+            if (this.usuario.tipo == "propietario") {
+                this.limpieza.estado = "pendiente";
+                axios.put('/limpieza/editar/' + id, this.limpieza).then(response => window.location.href = "/user/panel");
+            } else {
+                axios.put('/limpieza/editar/' + id, this.limpieza).then(response => window.location.href = "/trabajos/detalles");
+            }
+            
         }
     },
 }

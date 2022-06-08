@@ -45,7 +45,8 @@
       </tbody>
     </table>
     <div class=" d-flex">
-      <button type="submit" v-on:click="crearApartamento()" class="btn btn-primary mt-0 mb-0 ml-auto mr-auto">Crear
+      <button type="submit" v-on:click="crearApartamento()" class="btn btn-primary mt-0 mb-0 ml-auto mr-auto"
+        v-if="usuario.tipo === 'admin' || usuario.tipo==='propietario'">Crear
         Apartamento</button>
     </div>
   </article>

@@ -26,13 +26,11 @@ class LimpiezasController extends Controller
 
     public function crear_limpieza(Request $request)
     {
-        /* $request->validate([
-            "name" => "required",
-            "email" => "required",
-            "password" => "required",
-            "password_confirmation" => "required | same:password",
-            "tipo" => "required"
-        ]); */
+        $request->validate([
+            "estado" => "required",
+            "tipo_limpieza" => "required",
+            "horario" => "required",
+        ]);
         $apartamento = Apartment::findOrFail($request->apartment_id);
         $limpieza = new Limpiezas();
         $limpieza->apartment_id = $request->apartment_id;
@@ -42,7 +40,7 @@ class LimpiezasController extends Controller
         if ($request->estado) {
             $limpieza->estado = $request->estado;
         }
-        $limpieza->tipo_limpieza = $request->tipo;
+        $limpieza->tipo_limpieza = $request->tipo_limpieza;
         if ($request->horario) {
             $limpieza->horario = $request->horario;
         }
@@ -53,16 +51,24 @@ class LimpiezasController extends Controller
     public function editar_limpieza(Request $request, $id)
     {
         $request->validate([
-            "worker_id" => "required",
             "estado" => "required",
             "tipo_limpieza" => "required",
             "horario" => "required",
         ]);
         $limpieza = Limpiezas::findOrFail($id);
-        $limpieza->worker_id = $request->worker_id;
+        if ($request->worker_id) {
+            $limpieza->worker_id = $request->worker_id;
+        }
         $limpieza->estado = $request->estado;
         $limpieza->tipo_limpieza = $request->tipo_limpieza;
         $limpieza->horario = $request->horario;
+        $limpieza->save();
+    }
+
+    public function finalizado($id)
+    {
+        $limpieza = Limpiezas::findOrFail($id);
+        $limpieza->estado = "acabada";
         $limpieza->save();
     }
     /**

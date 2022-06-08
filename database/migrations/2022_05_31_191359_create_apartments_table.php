@@ -18,9 +18,9 @@ return new class extends Migration
             $table->text('direccion');
             $table->integer('codigo_postal');
             $table->enum('habitaciones', ['1', '2', '3', '4', '5', '6']);
-            $table->enum('camas_dobles', ['1', '2', '3', '4', '5', '6']);
-            $table->enum('camas_indiv', ['1', '2', '3', '4', '5', '6', '7', '8']);
-            $table->enum('aseos', ['1', '2', '3', '4', '5', '6']);
+            $table->enum('camas_dobles', ['0', '1', '2', '3', '4', '5', '6']);
+            $table->enum('camas_indiv', ['0', '1', '2', '3', '4', '5', '6', '7', '8']);
+            $table->enum('aseos', ['0', '1', '2', '3', '4', '5', '6']);
             $table->enum('solarium', ['si', 'no']);
             $table->foreignId("propietario_id")->constrained('users')
                 ->cascadeOnUpdate()

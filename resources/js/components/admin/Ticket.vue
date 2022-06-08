@@ -1,7 +1,6 @@
 <template>
   <div id="app" class="m-auto shadow p-3 mb-5 bg-body rounded">
     <main role="main" class="container">
-      <h1>{{ apartamento }}</h1>
       <h1> APARTAMENTO {{ apartamento.id }}</h1>
       <p class="lead">Habitaciones: {{ apartamento.habitaciones }}</p>
       <p class="lead">Camas Dobles: {{ apartamento.camas_dobles }}</p>
@@ -48,6 +47,7 @@ export default {
       doc.text(20, 92, 'Tipo de limpieza: ' + this.limpieza.tipo_limpieza);
 
       doc.save('Test.pdf');
+      window.location.href = "/";
     },
   },
   created() {

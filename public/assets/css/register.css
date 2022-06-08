@@ -89,7 +89,7 @@ input[type="select"] {
     margin: 0 auto;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 500px) {
     * {
         box-sizing: border-box;
         margin: 0 auto;
