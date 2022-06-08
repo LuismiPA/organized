@@ -20,6 +20,12 @@ class AdminAuth
         if (Auth::user() &&  Auth::user()->tipo == 'admin') {
             return $next($request);
         }
+        if (Auth::check() && Auth::user()->tipo == "propietario") {
+            return redirect()->route("user.panel");
+        }
+        if (Auth::check() && Auth::user()->tipo == "trabajador") {
+            return redirect()->route("worker.panel");
+        }
         Auth::logout();
         return response()->view('auth.login');
     }
